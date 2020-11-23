@@ -13,6 +13,8 @@ public class StartingPoint {
         }
         int[] numbers = new int[n];
         int[] oNumbers = new int[n];
+
+        System.out.println("please insert the numbers : ");
         for (int i = 0; i < n; i++) {  // getting data from scanner
             numbers[i] = scanner.nextInt();
             oNumbers[i] = numbers[i];
