@@ -101,36 +101,6 @@ public class Controller {
             alert.show();
         }
 
-//            for (int i = 0; i < paymentLines.size(); i++) {
-//                String[] splitPaymentLine = paymentLines.get(i).split("\t");
-//                if ("debtor".equalsIgnoreCase(splitPaymentLine[0])) {
-//                    debtor += Integer.parseInt(splitPaymentLine[2]);
-//                } else if ("creditor".equalsIgnoreCase(splitPaymentLine[0])) {
-//                    creditor += Integer.parseInt(splitPaymentLine[2]);
-//                }
-//            }
-//
-//            System.out.println("Total debtor Value is : " + debtor);
-//            System.out.println("Total creditor value is : "+ creditor);
-//            if (creditor > debtor) {
-//
-//            } else {
-
-
-//                String[]debtorLine = AccountBalanceLine.get(0).split("\t") ;
-//                int a = Integer.parseInt(debtorLine[0]) ;
-//                a -= debtor ;
-//                fileWriter.write(debtorLine[0]+"\t"+a);
-//                for (int i = 1; i < paymentLines.size(); i++) {
-//                    String[] splitPaymentLine = paymentLines.get(i).split("\t");
-//                    String[] splitAccountBalanceLine = AccountBalanceLine.get(i).split("\t") ;
-//
-//                    if (splitPaymentLine[1].equalsIgnoreCase(splitAccountBalanceLine[0])) {
-//                        splitPaymentLine[2] +=splitAccountBalanceLine[1] ;
-//                    }
-//                }
-//                    fileWriter.close();
-//            }
 
     }
 
