@@ -20,7 +20,7 @@ public class Project03 {
         int maxProfit = 0;
         int profit = 0;
         for (int i = 0; i < n; i++) {
-            for (int j = 1; j < n ; j++) {
+            for (int j = 1; j < n; j++) {
                 profit = prices[j] - prices[i];
 
                 if (profit >= maxProfit) {
@@ -30,6 +30,6 @@ public class Project03 {
             }
 
         }
-        System.out.println(maxProfit);
+        System.out.println("The maxProfit between days is : "+ maxProfit);
     }
 }
