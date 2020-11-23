@@ -39,7 +39,7 @@ public class StartingPoint {
             }
         }
 
-        System.out.println(counter);
+        System.out.println("The number of places that changed : " +counter);
     }
 }
 
