@@ -13,7 +13,7 @@ public class StartingPoint {
             }
         }
 
-        System.out.println("Minimum Number change is : " + findMinimumTotalChange(matrix));
+        System.out.println("The minimum value that needs to be changed is : " + findMinimumTotalChange(matrix));
 
 
     }
