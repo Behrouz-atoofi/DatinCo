@@ -4,8 +4,10 @@ public class Project03 {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Please insert the number of Days : ");
         int n = scanner.nextInt();
 
+        System.out.println("Please insert the price of Days : ");
         while (n < 1 || n > 1000) {
             n = scanner.nextInt();
         }
@@ -18,8 +20,8 @@ public class Project03 {
         int maxProfit = 0;
         int profit = 0;
         for (int i = 0; i < n; i++) {
-            for (int j = i; j < n - 1; j++) {
-                profit = prices[j + 1] - prices[i];
+            for (int j = 1; j < n ; j++) {
+                profit = prices[j] - prices[i];
 
                 if (profit >= maxProfit) {
                     maxProfit = profit;
