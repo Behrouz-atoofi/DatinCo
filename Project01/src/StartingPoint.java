@@ -6,6 +6,7 @@ public class StartingPoint {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Please insert the size of Array : ");
         int n = scanner.nextInt();
         while (n < 1 || n > 300_000) {
             n = scanner.nextInt();
