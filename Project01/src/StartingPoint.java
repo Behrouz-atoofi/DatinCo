@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,12 +25,12 @@ public class StartingPoint {
             numbers.add(num);
             oNumbers.add(num);
         }
-        numbers.sort((o1, o2) -> o1 - o2);
+        numbers.sort(Comparator.comparingInt(o -> o));
 
 
         int counter = 0;
         for (int k = 0; k < oNumbers.size(); k++) {  // Comparing numbers in the places
-            if (numbers.get(k) != oNumbers.get(k)) {
+            if (!numbers.get(k).equals(oNumbers.get(k))) {
                 counter++;
             }
         }
