@@ -1,45 +1,44 @@
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class StartingPoint {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.println("Please insert the size of Array : ");
-        int n = scanner.nextInt();
+        int n = sc.nextInt();
+
         while (n < 1 || n > 300_000) {
-            n = scanner.nextInt();
+            n = sc.nextInt();
         }
-        int[] numbers = new int[n];
-        int[] oNumbers = new int[n];
+
+        List<Integer> numbers = new ArrayList<>(n);
+        List<Integer> oNumbers = new ArrayList<>(n);
 
         System.out.println("please insert the numbers : ");
         for (int i = 0; i < n; i++) {  // getting data from scanner
-            numbers[i] = scanner.nextInt();
-            oNumbers[i] = numbers[i];
+            int num = sc.nextInt();
+            numbers.add(num);
+            oNumbers.add(num);
         }
+        numbers.sort((o1, o2) -> o1 - o2);
 
-        int middle_Variable;
-        for (int j = 1; j < numbers.length; j++) { // Moving numbers
-            for (int k = j; k > 0; k--) {
-                if (numbers[k] < numbers[k - 1]) {
-                    middle_Variable = numbers[k];
-                    numbers[k] = numbers[k - 1];
-                    numbers[k - 1] = middle_Variable;
-                }
 
-            }
-
-        }
         int counter = 0;
-        for (int k = 0; k < oNumbers.length; k++) {  // Comparing numbers
-            if (numbers[k] != oNumbers[k]) {
+        for (int k = 0; k < oNumbers.size(); k++) {  // Comparing numbers in the places
+            if (numbers.get(k) != oNumbers.get(k)) {
                 counter++;
             }
         }
+        for (int num : numbers) {   // printing the sorted list
+            System.out.print(num + " ");
+        }
 
-        System.out.println("The number of places that changed : " +counter);
+        System.out.println();
+        System.out.println("The number of places that changed : " + counter);
     }
 }
 
