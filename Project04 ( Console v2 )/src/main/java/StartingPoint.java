@@ -1,13 +1,12 @@
 
-import java.io.IOException;
 import service.Operator;
-
 import static service.Generator.*;
+
 
 public class StartingPoint {
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
 
 

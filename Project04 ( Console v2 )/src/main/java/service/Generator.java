@@ -1,8 +1,6 @@
 package service;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-import dto.AccountDto;
-import exception.SystemExceptions;
+import dto.AccountVo;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
@@ -45,7 +43,7 @@ public class Generator implements Runnable{
 
 
         List<String> accountList = new ArrayList<>();
-        AccountDto debtorAccount = new AccountDto();
+        AccountVo debtorAccount = new AccountVo();
         debtorAccount.setAccountNumber("1.10.100.1");
         debtorAccount.setBalance(Generator.generateRandomValue(1));
         accountList.add(debtorAccount.toString());
@@ -54,7 +52,7 @@ public class Generator implements Runnable{
 
         for (int i = 1; i <= n; i++) {
 
-            AccountDto creditorAccount = new AccountDto();
+            AccountVo creditorAccount = new AccountVo();
             creditorAccount.setAccountNumber("1.20.100." + i);
             creditorAccount.setBalance(generateRandomValue(0));
             accountList.add(creditorAccount.toString());
@@ -85,17 +83,17 @@ public class Generator implements Runnable{
         for (int i = 1; i <= n; i++) {
 
             int randomValue = generateRandomValue(0);
-            TransactionDto transactionDto = new TransactionDto();
-            transactionDto.setType("creditor");
-            transactionDto.setAccountNumber("1.20.100." + i);
-            transactionDto.setValue(randomValue);
-            transactionList.add(transactionDto.toString());
+            TransactionVo transactionVo = new TransactionVo();
+            transactionVo.setType("creditor");
+            transactionVo.setAccountNumber("1.20.100." + i);
+            transactionVo.setValue(randomValue);
+            transactionList.add(transactionVo.toString());
             totalTransactions += randomValue;
 
         }
         log.info("Transactions generated successfully");
 
-        TransactionDto debtorTransaction = new TransactionDto();
+        TransactionVo debtorTransaction = new TransactionVo();
         debtorTransaction.setType("debtor");
         debtorTransaction.setAccountNumber("1.10.100.1");
         debtorTransaction.setValue(totalTransactions);
@@ -105,7 +103,6 @@ public class Generator implements Runnable{
         Path transactionsFile = Paths.get("src/main/resources","transactionsFile.txt") ;
         try {
             Files.write(transactionsFile,transactionList) ;
-            log.info("TransactionFile wrote successfully");
         } catch (IOException e) {
             e.getMessage() ;
             log.warn("TransactionFile couldn't write");

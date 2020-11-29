@@ -1,6 +1,6 @@
 package dto;
 
-public class AccountDto {
+public class AccountVo {
 
 
     private String accountNumber;

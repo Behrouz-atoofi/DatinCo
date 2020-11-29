@@ -1,6 +1,6 @@
 package dto;
 
-public class ReportDto {
+public class ReportVo {
 
     private String srcAccount ;
     private String dstAccount ;

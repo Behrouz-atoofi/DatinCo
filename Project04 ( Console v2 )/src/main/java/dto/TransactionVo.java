@@ -1,6 +1,6 @@
 package dto;
 
-public class TransactionDto {
+public class TransactionVo {
 
     private String type ;
     private String accountNumber ;
