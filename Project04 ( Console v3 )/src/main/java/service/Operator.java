@@ -85,10 +85,10 @@ public class Operator {
 
         if (debtorBalance > transValue) {
             return true;
-        } else
+        } else {
             log.info("not enough balance ");
         System.out.println("amount of debtor not enough for doing this Payment");
-        return false;
+        return false; }
 
     }
 
