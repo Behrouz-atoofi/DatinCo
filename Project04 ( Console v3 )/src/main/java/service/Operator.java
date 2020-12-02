@@ -2,6 +2,7 @@ package service;
 
 import dto.Deposit;
 import dto.Report;
+import exception.SystemExceptions;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -86,6 +87,7 @@ public class Operator {
             return true;
         } else
             log.info("not enough balance ");
+        System.out.println("amount of debtor not enough for doing this Payment");
         return false;
 
     }
