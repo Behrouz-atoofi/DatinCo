@@ -2,6 +2,7 @@ package service;
 
 import dto.Deposit;
 import dto.Report;
+import exception.AmountException;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -29,27 +30,34 @@ public class Operator {
 
         Runnable paymentThread = () -> {
 
-            if (checkDebtorAmount(deposits, payments)) {
 
-                for (int i = 1; i < deposits.size(); i++) {
-                    String[] spitedTLine = payments.get(i).split("\t");
-                    String[] spitedALine = deposits.get(i).split("\t");
-                    BigDecimal updatedAmount = BigDecimal.valueOf(Integer.parseInt(spitedALine[1]) + Integer.parseInt(spitedTLine[2]));
+            try {
 
-                    Deposit updatedRep = new Deposit();
-                    updatedRep.setDeposit(spitedALine[0]);
-                    updatedRep.setAmount(updatedAmount);
-                    tempList.add(updatedRep.toString());
+                if (!checkDebtorAmount(deposits, payments))
+                    throw new AmountException("Not Enough Money for processing this transaction");
 
-                    Report report = new Report();
-                    report.setSrcDeposit(debtorDeposit[0]);
-                    report.setDstDeposit(spitedTLine[1]);
-                    report.setAmount(Integer.parseInt(spitedTLine[2]));
-                    reportList.add(report.toString());
+                else {
+
+                    for (int i = 1; i < deposits.size(); i++) {
+                        String[] spitedTLine = payments.get(i).split("\t");
+                        String[] spitedALine = deposits.get(i).split("\t");
+                        BigDecimal updatedAmount = BigDecimal.valueOf(Integer.parseInt(spitedALine[1]) + Integer.parseInt(spitedTLine[2]));
+
+                        Deposit updatedRep = new Deposit();
+                        updatedRep.setDeposit(spitedALine[0]);
+                        updatedRep.setAmount(updatedAmount);
+                        tempList.add(updatedRep.toString());
+
+                        Report report = new Report();
+                        report.setSrcDeposit(debtorDeposit[0]);
+                        report.setDstDeposit(spitedTLine[1]);
+                        report.setAmount(Integer.parseInt(spitedTLine[2]));
+                        reportList.add(report.toString());
+                    }
                 }
-            } else {
-                System.out.println("Not enough money for doing this transactions");
-                log.warn("Not enough money for doing this transactions");
+            } catch (AmountException e) {
+                log.warn("not enough money");
+                System.out.println(e.getMessage());
             }
 
         };
