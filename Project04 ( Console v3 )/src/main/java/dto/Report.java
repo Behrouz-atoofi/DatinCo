@@ -2,25 +2,25 @@ package dto;
 
 public class Report {
 
-    private String srcDeposit;
-    private String dstDeposit;
+    private String srcDepositNumber;
+    private String dstDepositNumber;
     private int amount;
 
 
-    public String getSrcDeposit() {
-        return srcDeposit;
+    public String getSrcDepositNumber() {
+        return srcDepositNumber;
     }
 
-    public void setSrcDeposit(String srcDeposit) {
-        this.srcDeposit = srcDeposit;
+    public void setSrcDepositNumber(String srcDepositNumber) {
+        this.srcDepositNumber = srcDepositNumber;
     }
 
-    public String getDstDeposit() {
-        return dstDeposit;
+    public String getDstDepositNumber() {
+        return dstDepositNumber;
     }
 
-    public void setDstDeposit(String dstDeposit) {
-        this.dstDeposit = dstDeposit;
+    public void setDstDepositNumber(String dstDepositNumber) {
+        this.dstDepositNumber = dstDepositNumber;
     }
 
     public int getAmount() {
@@ -33,6 +33,6 @@ public class Report {
 
     @Override
     public String toString() {
-        return srcDeposit + "\t" + dstDeposit + "\t" + amount;
+        return srcDepositNumber + "\t" + dstDepositNumber + "\t" + amount;
     }
 }

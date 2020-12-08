@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class Payment {
     private DepositType type;
-    private String deposit;
+    private String depositNumber;
     private BigDecimal amount;
 
     public DepositType getType() {
@@ -15,12 +15,12 @@ public class Payment {
         this.type = type;
     }
 
-    public String getDeposit() {
-        return deposit;
+    public String getDepositNumber() {
+        return depositNumber;
     }
 
-    public void setDeposit(String deposit) {
-        this.deposit = deposit;
+    public void setDepositNumber(String depositNumber) {
+        this.depositNumber = depositNumber;
     }
 
     public BigDecimal getAmount() {
@@ -33,7 +33,7 @@ public class Payment {
 
     @Override
     public String toString() {
-        return type + "\t" + deposit + "\t" + amount;
+        return type + "\t" + depositNumber + "\t" + amount;
     }
 
     public enum DepositType {

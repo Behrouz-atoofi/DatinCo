@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -41,34 +42,39 @@ public class Generator {
 
     public static List<String> generateDeposits(int n) {
         BasicConfigurator.configure();
+        Path depositFile = Paths.get("src/main/resources/", "deposits.txt");
 
-
-        List<String> depositList = new ArrayList<>();
         Deposit debtorDeposit = new Deposit();
-        debtorDeposit.setDeposit("1.10.100.1");
+        debtorDeposit.setDepositNumber("1.10.100.1");
         debtorDeposit.setAmount(Generator.generateRandomValue(1));
-        depositList.add(debtorDeposit.toString());
-        log.info("Amount generated for debtorDeposit");
+
+        try {
+            Files.write(depositFile,(debtorDeposit.toString()+"\n").getBytes()) ;
+        } catch (IOException e) {
+            log.warn("debtor Deposit couldn't write ");
+        }
+
 
 
         for (int i = 1; i <= n; i++) {
 
-            Deposit creditorAccount = new Deposit();
-            creditorAccount.setDeposit(DepositBuilder(i));
-            creditorAccount.setAmount(generateRandomValue(0));
-            depositList.add(creditorAccount.toString());
+            Deposit creditorDeposit = new Deposit();
+            creditorDeposit.setDepositNumber(DepositBuilder(i));
+            creditorDeposit.setAmount(generateRandomValue(0));
 
+            try {
+                Files.write(depositFile,(creditorDeposit.toString()+"\n").getBytes() , StandardOpenOption.APPEND) ;
+            } catch (IOException e) {
+                log.warn("creditorDeposit couldn't write");
+            }
 
         }
-        log.info("Amounts generated for all creditorDeposits");
 
-        Path depositFile = Paths.get("src/main/resources/", "depositVO.txt");
-
+        List<String> depositList = null ;
         try {
-            Files.write(depositFile, depositList);
+            depositList = Files.readAllLines(depositFile) ;
         } catch (IOException e) {
-            e.getMessage();
-            log.warn("depositFile couldn't write");
+            log.warn(" depositFile couldn't read ");
         }
 
 
@@ -86,7 +92,7 @@ public class Generator {
             BigDecimal randomValue = generateRandomValue(0);
             Payment payment = new Payment();
             payment.setType(Payment.DepositType.creditor);
-            payment.setDeposit(DepositBuilder(i));
+            payment.setDepositNumber(DepositBuilder(i));
             payment.setAmount(randomValue);
             paymentList.add(payment.toString());
             totalTransactions = totalTransactions.add(randomValue);
@@ -96,14 +102,14 @@ public class Generator {
 
         Payment debtorTransaction = new Payment();
         debtorTransaction.setType(Payment.DepositType.debtor);
-        debtorTransaction.setDeposit("1.10.100.1");
+        debtorTransaction.setDepositNumber("1.10.100.1");
         debtorTransaction.setAmount(totalTransactions);
         paymentList.add(0, debtorTransaction.toString());
         log.info("DebtorTransaction calculated based on total Transactions");
 
-        Path transactionsVO = Paths.get("src/main/resources", "transactionsVO.txt");
+        Path transactionFile = Paths.get("src/main/resources", "transactions.txt");
         try {
-            Files.write(transactionsVO, paymentList);
+            Files.write(transactionFile, paymentList);
         } catch (IOException e) {
             e.getMessage();
             log.warn("TransactionFile couldn't write");
@@ -113,7 +119,7 @@ public class Generator {
 
     public static String DepositBuilder(int i) {
 
-        String accountNumber = null;
+        String accountNumber ;
         int tempNum = (int) Math.floor(i / 1000);
         int fnum = (i - tempNum * 1000);
         accountNumber = "1.20." + (100 + tempNum) + "." + (fnum);

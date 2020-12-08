@@ -5,15 +5,15 @@ import java.math.BigDecimal;
 public class Deposit {
 
 
-    private String deposit;
+    private String depositNumber;
     private BigDecimal amount;
 
-    public String getDeposit() {
-        return deposit;
+    public String getDepositNumber() {
+        return depositNumber;
     }
 
-    public void setDeposit(String deposit) {
-        this.deposit = deposit;
+    public void setDepositNumber(String depositNumber) {
+        this.depositNumber = depositNumber;
     }
 
     public BigDecimal getAmount() {
@@ -26,6 +26,6 @@ public class Deposit {
 
     @Override
     public String toString() {
-        return deposit + "\t" + amount;
+        return depositNumber + "\t" + amount;
     }
 }

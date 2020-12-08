@@ -4,6 +4,7 @@ import dto.Deposit;
 import dto.Report;
 import exception.AmountException;
 import org.apache.log4j.Logger;
+import sun.rmi.runtime.Log;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -44,13 +45,13 @@ public class Operator {
                         BigDecimal updatedAmount = BigDecimal.valueOf(Integer.parseInt(spitedALine[1]) + Integer.parseInt(spitedTLine[2]));
 
                         Deposit updatedRep = new Deposit();
-                        updatedRep.setDeposit(spitedALine[0]);
+                        updatedRep.setDepositNumber(spitedALine[0]);
                         updatedRep.setAmount(updatedAmount);
                         tempList.add(updatedRep.toString());
 
                         Report report = new Report();
-                        report.setSrcDeposit(debtorDeposit[0]);
-                        report.setDstDeposit(spitedTLine[1]);
+                        report.setSrcDepositNumber(debtorDeposit[0]);
+                        report.setDstDepositNumber(spitedTLine[1]);
                         report.setAmount(Integer.parseInt(spitedTLine[2]));
                         reportList.add(report.toString());
                     }
@@ -65,7 +66,7 @@ public class Operator {
         Runnable updateDepositThread = () -> {
             // Update deposit Amount
             Deposit updatedDebtor = new Deposit();
-            updatedDebtor.setDeposit(debtorDeposit[0]);
+            updatedDebtor.setDepositNumber(debtorDeposit[0]);
             updatedDebtor.setAmount(BigDecimal.valueOf(Integer.parseInt(debtorDeposit[1]) - Integer.parseInt(debtorTrans[2])));
             tempList.add(0, updatedDebtor.toString());
 
@@ -91,7 +92,7 @@ public class Operator {
         }
 
         // Update DepositFile
-        Path depositFile = Paths.get("src/main/resources/", "depositVO.txt");
+        Path depositFile = Paths.get("src/main/resources/", "deposits.txt");
         try {
             Files.delete(depositFile);
         } catch (IOException e) {
@@ -120,18 +121,26 @@ public class Operator {
 
     }
 
-    public static boolean checkDebtorAmount(List<String> Deposits, List<String> payments) {
+    public static boolean checkDebtorAmount(List<String> deposits, List<String> payments) {
 
-        String[] debtorAcc = Deposits.get(0).split("\t");
-        String[] debtorTrans = payments.get(0).split("\t");
-        int debtorBalance = Integer.parseInt(debtorAcc[1]);
-        int transValue = Integer.parseInt(debtorTrans[2]);
+        String[] depositLine;
+        String[] paymentLine ;
 
-        if (debtorBalance > transValue) {
-            return true;
-        } else {
-            return false;
+        for (int i = 0; i < deposits.size(); i++) {
+            depositLine = deposits.get(i).split("\t");
+            paymentLine = payments.get(i).split("\t");
+
+            if ("1.10.100.1".equals(depositLine[0]) && "debtor".equals(paymentLine[0])) {
+                BigDecimal debtorBalance = BigDecimal.valueOf(Long.parseLong(depositLine[1]));
+                BigDecimal transValue = BigDecimal.valueOf(Long.parseLong(paymentLine[2]));
+                int res = debtorBalance.compareTo(transValue);
+
+                if (res == 1 || res == 0)
+                    return true;
+            }
+
         }
+        return false;
 
     }
 
