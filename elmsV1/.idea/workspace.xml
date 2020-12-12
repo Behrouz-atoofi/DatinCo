@@ -6,11 +6,36 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2b27090-de51-407f-bfe2-8c5d117637a8" name="Default Changelist" comment="" />
+    <list default="true" id="b2b27090-de51-407f-bfe2-8c5d117637a8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/CategoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/CategoryDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Category_elementDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Category_elementDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/EmailDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/EmailDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/CategoryDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/CategoryDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/Category_elementDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Category_elementDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/EmailDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/EmailDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/EmployeeDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/EmployeeDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/LeaveRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/LeaveRequestDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elmsV1.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/elmsV1.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elmsV1/WEB-INF/classes/model/CategoryDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/elmsV1/WEB-INF/classes/model/CategoryDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elmsV1/WEB-INF/classes/model/Category_elementDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/elmsV1/WEB-INF/classes/model/Category_elementDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elmsV1/WEB-INF/classes/model/EmailDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/elmsV1/WEB-INF/classes/model/EmailDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elmsV1/WEB-INF/classes/model/EmployeeDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/elmsV1/WEB-INF/classes/model/EmployeeDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elmsV1/WEB-INF/classes/model/LeaveRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/elmsV1/WEB-INF/classes/model/LeaveRequestDTO.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -37,7 +62,9 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -133,6 +160,11 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
             </expand>
             <select />
           </treeState>
@@ -151,7 +183,7 @@
       <option name="presentableId" value="Default" />
       <updated>1607774803742</updated>
       <workItem from="1607774806585" duration="5368000" />
-      <workItem from="1607783222543" duration="1253000" />
+      <workItem from="1607783222543" duration="2499000" />
     </task>
     <servers />
   </component>
@@ -215,9 +247,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1024" height="210" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1607782458030" />
-    <state x="279" y="57" key="SettingsEditor" timestamp="1607783634848">
+    <state x="279" y="57" key="SettingsEditor" timestamp="1607784644735">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="279" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1607783634848" />
+    <state x="279" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1607784644735" />
   </component>
 </project>

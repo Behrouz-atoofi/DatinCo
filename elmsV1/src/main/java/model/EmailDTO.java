@@ -3,7 +3,8 @@ package model;
 import lombok.Data;
 
 import javax.persistence.*;
-
+@Entity(name = "email")
+@Table(name="email_TBL")
 public @Data class EmailDTO {
 
     @Id

@@ -2,10 +2,11 @@ package model;
 
 import lombok.Data;
 
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
+
+@Entity(name = "receiver")
+@Table(name ="receiver_TBL")
 public @Data class ReceiverDTO {
 
     @ManyToOne(targetEntity = EmployeeDTO.class,fetch = FetchType.EAGER)

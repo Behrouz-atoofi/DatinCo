@@ -5,6 +5,9 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Locale;
 
+
+@Entity(name = "element")
+@Table(name="category_element_TBL")
 public @Data class Category_elementDTO {
 
 

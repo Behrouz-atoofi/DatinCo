@@ -3,7 +3,8 @@ package model;
 import lombok.Data;
 
 import javax.persistence.*;
-
+@Entity(name = "leave_request")
+@Table(name="leaveRequest_TBL")
 public @Data class LeaveRequestDTO {
 
 

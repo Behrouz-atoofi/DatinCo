@@ -4,7 +4,8 @@ import lombok.Data;
 import lombok.extern.apachecommons.CommonsLog;
 
 import javax.persistence.*;
-
+@Entity(name = "category")
+@Table(name="category_TBL")
 public @Data class CategoryDTO {
 
     @Id
