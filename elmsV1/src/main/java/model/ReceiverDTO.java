@@ -1,19 +1,22 @@
 package model;
 
-import lombok.Data;
 
 import javax.persistence.*;
 
 
 @Entity(name = "receiver")
-@Table(name ="receiver_TBL")
-public @Data class ReceiverDTO {
+@Table(name = "receiver_TBL")
+public class ReceiverDTO {
 
-    @ManyToOne(targetEntity = EmployeeDTO.class,fetch = FetchType.EAGER)
-    @JoinColumn(name="sender",referencedColumnName = "EMPLOYEE_ID")
+    @Id
+    @Column(name = "ID",columnDefinition = "NUMBER")
+    private int id ;
+
+    @ManyToOne(targetEntity = EmployeeDTO.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "EMPLOYEE_ID")
     private EmployeeDTO employee;
 
-    @ManyToOne(targetEntity = EmailDTO.class,fetch = FetchType.EAGER)
-    @JoinColumn(name="receiver",referencedColumnName = "EMAIL_ID")
+    @ManyToOne(targetEntity = EmailDTO.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "EMAIL_ID", referencedColumnName = "EMAIL_ID")
     private EmailDTO email;
 }
