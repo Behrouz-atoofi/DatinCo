@@ -11,37 +11,24 @@ import java.util.List;
 public class main {
     public static void main(String[] args) {
 
-        Email email = new Email();
-        email.setSubject("hello");
-        email.setContent("HOW ARE YOU");
-        email.setEmail_sender("ALi@gmail.com");
-        email.setEmail_receiver("mr.atoufi@gmail.com");
-
-        EmailService emailService = new EmailService();
-        emailService.save(email);
-
-        Transaction transaction = null;
-        List<Email> emails = null;
-        String address = "mr.atoufi@gmail.com" ;
+        Transaction transaction = null  ;
+        Email email = null ;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction() ;
 
-            transaction = session.beginTransaction();
-            emails = session.createQuery("FROM Email eml where eml.email_receiver=:email").setParameter("email", address).list();
 
-            for (Email es : emails
-            ) {
-                System.out.println(es.getEmail_sender());
+            email = (Email) session.createQuery("FROM Email eml WHERE eml.id =:id").setParameter("id",17).uniqueResult() ;
+
+            if (email != null) {
+                session.delete(email);
+                session.getTransaction().commit();
+                session.close();
+                transaction.commit();
             }
-            ;
-//        } catch (Exception e) {
-//            if (transaction != null) {
-//                //transaction.rollback();
-//            }
-//
-//            e.printStackTrace();
-//        }
-
+        }catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     public static void loadData() {

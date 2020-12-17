@@ -38,4 +38,26 @@ public class EmailService {
 
         }
     }
+
+
+    public void deleteById (int id) {
+        Transaction transaction = null  ;
+        Email email = null ;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction() ;
+
+
+            email = (Email) session.createQuery("FROM Email eml WHERE eml.id =:id").setParameter("id",id).uniqueResult() ;
+
+            if (email != null) {
+                session.delete(email);
+                session.getTransaction().commit();
+                session.close();
+                transaction.commit();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }
