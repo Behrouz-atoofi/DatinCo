@@ -20,31 +20,15 @@ import org.apache.log4j.Logger;
 @WebServlet("/email")
 public class EmailSrv extends HttpServlet {
     static Logger log = Logger.getLogger(EditEmployeeToDbSrv.class.getName());
-//    @Override
-//    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-//        BasicConfigurator.configure();
-//
-//        Employee employee = (Employee) req.getsgetParameter("employee")
-//        EmailService emailService = new EmailService() ;
-//
-//        List<Email> emails =emailService.getEmailByAddress() ;
-//        log.info(emails.size());
-//        if (emails != null)
-//            System.out.println("NULL");
-//        req.setAttribute("emails",emails);
-//        req.getRequestDispatcher("email.jsp").forward(req,res);
-//    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Employee employee = (Employee) req.getSession().getAttribute("employee") ;
-        System.out.println(employee.getEmail());
         EmailService emailService = new EmailService() ;
         List<Email> emails = emailService.getEmailByAddress(employee.getEmail()) ;
         req.setAttribute("emails",emails);
         req.getRequestDispatcher("email.jsp").forward(req,resp);
-
+        log.info(emails.size());
     }
 
 

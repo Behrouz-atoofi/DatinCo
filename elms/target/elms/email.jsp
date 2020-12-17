@@ -1,6 +1,7 @@
 <%@ page import="com.datin.elms.model.Email" %>
 <%@ page import="com.datin.elms.model.Employee" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.io.PrintWriter" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -166,7 +167,7 @@
 </head>
 <body>
 
-<h1 class="page_title">Email Box</h1>
+<h1 class="page_title">Mail Box</h1>
 <h1></h1>
 <div class="container">
     <table class="table">
@@ -183,6 +184,7 @@
 
         <%
             List<Email> emails = (List<Email>) request.getAttribute("emails");
+
             for (Email email : emails) {
 
         %>
@@ -197,7 +199,7 @@
             }
         %>
     </table>
-    <a class="btn btn-primary" href="sendEmailForm" role="button">send Email</a>
+    <a class="btn btn-primary" href="emailForm.jsp" role="button">send Email</a>
 </div>
 
 
@@ -224,7 +226,7 @@
             <li class="list_item"><a href="employees">employees</a></li>
             <li class="list_item"><a href="#">Requests</a></li>
             <li class="list_item"><a href="email">Email</a></li>
-            <li class="list_item"><a href="#">Logout</a></li>
+            <li class="list_item"><a href="logout">Logout</a></li>
 
         </ul>
         <%--        <div class="spacer_box"><p>This is a spacer box.</p></div>--%>

@@ -261,7 +261,7 @@
             <li class="list_item"><a href="employees">employees</a></li>
             <li class="list_item"><a href="#">Requests</a></li>
             <li class="list_item"><a href="email">Email</a></li>
-            <li class="list_item"><a href="#">Logout</a></li>
+            <li class="list_item"><a href="logout">Logout</a></li>
 
         </ul>
         <%--        <div class="spacer_box"><p>This is a spacer box.</p></div>--%>

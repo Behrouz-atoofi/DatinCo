@@ -6,19 +6,43 @@ import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.List;
+
 public class main {
     public static void main(String[] args) {
 
-        Email email = new Email() ;
+        Email email = new Email();
         email.setSubject("hello");
         email.setContent("HOW ARE YOU");
         email.setEmail_sender("ALi@gmail.com");
-        email.setEmail_receiver("hassani@gmail.com");
+        email.setEmail_receiver("mr.atoufi@gmail.com");
 
-        EmailService emailService = new EmailService() ;
+        EmailService emailService = new EmailService();
         emailService.save(email);
-    }
 
+        Transaction transaction = null;
+        List<Email> emails = null;
+        String address = "mr.atoufi@gmail.com" ;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            transaction = session.beginTransaction();
+            emails = session.createQuery("FROM Email eml where eml.email_receiver=:email").setParameter("email", address).list();
+
+            for (Email es : emails
+            ) {
+                System.out.println(es.getEmail_sender());
+            }
+            ;
+//        } catch (Exception e) {
+//            if (transaction != null) {
+//                //transaction.rollback();
+//            }
+//
+//            e.printStackTrace();
+//        }
+
+        }
+    }
 
     public static void loadData() {
         Category role = new Category(1,"role");

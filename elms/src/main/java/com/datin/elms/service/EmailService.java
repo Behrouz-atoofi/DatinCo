@@ -15,22 +15,16 @@ public class EmailService {
 
         Transaction transaction = null;
         List<Email> emails = null;
+
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
             transaction = session.beginTransaction();
-            emails = session.createQuery("FROM Email", Email.class).list();
+            emails = session.createQuery("FROM Email eml where eml.email_receiver=:email").setParameter("email", email).list();
 
-        } catch (Exception e) {
-            if (transaction != null) {
-                //transaction.rollback();
-            }
 
-            e.printStackTrace();
+            return emails;
         }
-
-        return emails;
     }
-
     public void save (Email email) {
 
         Transaction transaction = null ;
