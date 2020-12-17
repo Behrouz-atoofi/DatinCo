@@ -44,7 +44,7 @@ public class EditEmployeeToDb extends HttpServlet {
         EmployeeService employeeService = new EmployeeService() ;
         employeeService.updateEmployee(employee);
 
-        req.getRequestDispatcher("employees") ;
+        req.getRequestDispatcher("employees").forward(req, res); ;
 
     }
 
