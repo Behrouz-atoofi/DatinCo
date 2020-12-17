@@ -12,6 +12,14 @@ public class Email {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    public byte[] getAttach() {
+        return attach;
+    }
+
+    public void setAttach(byte[] attach) {
+        this.attach = attach;
+    }
+
     @Basic
     @Column(name = "C_SUBJECT", columnDefinition = "TEXT")
     private String subject ;

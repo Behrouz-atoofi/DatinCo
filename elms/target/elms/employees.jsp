@@ -189,6 +189,7 @@
         <%
             List<Employee> employees = (List<Employee>) request.getAttribute("employees");
             for (Employee employee : employees) {
+
         %>
         <tr>
             <td><%=employee.getId()%></td>
@@ -200,14 +201,14 @@
             <td><%=employee.getPhoneNumber()%></td>
             <td><%=employee.getRole()%></td>
             <td><%=employee.getManager()%></td>
-            <td><a href="editEmployee?id=<%=employee.getId()%>">Update</a></td>
+            <td><a href="editEmployeeForm?id=<%=employee.getId()%>">Update</a></td>
             <td><a href="deleteEmployee?id=<%=employee.getId()%>">Delete</a></td>
         </tr>
         <%
             }
         %>
     </table>
-    <a class="btn btn-primary" href="addEmployee" role="button">Add Employee</a>
+    <a class="btn btn-primary" href="addEmployeeForm" role="button">Add Employee</a>
 </div>
 <div class="side_menu">
     <div class="burger_box">
@@ -227,7 +228,7 @@
             <li class="list_item"><a href="#">My Profile</a></li>
             <li class="list_item"><a href="employees">employees</a></li>
             <li class="list_item"><a href="#">Requests</a></li>
-            <li class="list_item"><a href="#">Message Box</a></li>
+            <li class="list_item"><a href="#">Email</a></li>
             <li class="list_item"><a href="#">Logout</a></li>
 
         </ul>

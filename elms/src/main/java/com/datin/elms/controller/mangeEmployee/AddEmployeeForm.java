@@ -1,4 +1,4 @@
-package com.datin.elms.controller;
+package com.datin.elms.controller.mangeEmployee;
 
 
 import com.datin.elms.model.Category;
@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServlet;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/addEmployee")
-public class AddEmployeeServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/addEmployeeForm")
+public class AddEmployeeForm extends HttpServlet {
 
     @Override
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
@@ -23,11 +23,6 @@ public class AddEmployeeServlet extends HttpServlet {
         List<Category_element> roleList = employeeService.getRole() ;
         req.setAttribute("roleList",roleList);
         req.getRequestDispatcher("addemployee.jsp").forward(req,res);
-
-//        Category category = new Category() ;
-//        List<Category_element> roleList = category.getCategory_elements() ;
-//        req.setAttribute("roleList",roleList);
-//        req.getRequestDispatcher("addemployee.jsp").forward(req,res);
 
     }
 

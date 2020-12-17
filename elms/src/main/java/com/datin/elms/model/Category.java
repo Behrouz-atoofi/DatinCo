@@ -20,14 +20,16 @@ public class Category {
 
     @Id
     @Column(name = "ID", columnDefinition = "INT")
-    public int id;
+    private int id;
 
     @Basic
     @Column(name = "C_NAME", columnDefinition = "TEXT")
     private String name;
 
-    @OneToMany(targetEntity = Category_element.class , fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID")
     private List<Category_element> category_elements ;
+
 
     public List<Category_element> getCategory_elements() {
         return category_elements;

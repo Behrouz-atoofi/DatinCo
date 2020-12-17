@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Administator Panel : Edit employee</title>
+    <title>Administrator Panel : Edit employee</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="static/Panel/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -165,54 +165,56 @@
 </head>
 <body>
 
-<h1 class="page_title"> Add Employee </h1>
-<form action="addEmployee">
+<h1 class="page_title"> Edit Employee </h1>
+<form action="editEmployee">
+    <% Employee employee = (Employee) request.getAttribute("employee");%>
+
     <center>
         <div class="col-lg-4 col-lg-offset-4">
 
+
+            <div class="form-group">
+                <label for="id">id</label>
+                <input type="text" class="form-control" id="id" name="id" value="<%=employee.getId()%>" readonly>
+            </div>
+
             <div class="form-group">
                 <label for="Name">Name</label>
-                <input type="text" class="form-control" id="Name" name="name" value=" ">
+                <input type="text" class="form-control" id="Name" name="name" value="<%=employee.getName()%>">
             </div>
 
             <div class="form-group">
                 <label for="family">Family</label>
-                <input type="text" class="form-control" id="family" name="family"value=" ">
+                <input type="text" class="form-control" id="family" name="family"value="<%=employee.getFamily()%>">
             </div>
 
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" value=" ">
+                <input type="text" class="form-control" id="username" name="username" value="<%=employee.getUsername()%>">
             </div>
             <div class="form-group">
                 <label for="password">Passwrod</label>
-                <input type="text" class="form-control" id="password" name="password" value=" " >
+                <input type="text" class="form-control" id="password" name="password" value="<%=employee.getPassword()%>" >
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" class="form-control" id="email" name="email" value=" " >
+                <input type="text" class="form-control" id="email" name="email" value="<%=employee.getEmail()%>" >
             </div>
             <div class="form-group">
                 <label for="phonenumber">PhoneNumber</label>
-                <input type="text" class="form-control" id="phonenumber" name="phonenumber" value=" " >
+                <input type="text" class="form-control" id="phonenumber" name="phonenumber" value="<%=employee.getPhoneNumber()%>" >
             </div>
             <div class="form-group">
                 <label for="role">Role</label>
-                <input type="option" class="form-control" id="role" name="option" value=" " >
+                <input type="option" class="form-control" id="role" name="option" value="<%=employee.getRole()%>" >
             </div>
 
             <div class="form-group">
                 <label for="manager">Manager</label>
-                <input type="option" class="form-control" id="manager" name="manager" value=" " >
+                <input type="option" class="form-control" id="manager" name="manager" value="<%=employee.getManager()%>" >
             </div>
 
-            <%--            <div class="form-group">--%>
-            <%--                <label for="date">date</label>--%>
-            <%--                <input type="datetime-local" class="form-control" id="date" name="date"  >--%>
-            <%--            </div>--%>
-
-
-            <button type="submit" class="btn btn-primary">Add</button>
+            <button type="submit" class="btn btn-primary">update</button>
         </div>
     </center>
 </form>
@@ -234,7 +236,7 @@
             <li class="list_item"><a href="#">My Profile</a></li>
             <li class="list_item"><a href="employees">employees</a></li>
             <li class="list_item"><a href="#">Requests</a></li>
-            <li class="list_item"><a href="#">Message Box</a></li>
+            <li class="list_item"><a href="#">Email</a></li>
             <li class="list_item"><a href="#">Logout</a></li>
 
         </ul>

@@ -10,41 +10,144 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
+
 public class EmployeeService {
 
 
-    public List<Employee> getEmployees () {
+    public List<Employee> getEmployees() {
 
-        Transaction transaction = null ;
-        List<Employee> employeeList = null ;
+        Transaction transaction = null;
+        List<Employee> employeeList = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            employeeList = session.createQuery("FROM Employee",Employee.class).list();
-            transaction.commit();
-        }catch (Exception e) {
-                if (transaction != null) {
-                    transaction.rollback();
-                }
-                e.printStackTrace();
+
+            transaction = session.beginTransaction();
+            employeeList = session.createQuery("FROM Employee empl", Employee.class).list();
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
             }
 
-        return employeeList ;
+            e.printStackTrace();
+        }
+
+        return employeeList;
     }
-    public List<Category_element> getRole () {
-        Transaction transaction = null ;
-        List<Category_element> category_elements = null ;
+
+    public List<Category_element> getRole() {
+        Transaction transaction = null;
+        Category category = new Category();
+        category.setId(1);
+
+        List<Category_element> roles;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            
-            category_elements = session.createQuery("FROM Category WHERE id =:role").setParameter("role",role).list();
+            transaction = session.beginTransaction();
+
+            Query query = session.createQuery("FROM Category_element element WHERE element.category IN (:item)");
+            query.setParameter("item", category);
+
+            roles = query.list();
+            //roles = session.createQuery("from Category_element ", Category_element.class).list();
+            // roles.forEach(s -> System.out.println(s.getName()));
+//        } catch (Exception e) {
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
+//            e.printStackTrace();
+            session.close();
+        }
+
+        return roles;
+    }
+
+    public void saveEmployee(Employee employee) {
+
+        Transaction transaction = null;
+
+        try (final Session session = HibernateUtil.getHibernateSession()) {
+
+            transaction = session.beginTransaction();
+            session.save(employee);
             transaction.commit();
-        }catch (Exception e) {
+
+        } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
         }
 
-        return category_elements ;
     }
 
+    public void deleteEmployee(int id) {
 
+        Transaction transaction = null;
+        Employee employee = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            transaction = session.beginTransaction();
+
+            employee = (Employee) session.createQuery("FROM Employee WHERE id = :id").setParameter("id", id)
+                    .uniqueResult();
+            if (employee != null) {
+                session.delete(employee);
+                session.getTransaction().commit();
+                session.close();
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateEmployee(Employee employee) {
+
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            transaction = session.beginTransaction();
+
+            String hql = "UPDATE Employee set name = :name ,family =:family" +
+                    ",username =:username " +
+                    ",password=:password ," +
+                    "phoneNumber=:phonenumber," +
+                    "email=:email " + "WHERE id = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("name", employee.getName());
+            query.setParameter("family",employee.getFamily()) ;
+            query.setParameter("username",employee.getUsername());
+            query.setParameter("password",employee.getPassword()) ;
+            query.setParameter("phonenumber",employee.getPhoneNumber());
+            query.setParameter("email",employee.getEmail()) ;
+            query.setParameter("id", employee.getId());
+
+            query.executeUpdate();
+
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+
+        }
+    }
+
+    public Employee getEmployeeById(int id) {
+
+        Transaction transaction = null;
+        Employee employee = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            employee = (Employee) session.createQuery("FROM Employee WHERE id=:id").setParameter("id", id).uniqueResult();
+
+            return employee;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
+

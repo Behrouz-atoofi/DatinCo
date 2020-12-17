@@ -183,7 +183,7 @@
             <li class="list_item"><a href="#">My Profile</a></li>
             <li class="list_item"><a href="employees">employees</a></li>
             <li class="list_item"><a href="#">Requests</a></li>
-            <li class="list_item"><a href="#">Message Box</a></li>
+            <li class="list_item"><a href="#">Email</a></li>
             <li class="list_item"><a href="#">Logout</a></li>
 
         </ul>

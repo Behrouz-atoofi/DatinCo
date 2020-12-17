@@ -2,13 +2,14 @@ package com.datin.elms.model;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
 @Table(name = "T_EMPLOYEE")
-public class Employee {
+public class Employee implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private int id;
 
@@ -31,12 +32,12 @@ public class Employee {
     @Column(name = "C_PHONENUMBER", columnDefinition = "VARCHAR(11)")
     private String phoneNumber;
 
-    @ManyToOne(targetEntity = Employee.class, fetch = FetchType.EAGER)
-    @JoinColumn(name = "C_MANAGER", referencedColumnName = "ID")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "C_MANAGER")
     private Employee manager;
 
-    @ManyToOne(targetEntity = Category_element.class, fetch = FetchType.EAGER)
-    @JoinColumn(name = "C_ROLE", referencedColumnName = "ID")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "C_ROLE")
     private Category_element role;
 
     public Employee(String username, String password) {

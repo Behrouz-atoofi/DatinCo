@@ -1,4 +1,4 @@
-package com.datin.elms.controller;
+package com.datin.elms.controller.mangeEmployee;
 
 import com.datin.elms.service.LoginService;
 
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+public class Login extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private LoginService loginService;
 

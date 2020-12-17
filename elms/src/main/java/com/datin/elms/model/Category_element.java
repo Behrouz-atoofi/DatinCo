@@ -32,8 +32,8 @@ public class Category_element {
     @Column(name = "C_NAME", columnDefinition = "TEXT")
     private String name;
 
-    @ManyToOne(targetEntity = Category.class,fetch = FetchType.EAGER)
-    @JoinColumn(name = "C_CATEGORY" , referencedColumnName = "ID")
+    @ManyToOne
+    @JoinColumn(name = "C_CATEGORY")
     private Category category ;
 
 
