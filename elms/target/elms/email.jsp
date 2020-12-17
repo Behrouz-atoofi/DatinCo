@@ -1,3 +1,6 @@
+<%@ page import="com.datin.elms.model.Email" %>
+<%@ page import="com.datin.elms.model.Employee" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -170,43 +173,31 @@
         <thead>
         <tr>
             <th>Email ID</th>
+            <th>subject</th>
             <th>sender</th>
-            <th>Family</th>
-            <th>Username</th>
-            <th>Password</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Role</th>
-            <th>Manager</th>
-            <th>update</th>
+            <th>view</th>
             <th>delete</th>
 
         </tr>
         </thead>
 
         <%
-            List<Employee> employees = (List<Employee>) request.getAttribute("employees");
-            for (Employee employee : employees) {
+            List<Email> emails = (List<Email>) request.getAttribute("employees");
+            for (Email email : emails) {
 
         %>
         <tr>
-            <td><%=employee.getId()%></td>
-            <td><%=employee.getName()%></td>
-            <td><%=employee.getFamily()%></td>
-            <td><%=employee.getUsername()%></td>
-            <td><%=employee.getPassword()%></td>
-            <td><%=employee.getEmail()%></td>
-            <td><%=employee.getPhoneNumber()%></td>
-            <td><%=employee.getRole()%></td>
-            <td><%=employee.getManager()%></td>
-            <td><a href="editEmployeeForm?id=<%=employee.getId()%>">Update</a></td>
-            <td><a href="deleteEmployee?id=<%=employee.getId()%>">Delete</a></td>
+            <td><%=email.getId()%></td>
+            <td><%=email.getSubject()%></td>
+            <td><%=email.getEmail_sender()%></td>
+            <td><a href="viewEmail?id=<%=email.getId()%>">view</a></td>
+            <td><a href="deleteEmail?id=<%=email.getId()%>">Delete</a></td>
         </tr>
         <%
             }
         %>
     </table>
-    <a class="btn btn-primary" href="addEmployeeForm" role="button">Add Employee</a>
+    <a class="btn btn-primary" href="sendEmailForm" role="button">send Email</a>
 </div>
 
 

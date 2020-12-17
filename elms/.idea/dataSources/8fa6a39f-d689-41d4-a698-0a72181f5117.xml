@@ -1313,16 +1313,16 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="330" parent="2" name="student">
+    <table id="330" parent="2" name="hibernate_sequence">
       <Engine>MyISAM</Engine>
     </table>
-    <table id="331" parent="2" name="t_category">
+    <table id="331" parent="2" name="student">
       <Engine>MyISAM</Engine>
     </table>
-    <table id="332" parent="2" name="t_category_element">
+    <table id="332" parent="2" name="t_category">
       <Engine>MyISAM</Engine>
     </table>
-    <table id="333" parent="2" name="t_category_t_category_element">
+    <table id="333" parent="2" name="t_category_element">
       <Engine>MyISAM</Engine>
     </table>
     <table id="334" parent="2" name="t_email">
@@ -1334,252 +1334,232 @@
     <table id="336" parent="2" name="t_leave_request">
       <Engine>MyISAM</Engine>
     </table>
-    <column id="337" parent="330" name="id">
+    <column id="337" parent="330" name="next_val">
+      <Position>1</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="338" parent="331" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="338" parent="330" name="email">
+    <column id="339" parent="331" name="email">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="339" parent="330" name="first_name">
+    <column id="340" parent="331" name="first_name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="340" parent="330" name="last_name">
+    <column id="341" parent="331" name="last_name">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="341" parent="330" name="PRIMARY">
+    <key id="342" parent="331" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="342" parent="331" name="ID">
+    <column id="343" parent="332" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="343" parent="331" name="C_NAME">
+    <column id="344" parent="332" name="C_NAME">
       <Position>2</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="344" parent="331" name="UK_q25jast0alhmy7s0dd3m85un">
+    <index id="345" parent="332" name="UK_q25jast0alhmy7s0dd3m85un">
       <ColNames>C_NAME</ColNames>
       <Unique>1</Unique>
       <Type>hash</Type>
     </index>
-    <key id="345" parent="331" name="PRIMARY">
+    <key id="346" parent="332" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="346" parent="331" name="UK_q25jast0alhmy7s0dd3m85un">
+    <key id="347" parent="332" name="UK_q25jast0alhmy7s0dd3m85un">
       <ColNames>C_NAME</ColNames>
       <UnderlyingIndexName>UK_q25jast0alhmy7s0dd3m85un</UnderlyingIndexName>
     </key>
-    <column id="347" parent="332" name="ID">
+    <column id="348" parent="333" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="348" parent="332" name="C_CODE">
+    <column id="349" parent="333" name="C_CODE">
       <Position>2</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="349" parent="332" name="C_NAME">
+    <column id="350" parent="333" name="C_NAME">
       <Position>3</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="350" parent="332" name="C_CATEGORY">
+    <column id="351" parent="333" name="C_CATEGORY">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="351" parent="332" name="FKb7aspk9r13f48n9yulo3a3djy">
+    <index id="352" parent="333" name="FKb7aspk9r13f48n9yulo3a3djy">
       <ColNames>C_CATEGORY</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="352" parent="332" name="PRIMARY">
+    <key id="353" parent="333" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="353" parent="333" name="Category_ID">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="354" parent="333" name="category_elements_ID">
-      <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="355" parent="333" name="UK_j7jtwh4kcr502l7178erdoah6">
-      <ColNames>category_elements_ID</ColNames>
-      <Unique>1</Unique>
-      <Type>btree</Type>
-    </index>
-    <index id="356" parent="333" name="FKb1fr0hf8lfcwy0b6ly0rpgmdq">
-      <ColNames>Category_ID</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="357" parent="333" name="UK_j7jtwh4kcr502l7178erdoah6">
-      <ColNames>category_elements_ID</ColNames>
-      <UnderlyingIndexName>UK_j7jtwh4kcr502l7178erdoah6</UnderlyingIndexName>
-    </key>
-    <column id="358" parent="334" name="ID">
+    <column id="354" parent="334" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="359" parent="334" name="C_ATTACHMENT">
+    <column id="355" parent="334" name="C_ATTACHMENT">
       <Position>2</Position>
       <DataType>blob|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="360" parent="334" name="C_CONTENT">
+    <column id="356" parent="334" name="C_CONTENT">
       <Position>3</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="361" parent="334" name="C_EMAIL_RECEIVER">
+    <column id="357" parent="334" name="C_EMAIL_RECEIVER">
       <Position>4</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="362" parent="334" name="C_EMAIL_SENDER">
+    <column id="358" parent="334" name="C_EMAIL_SENDER">
       <Position>5</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="363" parent="334" name="C_SUBJECT">
+    <column id="359" parent="334" name="C_SUBJECT">
       <Position>6</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="364" parent="334" name="C_STATUS">
+    <column id="360" parent="334" name="C_STATUS">
       <Position>7</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="365" parent="334" name="FK3v2qk2s2ycw4m9nsrxyckot3u">
+    <index id="361" parent="334" name="FK3v2qk2s2ycw4m9nsrxyckot3u">
       <ColNames>C_STATUS</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="366" parent="334" name="PRIMARY">
+    <key id="362" parent="334" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="367" parent="335" name="ID">
+    <column id="363" parent="335" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="368" parent="335" name="C_EMAIL">
+    <column id="364" parent="335" name="C_EMAIL">
       <Position>2</Position>
       <DataType>varchar(40)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="369" parent="335" name="C_FAMILY">
+    <column id="365" parent="335" name="C_FAMILY">
       <Position>3</Position>
       <DataType>varchar(40)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="370" parent="335" name="C_NAME">
+    <column id="366" parent="335" name="C_NAME">
       <Position>4</Position>
       <DataType>varchar(40)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="371" parent="335" name="C_PASSWORD">
+    <column id="367" parent="335" name="C_PASSWORD">
       <Position>5</Position>
       <DataType>varchar(40)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="372" parent="335" name="C_PHONENUMBER">
+    <column id="368" parent="335" name="C_PHONENUMBER">
       <Position>6</Position>
       <DataType>varchar(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="373" parent="335" name="C_USERNAME">
+    <column id="369" parent="335" name="C_USERNAME">
       <Position>7</Position>
       <DataType>varchar(40)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="374" parent="335" name="C_MANAGER">
+    <column id="370" parent="335" name="C_MANAGER">
       <Position>8</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="375" parent="335" name="C_ROLE">
+    <column id="371" parent="335" name="C_ROLE">
       <Position>9</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="376" parent="335" name="FKa74rblj6htsh3rl5xm2n058nk">
+    <index id="372" parent="335" name="FKa74rblj6htsh3rl5xm2n058nk">
       <ColNames>C_MANAGER</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="377" parent="335" name="FKc9047tbupjh5yn0k1qp9530wf">
+    <index id="373" parent="335" name="FKc9047tbupjh5yn0k1qp9530wf">
       <ColNames>C_ROLE</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="378" parent="335" name="PRIMARY">
+    <key id="374" parent="335" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="379" parent="336" name="ID">
+    <column id="375" parent="336" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="380" parent="336" name="C_FROM_DATE">
+    <column id="376" parent="336" name="C_FROM_DATE">
       <Position>2</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="381" parent="336" name="C_REASON">
+    <column id="377" parent="336" name="C_REASON">
       <Position>3</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="382" parent="336" name="C_TO_DATE">
+    <column id="378" parent="336" name="C_TO_DATE">
       <Position>4</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="383" parent="336" name="C_EMPLOYEE">
+    <column id="379" parent="336" name="C_EMPLOYEE">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="384" parent="336" name="FKbbj370rafu64nl9854ubi60wh">
+    <index id="380" parent="336" name="FKbbj370rafu64nl9854ubi60wh">
       <ColNames>C_EMPLOYEE</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="385" parent="336" name="PRIMARY">
+    <key id="381" parent="336" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
