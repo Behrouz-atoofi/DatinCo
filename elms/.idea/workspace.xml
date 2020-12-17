@@ -7,12 +7,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab567d2a-2d1d-4b3f-90f2-2f9856588b57" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/email/EmailSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/elms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/elms.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/email/Email.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/AddEmpToDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/AddEmpToDbSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/AddEmployeeForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/AddEmployeeFormSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/DeleteEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/DeleteEmployeeSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/EditEmployeeForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/EditEmployeeFormSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/EditEmployeeToDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/EditEmployeeToDbSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/GetEmployees.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/GetEmployeesSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/LoginSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/EmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/addemployee.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/addemployee.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/editemployee.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/editemployee.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/email.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/email.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/employees.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/employees.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/panel.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/panel.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/email/Email.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/email/Email.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/mangeEmployee/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/mangeEmployee/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/service/EmailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/service/EmailService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/service/LoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/service/LoginService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elms.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/controller/email/Email.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/controller/email/Email.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/controller/mangeEmployee/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/controller/mangeEmployee/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/service/EmailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/service/EmailService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/service/LoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/service/LoginService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elms/addemployee.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/addemployee.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elms/editemployee.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/editemployee.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elms/email.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/email.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elms/employees.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/employees.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elms/panel.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/panel.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,12 +315,12 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@26467bf2" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@1f15fdbe" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@101adb6d" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@63eb2a37" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
             </expand>
             <select />
@@ -316,7 +344,7 @@
       <workItem from="1608071499682" duration="109000" />
       <workItem from="1608071692610" duration="540000" />
       <workItem from="1608107486453" duration="46297000" />
-      <workItem from="1608204179607" duration="2409000" />
+      <workItem from="1608204179607" duration="14069000" />
     </task>
     <task id="LOCAL-00001" summary="updated 990927">
       <created>1608204525157</created>
@@ -325,7 +353,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608204525157</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="updated 990927">
+      <created>1608208217643</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1608208217643</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,10 +371,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="updated 990927" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="73" key="#Assign_Data_Sources" timestamp="1608108369655">
+    <state x="361" y="73" key="#Assign_Data_Sources" timestamp="1608222206328">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="73" key="#Assign_Data_Sources/0.0.1536.824@0.0.1536.824" timestamp="1608108369655" />
+    <state x="361" y="73" key="#Assign_Data_Sources/0.0.1536.824@0.0.1536.824" timestamp="1608222206328" />
     <state x="223" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608071607890">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -348,10 +383,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="522" y="248" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/0.0.1536.824@0.0.1536.824" timestamp="1608202116334" />
-    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser" timestamp="1608202755301">
+    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser" timestamp="1608227157346">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1608202755301" />
+    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1608227157346" />
+    <state x="406" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1608226763899">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="406" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1608226763899" />
     <state x="499" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607954685830">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -360,10 +399,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="162" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824@0.0.1536.824" timestamp="1607980701251" />
-    <state x="350" y="6" key="CommitChangelistDialog2" timestamp="1608204523130">
+    <state x="350" y="6" key="CommitChangelistDialog2" timestamp="1608227604365">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="350" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608204523130" />
+    <state x="350" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608227604365" />
     <state x="569" y="117" key="ExecutionTargetDialog" timestamp="1608107924519">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -372,54 +411,54 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="144" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1608207193760" />
-    <state width="1211" height="124" key="GridCell.Tab.0.bottom" timestamp="1608208141692">
+    <state width="1211" height="301" key="GridCell.Tab.0.bottom" timestamp="1608227544031">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="124" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608208141692" />
-    <state width="1211" height="124" key="GridCell.Tab.0.center" timestamp="1608208141692">
+    <state width="1211" height="301" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608227544031" />
+    <state width="1211" height="301" key="GridCell.Tab.0.center" timestamp="1608227544031">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="124" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608208141692" />
-    <state width="1211" height="124" key="GridCell.Tab.0.left" timestamp="1608208141692">
+    <state width="1211" height="301" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608227544031" />
+    <state width="1211" height="301" key="GridCell.Tab.0.left" timestamp="1608227544031">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="124" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608208141692" />
-    <state width="1211" height="124" key="GridCell.Tab.0.right" timestamp="1608208141692">
+    <state width="1211" height="301" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608227544031" />
+    <state width="1211" height="301" key="GridCell.Tab.0.right" timestamp="1608227544031">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="124" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608208141692" />
-    <state width="1211" height="124" key="GridCell.Tab.1.bottom" timestamp="1608208141692">
+    <state width="1211" height="301" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608227544031" />
+    <state width="1211" height="301" key="GridCell.Tab.1.bottom" timestamp="1608227543941">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="124" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608208141692" />
-    <state width="1211" height="124" key="GridCell.Tab.1.center" timestamp="1608208141692">
+    <state width="1211" height="301" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608227543941" />
+    <state width="1211" height="301" key="GridCell.Tab.1.center" timestamp="1608227543941">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="124" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1608208141692" />
-    <state width="1211" height="124" key="GridCell.Tab.1.left" timestamp="1608208141692">
+    <state width="1211" height="301" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1608227543941" />
+    <state width="1211" height="301" key="GridCell.Tab.1.left" timestamp="1608227543941">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="124" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1608208141692" />
-    <state width="1211" height="124" key="GridCell.Tab.1.right" timestamp="1608208141692">
+    <state width="1211" height="301" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1608227543941" />
+    <state width="1211" height="301" key="GridCell.Tab.1.right" timestamp="1608227543941">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="124" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1608208141692" />
-    <state width="1211" height="124" key="GridCell.Tab.2.bottom" timestamp="1608208141692">
+    <state width="1211" height="301" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1608227543941" />
+    <state width="1211" height="301" key="GridCell.Tab.2.bottom" timestamp="1608227543942">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="124" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608208141692" />
-    <state width="1211" height="124" key="GridCell.Tab.2.center" timestamp="1608208141692">
+    <state width="1211" height="301" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608227543942" />
+    <state width="1211" height="301" key="GridCell.Tab.2.center" timestamp="1608227543942">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="124" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1608208141692" />
-    <state width="1211" height="124" key="GridCell.Tab.2.left" timestamp="1608208141692">
+    <state width="1211" height="301" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1608227543942" />
+    <state width="1211" height="301" key="GridCell.Tab.2.left" timestamp="1608227543942">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="124" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1608208141692" />
-    <state width="1211" height="124" key="GridCell.Tab.2.right" timestamp="1608208141692">
+    <state width="1211" height="301" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1608227543942" />
+    <state width="1211" height="301" key="GridCell.Tab.2.right" timestamp="1608227543942">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="124" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1608208141692" />
+    <state width="1211" height="301" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1608227543942" />
     <state width="1211" height="324" key="GridCell.Tab.3.bottom" timestamp="1608204394936">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -436,10 +475,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1211" height="324" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1608204394936" />
-    <state x="555" y="64" width="981" height="708" key="SettingsEditor" timestamp="1608208059017">
+    <state x="555" y="64" width="981" height="708" key="SettingsEditor" timestamp="1608212879021">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="555" y="64" width="981" height="708" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608208059017" />
+    <state x="555" y="64" width="981" height="708" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608212879021" />
     <state x="490" y="154" width="540" height="524" key="StructurePopup" timestamp="1608127695335">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -460,10 +499,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="523" y="169" key="com.intellij.database.run.ParametersPanel.Standalone/0.0.1536.824@0.0.1536.824" timestamp="1608108046810" />
-    <state x="478" y="62" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1608127776758">
+    <state x="478" y="62" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1608222437644">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="478" y="62" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1608127776758" />
+    <state x="478" y="62" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1608222437644" />
     <state x="477" y="239" key="com.intellij.ide.util.TipDialog" timestamp="1608204179576">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -488,6 +527,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/datin/elms/service/EmployeeService.java</url>
           <line>37</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/webapp/panel.jsp</url>
+          <line>12</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,5 +1,7 @@
 import com.datin.elms.model.Category;
 import com.datin.elms.model.Category_element;
+import com.datin.elms.model.Email;
+import com.datin.elms.service.EmailService;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -7,7 +9,14 @@ import org.hibernate.Transaction;
 public class main {
     public static void main(String[] args) {
 
-       loadData();
+        Email email = new Email() ;
+        email.setSubject("hello");
+        email.setContent("HOW ARE YOU");
+        email.setEmail_sender("ALi@gmail.com");
+        email.setEmail_receiver("hassani@gmail.com");
+
+        EmailService emailService = new EmailService() ;
+        emailService.save(email);
     }
 
 

@@ -182,7 +182,7 @@
         </thead>
 
         <%
-            List<Email> emails = (List<Email>) request.getAttribute("employees");
+            List<Email> emails = (List<Email>) request.getAttribute("emails");
             for (Email email : emails) {
 
         %>
@@ -216,11 +216,14 @@
     </div>
     <div class="px-5">
         <h2 class="menu_title">Menu</h2>
+        <% Employee employee = (Employee) request.getSession().getAttribute("employee");%>
+        <%="Hi ! " + employee.getName()%>
+
         <ul class="list_load">
             <li class="list_item"><a href="#">My Profile</a></li>
             <li class="list_item"><a href="employees">employees</a></li>
             <li class="list_item"><a href="#">Requests</a></li>
-            <li class="list_item"><a href="#">Email</a></li>
+            <li class="list_item"><a href="email">Email</a></li>
             <li class="list_item"><a href="#">Logout</a></li>
 
         </ul>

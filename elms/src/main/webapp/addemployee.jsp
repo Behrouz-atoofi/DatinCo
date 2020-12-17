@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.datin.elms.model.Category_element" %>
+<%@ page import="com.datin.elms.model.Employee" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -253,6 +254,8 @@
     </div>
     <div class="px-5">
         <h2 class="menu_title">Menu</h2>
+        <% Employee employee = (Employee) request.getSession().getAttribute("employee");%>
+        <%="Hi ! " + employee.getName()%>
         <ul class="list_load">
             <li class="list_item"><a href="#">My Profile</a></li>
             <li class="list_item"><a href="employees">employees</a></li>

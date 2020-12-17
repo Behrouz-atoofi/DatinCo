@@ -232,6 +232,8 @@
     </div>
     <div class="px-5">
         <h2 class="menu_title">Menu</h2>
+        <% Employee employee1 = (Employee) request.getSession().getAttribute("employee");%>
+        <%="Hi ! " + employee1.getName()%>
         <ul class="list_load">
             <li class="list_item"><a href="#">My Profile</a></li>
             <li class="list_item"><a href="employees">employees</a></li>
