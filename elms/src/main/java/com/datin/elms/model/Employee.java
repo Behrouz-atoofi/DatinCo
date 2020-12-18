@@ -122,19 +122,19 @@ public class Employee implements Serializable {
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", family='" + family + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", manager=" + manager +
-                ", role=" + role +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Employee{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", family='" + family + '\'' +
+//                ", username='" + username + '\'' +
+//                ", password='" + password + '\'' +
+//                ", email='" + email + '\'' +
+//                ", phoneNumber=" + phoneNumber +
+//                ", manager=" + manager +
+//                ", role=" + role +
+//                '}';
+//    }
 
 }

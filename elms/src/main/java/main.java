@@ -1,11 +1,7 @@
 import com.datin.elms.model.*;
-import com.datin.elms.service.EmailService;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-
-import java.util.List;
 
 public class main {
     public static void main(String[] args) {
@@ -16,6 +12,9 @@ public class main {
 
 
     public static void loadData() {
+
+
+        // load Category and Category Elements ...
         Category role = new Category(1,"role");
         Category email_status = new Category(2,"email_status");
         Category leave_status = new Category(3,"leave_status");
@@ -30,6 +29,19 @@ public class main {
         Category_element accepted = new Category_element(9,"accepted", "accepted", leave_status);
         Category_element rejected = new Category_element(10,"rejected", "rejected", leave_status);
         Category_element pending = new Category_element(11,"pending", "pending", leave_status);
+
+        //load administrator ....
+        Employee administrator = new Employee() ;
+        administrator.setId(1);
+        administrator.setName("Behrouz");
+        administrator.setFamily("atoofi");
+        administrator.setUsername("admin");
+        administrator.setPassword("admin");
+        administrator.setEmail("email@");
+        administrator.setPhoneNumber("000000000");
+        administrator.setManager(administrator);
+        administrator.setRole(founder);
+
         Transaction transaction = null ;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -48,6 +60,8 @@ public class main {
             session.save(unread);
             session.save(accepted);
             session.save(rejected);
+
+            session.save(administrator) ;
 
             transaction.commit();
 

@@ -22,7 +22,7 @@ public class AddEmpToDbSrv extends HttpServlet {
         String phoneNumber = req.getParameter("phonenumber") ;
         String role = req.getParameter("roleName") ;
 
-        int managerId = Integer.parseInt(req.getParameter("manager")) ;
+        //int managerId = Integer.parseInt(req.getParameter("manager")) ;
 
         Employee employee = new Employee() ;
         employee.setName(name);

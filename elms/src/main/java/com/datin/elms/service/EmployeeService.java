@@ -38,8 +38,7 @@ public class EmployeeService {
         Transaction transaction = null;
         Category category = new Category();
         category.setId(1);
-
-        List<Category_element> roles ;
+        List<Category_element> roles = null ;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
@@ -47,12 +46,12 @@ public class EmployeeService {
             query.setParameter("item", category);
 
             roles = query.list();
-//            session.close();
-//        } catch (Exception e) {
-//            if (transaction != null) {
-//                transaction.rollback();
-//            }
-//            e.printStackTrace();
+            session.close();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
 
         }
 
