@@ -20,6 +20,34 @@ public class LeaveRequest {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "C_FROM_DATE", columnDefinition = "TEXT")
+    private String from_date;
+
+    @Basic
+    @Column(name = "C_TO_DATE", columnDefinition = "TEXT")
+    private String to_date;
+
+    @Basic
+    @Column(name = "C_REASON", columnDefinition = "TEXT")
+    private String reason;
+
+    @ManyToOne(targetEntity = Employee.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "C_EMPLOYEE", referencedColumnName = "ID")
+    private Employee employee;
+
+    @ManyToOne(targetEntity = Category_element.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "C_STATUS", referencedColumnName = "ID")
+    private Category_element status;
+
+    public Category_element getStatus() {
+        return status;
+    }
+
+    public void setStatus(Category_element status) {
+        this.status = status;
+    }
+
     public String getFrom_date() {
         return from_date;
     }
@@ -52,21 +80,7 @@ public class LeaveRequest {
         this.employee = employee;
     }
 
-    @Basic
-    @Column(name = "C_FROM_DATE", columnDefinition = "TEXT")
-    private String from_date;
 
-    @Basic
-    @Column(name = "C_TO_DATE", columnDefinition = "TEXT")
-    private String to_date;
-
-    @Basic
-    @Column(name = "C_REASON", columnDefinition = "TEXT")
-    private String reason;
-
-    @ManyToOne(targetEntity = Employee.class, fetch = FetchType.EAGER)
-    @JoinColumn(name = "C_EMPLOYEE", referencedColumnName = "ID")
-    private Employee employee;
 
 
 }

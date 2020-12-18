@@ -1,35 +1,19 @@
-import com.datin.elms.model.Category;
-import com.datin.elms.model.Category_element;
-import com.datin.elms.model.Email;
+import com.datin.elms.model.*;
 import com.datin.elms.service.EmailService;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
 public class main {
     public static void main(String[] args) {
 
-        Transaction transaction = null  ;
-        Email email = null ;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction() ;
-
-
-            email = (Email) session.createQuery("FROM Email eml WHERE eml.id =:id").setParameter("id",17).uniqueResult() ;
-
-            if (email != null) {
-                session.delete(email);
-                session.getTransaction().commit();
-                session.close();
-                transaction.commit();
-            }
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
 
     }
+
+
 
     public static void loadData() {
         Category role = new Category(1,"role");
@@ -45,7 +29,7 @@ public class main {
         Category_element unread = new Category_element(8,"unread", "unread", email_status);
         Category_element accepted = new Category_element(9,"accepted", "accepted", leave_status);
         Category_element rejected = new Category_element(10,"rejected", "rejected", leave_status);
-
+        Category_element pending = new Category_element(11,"pending", "pending", leave_status);
         Transaction transaction = null ;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

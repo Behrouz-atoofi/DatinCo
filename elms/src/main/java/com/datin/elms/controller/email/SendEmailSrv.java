@@ -42,7 +42,7 @@ public class SendEmailSrv extends HttpServlet {
         email.setEmail_sender(employee.getEmail());
         EmailService emailService = new EmailService() ;
         emailService.save(email);
-        req.getRequestDispatcher("email.jsp").forward(req,resp);
+        resp.sendRedirect("email");
     }
 
     private static String getSubmittedFileName(Part part) {

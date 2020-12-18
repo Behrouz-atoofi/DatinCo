@@ -18,7 +18,7 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 @WebServlet("/email")
-public class EmailSrv extends HttpServlet {
+public class EmailsSrv extends HttpServlet {
     static Logger log = Logger.getLogger(EditEmployeeToDbSrv.class.getName());
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
