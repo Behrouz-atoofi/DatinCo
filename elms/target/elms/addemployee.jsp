@@ -232,8 +232,15 @@
                 </select>
 
 
-                <label for="manager">Manager Id </label>
-                <input type="number" class="form-control" id="manager" name="manager">
+<%--                <label for="manager">Managers</label>--%>
+<%--                <select class="form-control" name="manager" id="manager">--%>
+<%--                    <%--%>
+<%--                        List<Employee> managerList = (List<Employee>) request.getAttribute("managerList");--%>
+<%--                        for (Employee manager: managerList) {--%>
+<%--                    %>--%>
+<%--                    <option value="<%=manager.getName()%>"><%=manager.getName()%></option>--%>
+<%--                    <%  } %>--%>
+<%--                </select>--%>
             </div></div>
 
             <button type="submit" class="btn btn-primary">Add</button>

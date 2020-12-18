@@ -39,7 +39,7 @@ public class EmployeeService {
         Category category = new Category();
         category.setId(1);
 
-        List<Category_element> roles;
+        List<Category_element> roles ;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
@@ -47,14 +47,13 @@ public class EmployeeService {
             query.setParameter("item", category);
 
             roles = query.list();
-            //roles = session.createQuery("from Category_element ", Category_element.class).list();
-            // roles.forEach(s -> System.out.println(s.getName()));
+//            session.close();
 //        } catch (Exception e) {
 //            if (transaction != null) {
 //                transaction.rollback();
 //            }
 //            e.printStackTrace();
-            session.close();
+
         }
 
         return roles;
@@ -114,11 +113,11 @@ public class EmployeeService {
                     "email=:email " + "WHERE id = :id";
             Query query = session.createQuery(hql);
             query.setParameter("name", employee.getName());
-            query.setParameter("family",employee.getFamily()) ;
-            query.setParameter("username",employee.getUsername());
-            query.setParameter("password",employee.getPassword()) ;
-            query.setParameter("phonenumber",employee.getPhoneNumber());
-            query.setParameter("email",employee.getEmail()) ;
+            query.setParameter("family", employee.getFamily());
+            query.setParameter("username", employee.getUsername());
+            query.setParameter("password", employee.getPassword());
+            query.setParameter("phonenumber", employee.getPhoneNumber());
+            query.setParameter("email", employee.getEmail());
             query.setParameter("id", employee.getId());
 
             query.executeUpdate();
@@ -150,5 +149,26 @@ public class EmployeeService {
         return null;
     }
 
+    public List<Employee> getManager() {
+
+        Transaction transaction = null;
+        List<Employee> managerList = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            transaction = session.beginTransaction();
+
+            managerList = (List<Employee>) session.createQuery("FROM Employee emp Where emp.role=:role")
+                    .setParameter("role", new Integer[]{4, 5, 6});
+
+//            session.close();
+//        } catch (Exception e) {
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
+//            e.printStackTrace();
+
+        }
+        return managerList;
+    }
 }
 

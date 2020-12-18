@@ -8,34 +8,15 @@
   <component name="ChangeListManager">
     <list default="true" id="ab567d2a-2d1d-4b3f-90f2-2f9856588b57" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/email/EmailSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/email/EmailsSrv.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/email/SendEmailSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/email/SendEmailSrv.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/model/LeaveRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/model/LeaveRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/AddEmployeeFormSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/AddEmployeeFormSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/EmployeeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/addemployee.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/addemployee.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/editemployee.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/editemployee.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/email.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/email.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/emailForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/emailForm.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/employees.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/employees.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/panel.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/panel.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/email/EmailSrv.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/email/SendEmailSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/email/SendEmailSrv.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/login/logout.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/service/EmailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/service/EmailService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/model/LeaveRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/model/LeaveRequest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/elms.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/controller/email/EmailSrv.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/controller/email/SendEmailSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/controller/email/SendEmailSrv.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/controller/login/logout.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/service/EmailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/service/EmailService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/model/LeaveRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/model/LeaveRequest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/elms/WEB-INF/classes/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/WEB-INF/classes/main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/elms/addemployee.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/addemployee.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/elms/editemployee.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/editemployee.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/elms/email.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/email.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/elms/emailForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/emailForm.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/elms/employees.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/employees.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/elms/panel.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/panel.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +68,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="IgnoredFileRootStore">
     <option name="generatedRoots">
@@ -310,21 +292,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@7fd8a769" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@59e6b44" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -349,7 +317,7 @@
       <workItem from="1608071692610" duration="540000" />
       <workItem from="1608107486453" duration="46297000" />
       <workItem from="1608204179607" duration="27077000" />
-      <workItem from="1608280033690" duration="18298000" />
+      <workItem from="1608280033690" duration="20633000" />
     </task>
     <task id="LOCAL-00001" summary="updated 990927">
       <created>1608204525157</created>
@@ -379,7 +347,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608244199175</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="updated 990929">
+      <created>1608308927376</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1608308927376</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,7 +362,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="updated 990927" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated 990927" />
+    <MESSAGE value="updated 990929" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated 990929" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="73" key="#Assign_Data_Sources" timestamp="1608222206328">
@@ -422,10 +398,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="162" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824@0.0.1536.824" timestamp="1607980701251" />
-    <state x="350" y="6" key="CommitChangelistDialog2" timestamp="1608248646339">
+    <state x="350" y="6" key="CommitChangelistDialog2" timestamp="1608308925010">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="350" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608248646339" />
+    <state x="350" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608308925010" />
     <state x="569" y="117" key="ExecutionTargetDialog" timestamp="1608107924519">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -434,54 +410,54 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="144" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1608207193760" />
-    <state width="1211" height="151" key="GridCell.Tab.0.bottom" timestamp="1608305262347">
+    <state width="1211" height="134" key="GridCell.Tab.0.bottom" timestamp="1608311241105">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="151" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608305262347" />
-    <state width="1211" height="151" key="GridCell.Tab.0.center" timestamp="1608305262347">
+    <state width="1211" height="134" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608311241105" />
+    <state width="1211" height="134" key="GridCell.Tab.0.center" timestamp="1608311241105">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="151" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608305262347" />
-    <state width="1211" height="151" key="GridCell.Tab.0.left" timestamp="1608305262347">
+    <state width="1211" height="134" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608311241105" />
+    <state width="1211" height="134" key="GridCell.Tab.0.left" timestamp="1608311241105">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="151" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608305262347" />
-    <state width="1211" height="151" key="GridCell.Tab.0.right" timestamp="1608305262347">
+    <state width="1211" height="134" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608311241105" />
+    <state width="1211" height="134" key="GridCell.Tab.0.right" timestamp="1608311241105">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="151" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608305262347" />
-    <state width="1211" height="151" key="GridCell.Tab.1.bottom" timestamp="1608305262276">
+    <state width="1211" height="134" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608311241105" />
+    <state width="1211" height="134" key="GridCell.Tab.1.bottom" timestamp="1608311241025">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="151" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608305262276" />
-    <state width="1211" height="151" key="GridCell.Tab.1.center" timestamp="1608305262275">
+    <state width="1211" height="134" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608311241025" />
+    <state width="1211" height="134" key="GridCell.Tab.1.center" timestamp="1608311241025">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="151" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1608305262275" />
-    <state width="1211" height="151" key="GridCell.Tab.1.left" timestamp="1608305262275">
+    <state width="1211" height="134" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1608311241025" />
+    <state width="1211" height="134" key="GridCell.Tab.1.left" timestamp="1608311241025">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="151" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1608305262275" />
-    <state width="1211" height="151" key="GridCell.Tab.1.right" timestamp="1608305262276">
+    <state width="1211" height="134" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1608311241025" />
+    <state width="1211" height="134" key="GridCell.Tab.1.right" timestamp="1608311241025">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="151" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1608305262276" />
-    <state width="1211" height="151" key="GridCell.Tab.2.bottom" timestamp="1608305262275">
+    <state width="1211" height="134" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1608311241025" />
+    <state width="1211" height="134" key="GridCell.Tab.2.bottom" timestamp="1608311241025">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="151" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608305262275" />
-    <state width="1211" height="151" key="GridCell.Tab.2.center" timestamp="1608305262275">
+    <state width="1211" height="134" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608311241025" />
+    <state width="1211" height="134" key="GridCell.Tab.2.center" timestamp="1608311241025">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="151" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1608305262275" />
-    <state width="1211" height="151" key="GridCell.Tab.2.left" timestamp="1608305262275">
+    <state width="1211" height="134" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1608311241025" />
+    <state width="1211" height="134" key="GridCell.Tab.2.left" timestamp="1608311241025">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="151" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1608305262275" />
-    <state width="1211" height="151" key="GridCell.Tab.2.right" timestamp="1608305262275">
+    <state width="1211" height="134" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1608311241025" />
+    <state width="1211" height="134" key="GridCell.Tab.2.right" timestamp="1608311241025">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="151" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1608305262275" />
+    <state width="1211" height="134" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1608311241025" />
     <state width="1211" height="135" key="GridCell.Tab.3.bottom" timestamp="1608245905458">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -530,6 +506,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="477" y="239" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1608280033464" />
+    <state x="557" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1608310230570">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="557" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1608310230570" />
     <state x="459" y="145" width="663" height="534" key="find.popup" timestamp="1608280188265">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
