@@ -42,7 +42,7 @@ public class LoginSrv extends HttpServlet {
         if (loginService.validate(username, password) != null ) {
             Employee employee = loginService.validate(username,password);
             request.getSession().setAttribute("employee",employee);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("panel.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);
         }else {
             response.sendRedirect("error.jsp");
