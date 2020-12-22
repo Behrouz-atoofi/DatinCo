@@ -1,5 +1,6 @@
 <%@ page import="com.datin.elms.model.Employee" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.datin.elms.model.Category_element" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -204,10 +205,18 @@
                 <label for="phonenumber">PhoneNumber</label>
                 <input type="text" class="form-control" id="phonenumber" name="phonenumber" value="<%=employee.getPhoneNumber()%>" >
             </div>
-            <div class="form-group">
-                <label for="role">Role</label>
-                <input type="option" class="form-control" id="role" name="option" value="<%=employee.getRole().getName()%>" >
-            </div>
+            <label for="roleName">Role</label>
+            <select class="form-control" name="roleName" id="roleName" >
+                <%
+                    List<Category_element> roles = (List<Category_element>) request.getAttribute("roleList");
+                    for (Category_element role : roles) {
+                %>
+                <option value="<%=role.getId()%>"><%=role.getName()%></option>
+
+                <% } %>
+            </select>
+
+
 
             <div class="form-group">
                 <label for="manager">Manager</label>
@@ -235,6 +244,7 @@
         <% Employee employee1 = (Employee) request.getSession().getAttribute("employee");%>
         <%="Hi ! " + employee1.getName()%>
         <ul class="list_load">
+            <h1>  </h1>
             <li class="list_item"><a href="#">My Profile</a></li>
             <li class="list_item"><a href="employees">employees</a></li>
             <li class="list_item"><a href="requests">Requests</a></li>

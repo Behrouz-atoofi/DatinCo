@@ -22,9 +22,10 @@ public class RequestsSrv extends HttpServlet {
         Employee employee = (Employee) req.getSession().getAttribute("employee") ;
         RequestService requestService = new RequestService() ;
         List<LeaveRequest> leaveRequests  = requestService.getRequestsByEmployee(employee) ;
-        req.setAttribute("leaveRequests",leaveRequests);
-        req.getRequestDispatcher("requests.jsp").forward(req,resp);
-       // List<LeaveRequest> requestList  = requestService.getRequestsByEmployee(Employee);
+
+            req.setAttribute("leaveRequests",leaveRequests);
+            req.getRequestDispatcher("myRequests.jsp").forward(req,resp);
+
 
     }
 

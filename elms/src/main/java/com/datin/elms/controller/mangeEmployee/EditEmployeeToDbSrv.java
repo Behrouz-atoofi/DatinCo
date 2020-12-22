@@ -1,6 +1,7 @@
 package com.datin.elms.controller.mangeEmployee;
 
 import com.datin.elms.model.Employee;
+import com.datin.elms.service.CategoryService;
 import com.datin.elms.service.EmployeeService;
 
 import javax.servlet.ServletException;
@@ -27,7 +28,7 @@ public class EditEmployeeToDbSrv extends HttpServlet {
         String password = req.getParameter("password" );
         String email = req.getParameter("email" );
         String phoneNumber = req.getParameter("phonenumber") ;
-        String role = req.getParameter("roleName") ;
+        int roleId = Integer.parseInt(req.getParameter("roleName")) ;
         String manager = req.getParameter("manager") ;
 
         Employee employee = new Employee() ;
@@ -38,7 +39,7 @@ public class EditEmployeeToDbSrv extends HttpServlet {
         employee.setPassword(password);
         employee.setEmail(email);
         employee.setPhoneNumber(phoneNumber);
-        employee.setRole(null);
+        employee.setRole(CategoryService.getCategoryById(roleId));
         employee.setManager(null);
 
         EmployeeService employeeService = new EmployeeService() ;

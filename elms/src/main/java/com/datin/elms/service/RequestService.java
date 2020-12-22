@@ -72,5 +72,20 @@ public class RequestService {
             e.printStackTrace();
         }
     }
+
+    public List<LeaveRequest> getRequestsByManager(Employee manager) {
+
+        Transaction transaction = null ;
+        List<LeaveRequest> leaveRequests = null ;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction() ;
+
+            leaveRequests = (List<LeaveRequest>) session.createQuery("FROM LeaveRequest lvr join lvr.employee lvre where lvre.manager=:manager")
+                    .setParameter("manager",manager) ;
+
+        }
+
+        return leaveRequests ;
+    }
 }
 

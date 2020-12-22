@@ -24,10 +24,8 @@ public class AddEmpToDbSrv extends HttpServlet {
         String password = req.getParameter("password");
         String email = req.getParameter("email");
         String phoneNumber = req.getParameter("phonenumber");
-
-
         int roleId = Integer.parseInt(req.getParameter("roleName")) ;
-
+        Employee superVisor = (Employee) req.getSession().getAttribute("employee") ;
         Employee employee = new Employee();
         employee.setName(name);
         employee.setFamily(family);
@@ -36,7 +34,7 @@ public class AddEmpToDbSrv extends HttpServlet {
         employee.setEmail(email);
         employee.setRole(CategoryService.getCategoryById(roleId));
         employee.setPhoneNumber(phoneNumber);
-        employee.setManager(null);
+        employee.setManager(superVisor);
 
         EmployeeService employeeService = new EmployeeService();
         employeeService.saveEmployee(employee);

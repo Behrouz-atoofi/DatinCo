@@ -4,6 +4,7 @@ package com.datin.elms.controller.email;
 import com.datin.elms.model.Category_element;
 import com.datin.elms.model.Email;
 import com.datin.elms.model.Employee;
+import com.datin.elms.service.CategoryService;
 import com.datin.elms.service.EmailService;
 import com.mysql.cj.jdbc.Blob;
 
@@ -30,14 +31,11 @@ public class SendEmailSrv extends HttpServlet {
 //        String fileName = getSubmittedFileName(filePart);
 //        InputStream fileContent = filePart.getInputStream();
 
-        Category_element emailStatus = new Category_element();
-        emailStatus.setId(8);
-
         Email email = new Email() ;
         email.setSubject(subject);
         email.setContent(content);
         email.setEmail_receiver(receiverEmail);
-        email.setStatus(emailStatus);
+        email.setStatus(CategoryService.getCategoryByName("unread"));
         Employee employee = (Employee) req.getSession().getAttribute("employee");
         email.setEmail_sender(employee.getEmail());
         EmailService emailService = new EmailService() ;

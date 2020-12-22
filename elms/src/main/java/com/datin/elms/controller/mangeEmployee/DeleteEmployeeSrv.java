@@ -20,8 +20,8 @@ public class DeleteEmployeeSrv extends HttpServlet {
 
         EmployeeService employeeService = new EmployeeService();
         employeeService.deleteEmployee(id);
+        req.getRequestDispatcher("employees").forward(req,resp);
 
-        resp.sendRedirect("employees");
     }
 
 }

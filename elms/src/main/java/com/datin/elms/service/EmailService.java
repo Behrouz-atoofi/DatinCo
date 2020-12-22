@@ -86,11 +86,10 @@ public class EmailService {
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
 
             transaction = session.beginTransaction() ;
-            Category_element read = new Category_element() ;
-            read.setId(7);
+
             String hql = "UPDATE Email set status = :status " + "WHERE id = :id";
             Query query = session.createQuery(hql);
-            query.setParameter("status", read);
+            query.setParameter("status", CategoryService.getCategoryByName("read"));
             query.setParameter("id", email.getId());
             query.executeUpdate();
             transaction.commit();

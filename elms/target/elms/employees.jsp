@@ -227,6 +227,7 @@
         <% Employee employee = (Employee) request.getSession().getAttribute("employee");%>
         <%="Hi ! " + employee.getName()%>
         <ul class="list_load">
+            <h1>  </h1>
             <li class="list_item"><a href="#">My Profile</a></li>
             <li class="list_item"><a href="employees">employees</a></li>
             <li class="list_item"><a href="requests">Requests</a></li>

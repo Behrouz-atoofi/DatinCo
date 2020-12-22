@@ -21,7 +21,7 @@ public class DeleteRequestSrv extends HttpServlet {
         RequestService requestService = new RequestService() ;
         requestService.deleteRequestById(requestID) ;
 
-        resp.sendRedirect("requests");
+        resp.sendRedirect("myRequests");
 
 
     }

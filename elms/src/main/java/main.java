@@ -11,23 +11,13 @@ import java.util.List;
 public class main {
     public static void main(String[] args) {
 
-
-        Transaction transaction = null;
-        List<Employee> managerList= null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-
+        Transaction transaction = null ;
+        List<LeaveRequest> leaveRequests = null ;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction() ;
-            EmployeeService employeeService = new EmployeeService() ;
-            List<Category_element> cat= employeeService.getRole() ;
 
-                    String hql = "FROM Employee emp WHERE emp.role=:role" ;
-            managerList =session.createQuery(hql,Employee.class).setParameterList("role", cat).list() ;
-
-
-        }
-
-        System.out.println(managerList.toString());
-
+            leaveRequests = (List<LeaveRequest>) session.createQuery("FROM LeaveRequest lvr join lvr.employee lvre where lvre.manager=:manager")
+                    .setParameter("manager",manager) ;
 
     }
 
@@ -51,6 +41,7 @@ public class main {
         Category_element accepted = new Category_element(9,"accepted", "accepted", leave_status);
         Category_element rejected = new Category_element(10,"rejected", "rejected", leave_status);
         Category_element pending = new Category_element(11,"pending", "pending", leave_status);
+
 
         //load administrator ....
         Employee administrator = new Employee() ;
@@ -82,6 +73,7 @@ public class main {
             session.save(unread);
             session.save(accepted);
             session.save(rejected);
+            session.save(pending) ;
 
             session.save(administrator) ;
 

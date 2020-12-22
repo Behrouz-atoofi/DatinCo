@@ -32,11 +32,11 @@ public class Employee implements Serializable {
     @Column(name = "C_PHONENUMBER", columnDefinition = "VARCHAR(11)")
     private String phoneNumber;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Employee.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "C_MANAGER")
     private Employee manager;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Category_element.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "C_ROLE")
     private Category_element role;
 

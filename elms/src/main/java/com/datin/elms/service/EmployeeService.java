@@ -109,7 +109,9 @@ public class EmployeeService {
                     ",username =:username " +
                     ",password=:password ," +
                     "phoneNumber=:phonenumber," +
-                    "email=:email " + "WHERE id = :id";
+                    "email=:email ," +
+                    "role=:role " +
+                    "WHERE id = :id";
             Query query = session.createQuery(hql);
             query.setParameter("name", employee.getName());
             query.setParameter("family", employee.getFamily());
@@ -117,6 +119,7 @@ public class EmployeeService {
             query.setParameter("password", employee.getPassword());
             query.setParameter("phonenumber", employee.getPhoneNumber());
             query.setParameter("email", employee.getEmail());
+            query.setParameter("role", employee.getRole());
             query.setParameter("id", employee.getId());
 
             query.executeUpdate();

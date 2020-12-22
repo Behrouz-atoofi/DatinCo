@@ -1555,11 +1555,20 @@
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="380" parent="336" name="FKbbj370rafu64nl9854ubi60wh">
+    <column id="380" parent="336" name="C_STATUS">
+      <Position>6</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="381" parent="336" name="FKbbj370rafu64nl9854ubi60wh">
       <ColNames>C_EMPLOYEE</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="381" parent="336" name="PRIMARY">
+    <index id="382" parent="336" name="FK5qelqx4udeestqnr2nmcf0ovi">
+      <ColNames>C_STATUS</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="383" parent="336" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
