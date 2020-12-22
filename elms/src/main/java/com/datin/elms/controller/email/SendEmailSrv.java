@@ -1,12 +1,10 @@
 package com.datin.elms.controller.email;
 
 
-import com.datin.elms.model.Category_element;
 import com.datin.elms.model.Email;
 import com.datin.elms.model.Employee;
 import com.datin.elms.service.CategoryService;
 import com.datin.elms.service.EmailService;
-import com.mysql.cj.jdbc.Blob;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Paths;
 
 @WebServlet("/sendEmail")
 public class SendEmailSrv extends HttpServlet {
@@ -35,7 +31,7 @@ public class SendEmailSrv extends HttpServlet {
         email.setSubject(subject);
         email.setContent(content);
         email.setEmail_receiver(receiverEmail);
-        email.setStatus(CategoryService.getCategoryByName("unread"));
+        email.setStatus(CategoryService.getElementByName("unread"));
         Employee employee = (Employee) req.getSession().getAttribute("employee");
         email.setEmail_sender(employee.getEmail());
         EmailService emailService = new EmailService() ;

@@ -1,6 +1,5 @@
 package com.datin.elms.controller.mangeEmployee;
 
-import com.datin.elms.model.Category_element;
 import com.datin.elms.model.Employee;
 import com.datin.elms.service.CategoryService;
 import com.datin.elms.service.EmployeeService;
@@ -32,7 +31,7 @@ public class AddEmpToDbSrv extends HttpServlet {
         employee.setUsername(username);
         employee.setPassword(password);
         employee.setEmail(email);
-        employee.setRole(CategoryService.getCategoryById(roleId));
+        employee.setRole(CategoryService.getElementById(roleId));
         employee.setPhoneNumber(phoneNumber);
         employee.setManager(superVisor);
 

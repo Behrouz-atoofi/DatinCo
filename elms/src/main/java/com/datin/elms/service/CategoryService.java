@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutionException;
 
 public class CategoryService {
 
-    public static Category_element getCategoryById(int id) {
+    public static Category_element getElementById(int id) {
 
         Transaction transaction = null ;
         Category_element category_element = null ;
@@ -34,7 +34,7 @@ public class CategoryService {
 
         }
 
-        public static Category_element getCategoryByName(String name) {
+        public static Category_element getElementByName(String name) {
 
         Transaction transaction = null ;
         Category_element category_element = null ;
@@ -52,4 +52,22 @@ public class CategoryService {
 
         }
 
+
+    public static Category getCategoryByName(String name) {
+
+        Transaction transaction = null ;
+        Category category = null ;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction  =session.beginTransaction() ;
+
+            category = (Category)session.createQuery("FROM Category Cat WHERE Cat.name=:name")
+                    .setParameter("name",name).uniqueResult() ;
+            session.close();
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return category ;
+
+    }
 }

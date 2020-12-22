@@ -11,17 +11,24 @@ import java.util.List;
 public class main {
     public static void main(String[] args) {
 
-        Transaction transaction = null ;
-        List<LeaveRequest> leaveRequests = null ;
-        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction() ;
+        Transaction transaction = null;
+        Employee manager = new Employee();
+        manager.setId(27);
+        List leaveRequests = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
 
-            leaveRequests = (List<LeaveRequest>) session.createQuery("FROM LeaveRequest lvr join lvr.employee lvre where lvre.manager=:manager")
-                    .setParameter("manager",manager) ;
+            leaveRequests =session.createQuery("FROM LeaveRequest lvr join lvr.employee lvre where lvre.manager=:manager")
+                    .setParameter("manager", manager).list();
+
+        }
+//
+//        for (Object leaveRequest:leaveRequests) {
+//
+//            System.out.println(leaveRequest.);
+//        }
 
     }
-
-
 
     public static void loadData() {
 

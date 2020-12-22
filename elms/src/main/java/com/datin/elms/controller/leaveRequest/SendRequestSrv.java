@@ -1,7 +1,6 @@
 package com.datin.elms.controller.leaveRequest;
 
 
-import com.datin.elms.model.Category_element;
 import com.datin.elms.model.Employee;
 import com.datin.elms.model.LeaveRequest;
 import com.datin.elms.service.CategoryService;
@@ -29,7 +28,7 @@ public class SendRequestSrv extends HttpServlet {
         leaveRequest.setTo_date(toDate);
         leaveRequest.setReason(reason);
         leaveRequest.setEmployee(employee);
-        leaveRequest.setStatus(CategoryService.getCategoryByName("pending"));
+        leaveRequest.setStatus(CategoryService.getElementByName("pending"));
 
         RequestService requestService = new RequestService() ;
         requestService.saveRequest(leaveRequest);

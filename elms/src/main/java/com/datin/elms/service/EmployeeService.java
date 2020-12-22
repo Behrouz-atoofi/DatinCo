@@ -36,14 +36,13 @@ public class EmployeeService {
 
     public List<Category_element> getRole() {
         Transaction transaction = null;
-        Category category = new Category();
-        category.setId(1);
+        Category role = CategoryService.getCategoryByName("role") ;
         List<Category_element> roles = null ;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
             Query query = session.createQuery("FROM Category_element element WHERE element.category IN (:item)");
-            query.setParameter("item", category);
+            query.setParameter("item", role);
 
             roles = query.list();
             session.close();

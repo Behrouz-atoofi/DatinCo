@@ -1,6 +1,5 @@
 package com.datin.elms.service;
 
-import com.datin.elms.model.Category_element;
 import com.datin.elms.model.Email;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
@@ -89,7 +88,7 @@ public class EmailService {
 
             String hql = "UPDATE Email set status = :status " + "WHERE id = :id";
             Query query = session.createQuery(hql);
-            query.setParameter("status", CategoryService.getCategoryByName("read"));
+            query.setParameter("status", CategoryService.getElementByName("read"));
             query.setParameter("id", email.getId());
             query.executeUpdate();
             transaction.commit();

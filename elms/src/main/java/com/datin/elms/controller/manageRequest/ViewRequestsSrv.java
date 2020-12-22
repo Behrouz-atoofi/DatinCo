@@ -17,9 +17,9 @@ public class ViewRequestsSrv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Employee employee = (Employee) req.getSession().getAttribute("employee") ;
+        //Employee employee = (Employee) req.getSession().getAttribute("employee") ;
 
-        List<LeaveRequest> leaveRequests =
+       // List<LeaveRequest> leaveRequests =
 
     }
 }

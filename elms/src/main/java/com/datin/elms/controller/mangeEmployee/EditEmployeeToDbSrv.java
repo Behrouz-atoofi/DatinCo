@@ -39,7 +39,7 @@ public class EditEmployeeToDbSrv extends HttpServlet {
         employee.setPassword(password);
         employee.setEmail(email);
         employee.setPhoneNumber(phoneNumber);
-        employee.setRole(CategoryService.getCategoryById(roleId));
+        employee.setRole(CategoryService.getElementById(roleId));
         employee.setManager(null);
 
         EmployeeService employeeService = new EmployeeService() ;

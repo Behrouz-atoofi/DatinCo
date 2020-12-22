@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet("/requests")
+@WebServlet("/myRequests")
 public class RequestsSrv extends HttpServlet {
 
     @Override
