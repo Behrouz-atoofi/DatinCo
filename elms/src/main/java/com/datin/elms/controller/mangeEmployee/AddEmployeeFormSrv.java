@@ -22,9 +22,9 @@ public class AddEmployeeFormSrv extends HttpServlet {
 
         EmployeeService employeeService = new EmployeeService() ;
         List<Category_element> roleList = employeeService.getRole() ;
-       // List<Employee> managerList = employeeService.getManager() ;
+        //List<Employee> managerList = employeeService.getManager() ;
         req.setAttribute("roleList",roleList);
-//        req.setAttribute("managerList",managerList);
+        //req.setAttribute("managerList",managerList);
         req.getRequestDispatcher("addemployee.jsp").forward(req,res);
 
     }

@@ -159,12 +159,12 @@ public class EmployeeService {
             managerList = (List<Employee>) session.createQuery("FROM Employee emp Where emp.role=:role")
                     .setParameter("role", new Integer[]{4, 5, 6});
 
-//            session.close();
-//        } catch (Exception e) {
-//            if (transaction != null) {
-//                transaction.rollback();
-//            }
-//            e.printStackTrace();
+            session.close();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
 
         }
         return managerList;

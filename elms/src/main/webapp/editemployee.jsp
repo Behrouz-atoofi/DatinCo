@@ -206,7 +206,7 @@
             </div>
             <div class="form-group">
                 <label for="role">Role</label>
-                <input type="option" class="form-control" id="role" name="option" value="<%=employee.getRole()%>" >
+                <input type="option" class="form-control" id="role" name="option" value="<%=employee.getRole().getName()%>" >
             </div>
 
             <div class="form-group">

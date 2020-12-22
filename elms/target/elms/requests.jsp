@@ -226,7 +226,7 @@
 
         <ul class="list_load">
             <li class="list_item"><a href="#">My Profile</a></li>
-            <li class="list_item"><a href="employees">employees</a></li>
+            <li class="list_item"><a href="employees">Employees</a></li>
             <li class="list_item"><a href="requests">Requests</a></li>
             <li class="list_item"><a href="email">Email</a></li>
             <li class="list_item"><a href="logout">Logout</a></li>

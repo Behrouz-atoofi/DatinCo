@@ -1,6 +1,10 @@
 package com.datin.elms.controller.mangeEmployee;
+
+import com.datin.elms.model.Category_element;
 import com.datin.elms.model.Employee;
+import com.datin.elms.service.CategoryService;
 import com.datin.elms.service.EmployeeService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,27 +18,27 @@ public class AddEmpToDbSrv extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String name = req.getParameter("name") ;
-        String family = req.getParameter("family" );
-        String username = req.getParameter("username") ;
-        String password = req.getParameter("password" );
-        String email = req.getParameter("email" );
-        String phoneNumber = req.getParameter("phonenumber") ;
-        String role = req.getParameter("roleName") ;
+        String name = req.getParameter("name");
+        String family = req.getParameter("family");
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        String email = req.getParameter("email");
+        String phoneNumber = req.getParameter("phonenumber");
 
-        //int managerId = Integer.parseInt(req.getParameter("manager")) ;
 
-        Employee employee = new Employee() ;
+        int roleId = Integer.parseInt(req.getParameter("roleName")) ;
+
+        Employee employee = new Employee();
         employee.setName(name);
         employee.setFamily(family);
         employee.setUsername(username);
         employee.setPassword(password);
         employee.setEmail(email);
-        employee.setRole(null);
+        employee.setRole(CategoryService.getCategoryById(roleId));
         employee.setPhoneNumber(phoneNumber);
         employee.setManager(null);
 
-        EmployeeService employeeService = new EmployeeService() ;
+        EmployeeService employeeService = new EmployeeService();
         employeeService.saveEmployee(employee);
         resp.sendRedirect("employees");
 

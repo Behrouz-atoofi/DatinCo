@@ -1,10 +1,32 @@
 import com.datin.elms.model.*;
+import com.datin.elms.service.EmployeeService;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.management.Query;
+import java.util.ArrayList;
+import java.util.List;
+
 public class main {
     public static void main(String[] args) {
+
+
+        Transaction transaction = null;
+        List<Employee> managerList= null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            transaction = session.beginTransaction() ;
+            EmployeeService employeeService = new EmployeeService() ;
+            List<Category_element> cat= employeeService.getRole() ;
+
+                    String hql = "FROM Employee emp WHERE emp.role=:role" ;
+            managerList =session.createQuery(hql,Employee.class).setParameterList("role", cat).list() ;
+
+
+        }
+
+        System.out.println(managerList.toString());
 
 
     }

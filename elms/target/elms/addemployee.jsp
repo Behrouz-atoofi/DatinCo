@@ -213,7 +213,7 @@
                 <input type="text" class="form-control" id="username" name="username">
 
                 <label for="password">Passwrod</label>
-                <input type="text" class="form-control" id="password" name="password">
+                <input type="password" class="form-control" id="password" name="password">
 
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email">
@@ -225,10 +225,11 @@
                 <select class="form-control" name="roleName" id="roleName">
                 <%
                     List<Category_element> roles = (List<Category_element>) request.getAttribute("roleList");
-                    for (Category_element role: roles) {
+                    for (Category_element role : roles) {
                 %>
-                        <option value="<%=role.getName()%>"><%=role.getName()%></option>
-                    <%  } %>
+                        <option value="<%=role.getId()%>"><%=role.getName()%></option>
+
+                    <% } %>
                 </select>
 
 
