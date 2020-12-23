@@ -194,9 +194,10 @@
         <h1></h1>
         <ul class="list_load">
             <h1>  </h1>
-            <li class="list_item"><a href="#">My Profile</a></li>
+            <li class="list_item"><a href="myProfile">My Profile</a></li>
             <li class="list_item"><a href="employees">employees</a></li>
-            <li class="list_item"><a href="myRequests">Requests</a></li>
+            <li class="list_item"><a href="manageRequests">manage Requests</a></li>
+            <li class="list_item"><a href="myRequests">my Requests</a></li>
             <li class="list_item"><a href="email">Email</a></li>
             <li class="list_item"><a href="logout">Logout</a></li>
 

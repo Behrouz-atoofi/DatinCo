@@ -178,8 +178,8 @@
             <th>Password</th>
             <th>Email</th>
             <th>Phone</th>
-<%--            <th>Role</th>--%>
-<%--            <th>superVisor</th>--%>
+            <th>Role</th>
+            <th>Manager</th>
             <th>update</th>
             <th>delete</th>
 
@@ -199,8 +199,8 @@
             <td><%=employee.getPassword()%></td>
             <td><%=employee.getEmail()%></td>
             <td><%=employee.getPhoneNumber()%></td>
-<%--            <td><%=employee.getRole().getCode()%></td>--%>
-<%--            <td><%=employee.getManager().getName()%></td>--%>
+            <td><%=employee.getRole().getCode()%></td>
+            <td><%=employee.getManager().getName()%></td>
             <td><a href="editEmployeeForm?id=<%=employee.getId()%>">Update</a></td>
             <td><a href="deleteEmployee?id=<%=employee.getId()%>">Delete</a></td>
         </tr>

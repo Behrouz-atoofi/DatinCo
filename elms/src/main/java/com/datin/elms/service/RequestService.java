@@ -9,6 +9,7 @@ import sun.plugin2.gluegen.runtime.StructAccessor;
 import sun.tracing.dtrace.DTraceProviderFactory;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class RequestService {
 
@@ -75,17 +76,22 @@ public class RequestService {
 
     public List<LeaveRequest> getRequestsByManager(Employee manager) {
 
-        Transaction transaction = null ;
-        List<LeaveRequest> leaveRequests = null ;
-        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction() ;
+        Transaction transaction = null;
+        List<LeaveRequest> leaveRequests = null  ;
 
-            leaveRequests = (List<LeaveRequest>) session.createQuery("FROM LeaveRequest lvr join lvr.employee lvre where lvre.manager=:manager")
-                    .setParameter("manager",manager) ;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
 
+            leaveRequests =session.createQuery("FROM LeaveRequest lvr join fetch lvr.employee lvre WHERE lvre.manager=:manager")
+                    .setParameter("manager",manager).list() ;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
 
         return leaveRequests ;
+
     }
+
 }
 

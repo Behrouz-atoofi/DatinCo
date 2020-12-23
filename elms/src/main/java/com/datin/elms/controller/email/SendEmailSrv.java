@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
+import java.io.InputStream;
 
 @WebServlet("/sendEmail")
 public class SendEmailSrv extends HttpServlet {
@@ -23,9 +24,9 @@ public class SendEmailSrv extends HttpServlet {
         String subject = req.getParameter("subject");
         String content = req.getParameter("content");
         String receiverEmail = req.getParameter("receiver");
-//        Part filePart = req.getPart("file");
-//        String fileName = getSubmittedFileName(filePart);
-//        InputStream fileContent = filePart.getInputStream();
+        Part filePart = req.getPart("file");
+        String fileName = getSubmittedFileName(filePart);
+        InputStream fileContent = filePart.getInputStream();
 
         Email email = new Email() ;
         email.setSubject(subject);

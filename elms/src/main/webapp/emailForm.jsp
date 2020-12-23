@@ -171,7 +171,7 @@
 <h1></h1>
 <div class="container">
     <h1></h1>
-    <form action="sendEmail" method="post" >
+    <form action="sendEmail" method="post" enctype="multipart/form-data" >
 
             <div class="col-lg-4 col-lg-offset-4">
 

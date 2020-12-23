@@ -11,22 +11,7 @@ import java.util.List;
 public class main {
     public static void main(String[] args) {
 
-        Transaction transaction = null;
-        Employee manager = new Employee();
-        manager.setId(27);
-        List leaveRequests = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
 
-            leaveRequests =session.createQuery("FROM LeaveRequest lvr join lvr.employee lvre where lvre.manager=:manager")
-                    .setParameter("manager", manager).list();
-
-        }
-//
-//        for (Object leaveRequest:leaveRequests) {
-//
-//            System.out.println(leaveRequest.);
-//        }
 
     }
 
