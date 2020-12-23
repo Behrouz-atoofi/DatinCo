@@ -72,7 +72,7 @@
 
         <ul class="list_load">
             <h1>  </h1>
-            <li class="list_item"><a href="#">My Profile</a></li>
+            <li class="list_item"><a href="myProfile">My Profile</a></li>
             <li class="list_item"><a href="employees">employees</a></li>
             <li class="list_item"><a href="manageRequests">manage requests</a></li>
             <li class="list_item"><a href="myRequests">my Requests</a></li>
