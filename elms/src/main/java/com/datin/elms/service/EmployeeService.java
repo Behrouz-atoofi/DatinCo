@@ -1,7 +1,7 @@
 package com.datin.elms.service;
 
 import com.datin.elms.model.Category;
-import com.datin.elms.model.Category_element;
+import com.datin.elms.model.CategoryElement;
 import com.datin.elms.model.Employee;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
@@ -34,14 +34,14 @@ public class EmployeeService {
         return employeeList;
     }
 
-    public List<Category_element> getRole() {
+    public List<CategoryElement> getRole() {
         Transaction transaction = null;
         Category role = CategoryService.getCategoryByName("role") ;
-        List<Category_element> roles = null ;
+        List<CategoryElement> roles = null ;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
-            Query query = session.createQuery("FROM Category_element element WHERE element.category IN (:item)");
+            Query query = session.createQuery("FROM CategoryElement element WHERE element.category IN (:item)");
             query.setParameter("item", role);
 
             roles = query.list();

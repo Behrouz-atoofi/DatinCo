@@ -6,13 +6,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "T_CATEGORY_ELEMENT")
-public class Category_element {
+public class CategoryElement {
 
-    public Category_element() {
+    public CategoryElement() {
 
     }
 
-    public Category_element (int id ,String code , String name,Category category) {
+    public CategoryElement(int id , String code , String name, Category category) {
         this.id = id ;
         this.code = code ;
         this.name = name ;

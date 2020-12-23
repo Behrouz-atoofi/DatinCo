@@ -1,7 +1,7 @@
 package com.datin.elms.controller.mangeEmployee;
 
 
-import com.datin.elms.model.Category_element;
+import com.datin.elms.model.CategoryElement;
 import com.datin.elms.model.Employee;
 import com.datin.elms.service.EmployeeService;
 
@@ -21,7 +21,7 @@ public class EditEmployeeFormSrv extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id")) ;
         EmployeeService employeeService = new EmployeeService() ;
         Employee employee = employeeService.getEmployeeById(id) ;
-        List<Category_element> roleList = employeeService.getRole() ;
+        List<CategoryElement> roleList = employeeService.getRole() ;
 
         //System.out.println(employee.getName());
         req.setAttribute("roleList",roleList);

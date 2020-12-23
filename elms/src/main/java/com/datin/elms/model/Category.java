@@ -28,14 +28,14 @@ public class Category {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID")
-    private List<Category_element> category_elements ;
+    private List<CategoryElement> category_elements ;
 
 
-    public List<Category_element> getCategory_elements() {
+    public List<CategoryElement> getCategory_elements() {
         return category_elements;
     }
 
-    public void setCategory_elements(List<Category_element> category_elements) {
+    public void setCategory_elements(List<CategoryElement> category_elements) {
         this.category_elements = category_elements;
     }
 

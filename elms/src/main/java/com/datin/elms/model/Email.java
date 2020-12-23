@@ -40,9 +40,9 @@ public class Email {
     @Column(name="C_ATTACHMENT",columnDefinition = "BLOB")
     private byte[] attach ;
 
-    @ManyToOne(targetEntity = Category_element.class,fetch =FetchType.EAGER)
+    @ManyToOne(targetEntity = CategoryElement.class,fetch =FetchType.EAGER)
     @JoinColumn(name="C_STATUS" , referencedColumnName = "ID")
-    private Category_element status;
+    private CategoryElement status;
 
     public int getId() {
         return id;
@@ -84,11 +84,11 @@ public class Email {
         this.email_receiver = email_receiver;
     }
 
-    public Category_element getStatus() {
+    public CategoryElement getStatus() {
         return status;
     }
 
-    public void setStatus(Category_element elements) {
+    public void setStatus(CategoryElement elements) {
         this.status = elements;
     }
 }

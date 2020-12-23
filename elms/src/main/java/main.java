@@ -1,12 +1,7 @@
 import com.datin.elms.model.*;
-import com.datin.elms.service.EmployeeService;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import javax.management.Query;
-import java.util.ArrayList;
-import java.util.List;
 
 public class main {
     public static void main(String[] args) {
@@ -22,17 +17,17 @@ public class main {
         Category role = new Category(1,"role");
         Category email_status = new Category(2,"email_status");
         Category leave_status = new Category(3,"leave_status");
-        Category_element developer = new Category_element(1,"developer", "developer",role);
-        Category_element dataMiner = new Category_element(2,"dataMiner", "dataMiner", role);
-        Category_element analyzer = new Category_element(3,"analyzer", "analyzer", role);
-        Category_element manager = new Category_element(4,"manager", "manager", role);
-        Category_element departmentManager = new Category_element(5,"departmentManager", "departmentManager", role);
-        Category_element founder = new Category_element(6,"founder", "founder", role);
-        Category_element read = new Category_element(7,"read", "read", email_status);
-        Category_element unread = new Category_element(8,"unread", "unread", email_status);
-        Category_element accepted = new Category_element(9,"accepted", "accepted", leave_status);
-        Category_element rejected = new Category_element(10,"rejected", "rejected", leave_status);
-        Category_element pending = new Category_element(11,"pending", "pending", leave_status);
+        CategoryElement developer = new CategoryElement(1,"developer", "developer",role);
+        CategoryElement dataMiner = new CategoryElement(2,"dataMiner", "dataMiner", role);
+        CategoryElement analyzer = new CategoryElement(3,"analyzer", "analyzer", role);
+        CategoryElement manager = new CategoryElement(4,"manager", "manager", role);
+        CategoryElement departmentManager = new CategoryElement(5,"departmentManager", "departmentManager", role);
+        CategoryElement founder = new CategoryElement(6,"founder", "founder", role);
+        CategoryElement read = new CategoryElement(7,"read", "read", email_status);
+        CategoryElement unread = new CategoryElement(8,"unread", "unread", email_status);
+        CategoryElement accepted = new CategoryElement(9,"accepted", "accepted", leave_status);
+        CategoryElement rejected = new CategoryElement(10,"rejected", "rejected", leave_status);
+        CategoryElement pending = new CategoryElement(11,"pending", "pending", leave_status);
 
 
         //load administrator ....

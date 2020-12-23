@@ -36,15 +36,15 @@ public class LeaveRequest {
     @JoinColumn(name = "C_EMPLOYEE", referencedColumnName = "ID")
     private Employee employee;
 
-    @ManyToOne(targetEntity = Category_element.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = CategoryElement.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "C_STATUS", referencedColumnName = "ID")
-    private Category_element status;
+    private CategoryElement status;
 
-    public Category_element getStatus() {
+    public CategoryElement getStatus() {
         return status;
     }
 
-    public void setStatus(Category_element status) {
+    public void setStatus(CategoryElement status) {
         this.status = status;
     }
 

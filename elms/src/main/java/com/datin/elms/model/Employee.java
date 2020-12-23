@@ -36,9 +36,9 @@ public class Employee implements Serializable {
     @JoinColumn(name = "C_MANAGER")
     private Employee manager;
 
-    @ManyToOne(targetEntity = Category_element.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = CategoryElement.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "C_ROLE")
-    private Category_element role;
+    private CategoryElement role;
 
     public Employee(String username, String password) {
         this.username = username;
@@ -114,11 +114,11 @@ public class Employee implements Serializable {
         this.manager = manager;
     }
 
-    public Category_element getRole() {
+    public CategoryElement getRole() {
         return role;
     }
 
-    public void setRole(Category_element role) {
+    public void setRole(CategoryElement role) {
         this.role = role;
     }
 
