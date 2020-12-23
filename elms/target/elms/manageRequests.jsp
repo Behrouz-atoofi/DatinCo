@@ -28,6 +28,8 @@
             <th>Employee Id</th>
             <th>Employee Family </th>
             <th>Status</th>
+            <th>Accept</th>
+            <th>Reject</th>
 
         </tr>
         </thead>
@@ -44,27 +46,14 @@
             <td><%=leaveRequest.getReason()%></td>
             <td><%=leaveRequest.getEmployee().getId()%></td>
             <td><%=leaveRequest.getEmployee().getFamily()%></td>
-            <td><select class="form-control" name="roleName" id="roleName" >
-                <%
-                %>
-                <option value="def">degf</option>
-                <option value="def">degf</option>
-                <option value="def">degf</option>
-                <%--                <% } %>--%>
-            </select></td>
-
-
-<%--            <td><%=employee.getPhoneNumber()%></td>--%>
-<%--            <td><%=employee.getRole().getCode()%></td>--%>
-<%--            <td><%=employee.getManager().getName()%></td>--%>
-<%--            <td><a href="editEmployeeForm?id=<%=employee.getId()%>">Update</a></td>--%>
-<%--            <td><a href="deleteEmployee?id=<%=employee.getId()%>">Delete</a></td>--%>
-<%--        </tr>--%>
+            <td><%=leaveRequest.getStatus().getName()%></td>
+            <td><a href="acceptRequest?id=<%=leaveRequest.getId()%>">Accept</a></td>
+            <td><a href="rejectRequest?id=<%=leaveRequest.getId()%>">Reject</a></td>
+        </tr>
         <%
             }
         %>
     </table>
-    <a class="btn btn-primary" href="updateReqStatus" role="button">update All status</a>
 </div>
 <div class="side_menu">
     <div class="burger_box">
@@ -84,7 +73,7 @@
         <%="Hi ! " + employee.getName()%>
         <ul class="list_load">
             <h1>  </h1>
-            <li class="list_item"><a href="#">My Profile</a></li>
+            <li class="list_item"><a href="myProfile">My Profile</a></li>
             <li class="list_item"><a href="employees">employees</a></li>
             <li class="list_item"><a href="manageRequests">manage requests</a></li>
             <li class="list_item"><a href="myRequests">my Requests</a></li>

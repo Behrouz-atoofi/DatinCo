@@ -1,14 +1,47 @@
 import com.datin.elms.model.*;
+import com.datin.elms.service.CategoryService;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class main {
     public static void main(String[] args) {
 
 
 
+        Transaction transaction = null ;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            String hql = "UPDATE LeaveRequest lvr set lvr.status =:status WHERE lvr.id= :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("status", CategoryService.getElementByName("accepted"));
+            query.setParameter("id", 32);
+
+            query.executeUpdate();
+           transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+
+        }
+
+
+
+
+
     }
+
+
+
+
+
+
+
 
     public static void loadData() {
 

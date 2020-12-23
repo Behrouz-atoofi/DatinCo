@@ -10,9 +10,9 @@ public class CategoryService {
 
     public static CategoryElement getElementById(int id) {
 
-        Transaction transaction = null ;
-        CategoryElement category_element = null ;
-        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
+        Transaction transaction = null;
+        CategoryElement category_element = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
             transaction = session.beginTransaction();
 
@@ -27,45 +27,43 @@ public class CategoryService {
             e.printStackTrace();
         }
 
-            return category_element;
+        return category_element;
 
 
-        }
+    }
 
-        public static CategoryElement getElementByName(String name) {
+    public static CategoryElement getElementByName(String name) {
 
-        Transaction transaction = null ;
-        CategoryElement category_element = null ;
+
+        CategoryElement category_element = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction  =session.beginTransaction() ;
 
-            category_element = (CategoryElement)session.createQuery("FROM CategoryElement  CatE WHERE CatE.name=:name")
-                    .setParameter("name",name).uniqueResult() ;
+            category_element = (CategoryElement) session.createQuery("FROM CategoryElement  CatE WHERE CatE.name=:name")
+                    .setParameter("name", name).uniqueResult();
             session.close();
-            transaction.commit();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return category_element ;
+        return category_element;
 
-        }
-
+    }
 
     public static Category getCategoryByName(String name) {
 
-        Transaction transaction = null ;
-        Category category = null ;
+        Transaction transaction = null;
+        Category category = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction  =session.beginTransaction() ;
+            transaction = session.beginTransaction();
 
-            category = (Category)session.createQuery("FROM Category Cat WHERE Cat.name=:name")
-                    .setParameter("name",name).uniqueResult() ;
+            category = (Category) session.createQuery("FROM Category Cat WHERE Cat.name=:name")
+                    .setParameter("name", name).uniqueResult();
             session.close();
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return category ;
+        return category;
 
     }
 }

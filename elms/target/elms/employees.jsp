@@ -49,7 +49,7 @@
             <td><%=employee.getEmail()%></td>
             <td><%=employee.getPhoneNumber()%></td>
             <td><%=employee.getRole().getCode()%></td>
-            <td><%=employee.getManager().getName()%></td>
+            <td><%=employee.getManager().getFamily()%></td>
             <td><a href="editEmployeeForm?id=<%=employee.getId()%>">Update</a></td>
             <td><a href="deleteEmployee?id=<%=employee.getId()%>">Delete</a></td>
         </tr>
@@ -77,7 +77,7 @@
         <%="Hi ! " + employee.getName()%>
         <ul class="list_load">
             <h1>  </h1>
-            <li class="list_item"><a href="#">My Profile</a></li>
+            <li class="list_item"><a href="myProfile">My Profile</a></li>
             <li class="list_item"><a href="employees">employees</a></li>
             <li class="list_item"><a href="manageRequests">manage requests</a></li>
             <li class="list_item"><a href="myRequests">my Requests</a></li>

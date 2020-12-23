@@ -5,6 +5,7 @@ import com.datin.elms.model.LeaveRequest;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import sun.plugin2.gluegen.runtime.StructAccessor;
 import sun.tracing.dtrace.DTraceProviderFactory;
 
@@ -93,5 +94,53 @@ public class RequestService {
 
     }
 
+    public void updateStatusToAccepted (int requestID) {
+
+
+        Transaction transaction = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            String hql = "UPDATE LeaveRequest lvr set lvr.status =:status WHERE lvr.id= :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("status", CategoryService.getElementByName("accepted"));
+            query.setParameter("id", requestID);
+
+            query.executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+
+        }
+
+    }
+
+    public void updateStatusToRejected (int requestID) {
+
+        Transaction transaction = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            String hql = "UPDATE LeaveRequest lvr set lvr.status =:status WHERE lvr.id= :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("status", CategoryService.getElementByName("rejected"));
+            query.setParameter("id", requestID);
+
+            query.executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+
+        }
+
+    }
 }
 

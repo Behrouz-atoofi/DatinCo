@@ -50,16 +50,6 @@
                     <% } %>
                 </select>
 
-
-<%--                <label for="manager">Managers</label>--%>
-<%--                <select class="form-control" name="manager" id="manager">--%>
-<%--                    <%--%>
-<%--                        List<Employee> managerList = (List<Employee>) request.getAttribute("managerList");--%>
-<%--                        for (Employee manager: managerList) {--%>
-<%--                    %>--%>
-<%--                    <option value="<%=manager.getName()%>"><%=manager.getName()%></option>--%>
-<%--                    <%  } %>--%>
-<%--                </select>--%>
             </div></div>
 
             <button type="submit" class="btn btn-primary">Add</button>
@@ -84,7 +74,7 @@
         <%="Hi ! " + employee.getName()%>
         <ul class="list_load">
             <h1>  </h1>
-            <li class="list_item"><a href="#">My Profile</a></li>
+            <li class="list_item"><a href="myProfile">My Profile</a></li>
             <li class="list_item"><a href="employees">employees</a></li>
             <li class="list_item"><a href="manageRequests">manage requests</a></li>
             <li class="list_item"><a href="myRequests">my Requests</a></li>
