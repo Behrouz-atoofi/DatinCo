@@ -7,6 +7,7 @@ import com.datin.elms.service.CategoryService;
 import com.datin.elms.service.EmailService;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @WebServlet("/sendEmail")
+@MultipartConfig(maxFileSize = 16177215)
 public class SendEmailSrv extends HttpServlet {
 
     @Override
@@ -24,15 +26,22 @@ public class SendEmailSrv extends HttpServlet {
         String subject = req.getParameter("subject");
         String content = req.getParameter("content");
         String receiverEmail = req.getParameter("receiver");
+        InputStream inputStream = null ;
         Part filePart = req.getPart("file");
-        String fileName = getSubmittedFileName(filePart);
-        InputStream fileContent = filePart.getInputStream();
+
+        if (filePart != null) {
+            inputStream = filePart.getInputStream();
+        }
 
         Email email = new Email() ;
         email.setSubject(subject);
         email.setContent(content);
         email.setEmail_receiver(receiverEmail);
         email.setStatus(CategoryService.getElementByName("unread"));
+
+//        if (inputStream != null) {
+//            email.setAttach(inputStream);
+//        }
         Employee employee = (Employee) req.getSession().getAttribute("employee");
         email.setEmail_sender(employee.getEmail());
         EmailService emailService = new EmailService() ;

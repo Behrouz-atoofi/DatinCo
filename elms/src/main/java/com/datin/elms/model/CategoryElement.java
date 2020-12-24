@@ -1,6 +1,5 @@
 package com.datin.elms.model;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.*;
 
 
@@ -8,20 +7,9 @@ import javax.persistence.*;
 @Table(name = "T_CATEGORY_ELEMENT")
 public class CategoryElement {
 
-    public CategoryElement() {
-
-    }
-
-    public CategoryElement(int id , String code , String name, Category category) {
-        this.id = id ;
-        this.code = code ;
-        this.name = name ;
-        this.category = category ;
-    }
-
     @Id
     @Column(name = "ID", columnDefinition = "INT")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Basic
@@ -34,7 +22,7 @@ public class CategoryElement {
 
     @ManyToOne
     @JoinColumn(name = "C_CATEGORY")
-    private Category category ;
+    private Category category;
 
 
     public int getId() {
@@ -70,6 +58,16 @@ public class CategoryElement {
     }
 
 
+    public CategoryElement() {
+
+    }
+
+    public CategoryElement(int id, String code, String name, Category category) {
+        this.id = id;
+        this.code = code;
+        this.name = name;
+        this.category = category;
+    }
 
 
 }

@@ -30,7 +30,7 @@
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" name="username">
 
-                <label for="password">Passwrod</label>
+                <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password">
 
                 <label for="email">Email</label>
@@ -83,7 +83,7 @@
             <li class="list_item"><a href="logout">Logout</a></li>
 
         </ul>
-        
+
     </div>
 </div>
 <script src="static/Panel/js/panel.js"></script>

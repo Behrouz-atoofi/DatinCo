@@ -1,7 +1,4 @@
-<%@ page import="com.datin.elms.model.Email" %>
 <%@ page import="com.datin.elms.model.Employee" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.io.PrintWriter" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,27 +17,57 @@
 <h1></h1>
 <div class="container">
     <h1></h1>
-    <form action="sendEmail" method="post" enctype="multipart/form-data" >
 
-            <div class="col-lg-4 col-lg-offset-4">
+        <h1>Email form </h1>
+        <form method="post" action="sendEmail" enctype="multipart/form-data">
+            <table border="0">
+                <tr>
+                    <td>Subject: </td>
+                    <td><input type="text" name="subject" size="50"/></td>
+                </tr>
+                <tr>
+                    <td>Receiver: </td>
+                    <td><input type="text" name="receiver" size="50"/></td>
+                </tr>
+                <tr>
+                    <td>Content: </td>
+                    <td><input type="text" name="content" size="50"/></td>
+                </tr>
+                <tr>
+                    <td>Attach File: </td>
+                    <td><input type="file" name="file" size="50"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Send">
+                    </td>
+                </tr>
+            </table>
+        </form>
 
-                <div class="form-group" >
-                    <label for="subject">Subject</label>
-                    <input type="text" class="form-control" id="subject" name="subject">
 
-                    <label for="receiver">receiver Email</label>
-                    <input type="text" class="form-control" id="receiver" name="receiver">
 
-                    <label for="content">Content</label>
-                    <input type="text" class="form-control" id="content" name="content" size="50">
+<%--    <form enctype="multipart/form-data" action="sendEmail" method="post" >--%>
 
-                    <label for="file">attach File</label>
-                    <input type="file" class="form-control" id="file" name="file">
+<%--            <div class="col-lg-4 col-lg-offset-4">--%>
 
-                </div></div>
+<%--                <div class="form-group" >--%>
+<%--                    <label for="subject">Subject</label>--%>
+<%--                    <input type="text" class="form-control" id="subject" name="subject">--%>
 
-            <button type="submit" class="btn btn-primary">Send</button>
-</form>
+<%--                    <label for="receiver">receiver Email</label>--%>
+<%--                    <input type="text" class="form-control" id="receiver" name="receiver">--%>
+
+<%--                    <label for="content">Content</label>--%>
+<%--                    <input type="text" class="form-control" id="content" name="content" size="50">--%>
+
+<%--                    <label for="file">attach File</label>--%>
+<%--                    <input type="file" class="form-control" id="file" name="file">--%>
+
+<%--                </div></div>--%>
+
+<%--            <button type="submit" class="btn btn-primary">Send</button>--%>
+<%--</form>--%>
 
 </div>
 

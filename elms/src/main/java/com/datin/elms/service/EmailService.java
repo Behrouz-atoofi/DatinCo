@@ -11,7 +11,7 @@ import java.util.List;
 public class EmailService {
 
 
-    public List<Email> getEmailByAddress(String email) {
+    public List<Email> getEmailByReceiver(String email) {
 
         Transaction transaction = null;
         List<Email> emails = null;
@@ -25,6 +25,22 @@ public class EmailService {
             return emails;
         }
     }
+
+    public List<Email> getEmailBySender(String email) {
+
+
+        List<Email> emails = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            emails = session.createQuery("FROM Email eml where eml.email_sender=:email").setParameter("email", email).list();
+
+
+            return emails;
+        }
+
+    }
+
     public void save (Email email) {
 
         Transaction transaction = null ;
@@ -38,7 +54,6 @@ public class EmailService {
 
         }
     }
-
 
     public void deleteById (int id) {
         Transaction transaction = null  ;

@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<h1 class="page_title">Mail Box</h1>
+<h1 class="page_title">Inbox</h1>
 <h1></h1>
 <div class="container">
     <table class="table">
@@ -26,15 +26,15 @@
             <th>subject</th>
             <th>sender</th>
             <th>view</th>
-            <th>delete</th>
+
 
         </tr>
         </thead>
 
         <%
-            List<Email> emails = (List<Email>) request.getAttribute("emails");
+            List<Email> inbox = (List<Email>) request.getAttribute("inbox");
 
-            for (Email email : emails) {
+            for (Email email : inbox) {
 
         %>
         <tr>
@@ -42,6 +42,46 @@
             <td><%=email.getSubject()%></td>
             <td><%=email.getEmail_sender()%></td>
             <td><a href="viewEmail?id=<%=email.getId()%>">view</a></td>
+
+        </tr>
+        <%
+            }
+        %>
+    </table>
+</div>
+
+<div class="spacer_box"><p></p></div>
+
+<h1></h1>
+<h1></h1>
+<h1></h1>
+
+<h1 class="page_title">sent</h1>
+<h1></h1>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Email ID</th>
+            <th>Subject</th>
+            <th>Receiver</th>
+            <th>Status</th>
+            <th>Delete</th>
+
+        </tr>
+        </thead>
+
+        <%
+            List<Email> sent = (List<Email>) request.getAttribute("sent");
+
+            for (Email email : sent) {
+
+        %>
+        <tr>
+            <td><%=email.getId()%></td>
+            <td><%=email.getSubject()%></td>
+            <td><%=email.getEmail_receiver()%></td>
+            <td><%=email.getStatus().getName()%></td>
             <td><a href="deleteEmail?id=<%=email.getId()%>">Delete</a></td>
         </tr>
         <%
@@ -50,7 +90,6 @@
     </table>
     <a class="btn btn-primary" href="emailForm.jsp" role="button">send Email</a>
 </div>
-
 
 
 <div class="side_menu">

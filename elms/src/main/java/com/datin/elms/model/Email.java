@@ -4,44 +4,36 @@ package com.datin.elms.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="T_EMAIL")
+@Table(name = "T_EMAIL")
 public class Email {
 
     @Id
-    @Column(name="ID",columnDefinition = "INT")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", columnDefinition = "INT")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
-    public byte[] getAttach() {
-        return attach;
-    }
-
-    public void setAttach(byte[] attach) {
-        this.attach = attach;
-    }
 
     @Basic
     @Column(name = "C_SUBJECT", columnDefinition = "TEXT")
-    private String subject ;
+    private String subject;
 
     @Basic
-    @Column(name="C_CONTENT",columnDefinition = "TEXT")
-    private String content ;
+    @Column(name = "C_CONTENT", columnDefinition = "TEXT")
+    private String content;
 
     @Basic
-    @Column(name="C_EMAIL_SENDER",columnDefinition = "TEXT")
-    private String email_sender ;
+    @Column(name = "C_EMAIL_SENDER", columnDefinition = "TEXT")
+    private String email_sender;
 
     @Basic
-    @Column(name = "C_EMAIL_RECEIVER",columnDefinition = "TEXT")
-    private String email_receiver ;
+    @Column(name = "C_EMAIL_RECEIVER", columnDefinition = "TEXT")
+    private String email_receiver;
 
     @Basic
-    @Column(name="C_ATTACHMENT",columnDefinition = "BLOB")
-    private byte[] attach ;
+    @Column(name = "C_ATTACHMENT", columnDefinition = "BLOB")
+    private byte[] attach;
 
-    @ManyToOne(targetEntity = CategoryElement.class,fetch =FetchType.EAGER)
-    @JoinColumn(name="C_STATUS" , referencedColumnName = "ID")
+    @ManyToOne(targetEntity = CategoryElement.class)
+    @JoinColumn(name = "C_STATUS", referencedColumnName = "ID")
     private CategoryElement status;
 
     public int getId() {
@@ -91,4 +83,15 @@ public class Email {
     public void setStatus(CategoryElement elements) {
         this.status = elements;
     }
+
+
+    public byte[] getAttach() {
+        return attach;
+    }
+
+    public void setAttach(byte[] attach) {
+        this.attach = attach;
+    }
+
+
 }

@@ -32,23 +32,13 @@ public class Employee implements Serializable {
     @Column(name = "C_PHONENUMBER", columnDefinition = "VARCHAR(11)")
     private String phoneNumber;
 
-    @ManyToOne(targetEntity = Employee.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Employee.class)
     @JoinColumn(name = "C_MANAGER")
     private Employee manager;
 
-    @ManyToOne(targetEntity = CategoryElement.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = CategoryElement.class)
     @JoinColumn(name = "C_ROLE")
     private CategoryElement role;
-
-    public Employee(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-    public Employee() {
-
-    }
-
 
     public int getId() {
         return id;
@@ -122,19 +112,15 @@ public class Employee implements Serializable {
         this.role = role;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Employee{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", family='" + family + '\'' +
-//                ", username='" + username + '\'' +
-//                ", password='" + password + '\'' +
-//                ", email='" + email + '\'' +
-//                ", phoneNumber=" + phoneNumber +
-//                ", manager=" + manager +
-//                ", role=" + role +
-//                '}';
-//    }
+
+    public Employee(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Employee() {
+
+    }
+
 
 }

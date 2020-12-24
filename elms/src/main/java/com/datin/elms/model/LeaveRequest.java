@@ -9,16 +9,8 @@ public class LeaveRequest {
 
     @Id
     @Column(name = "ID", columnDefinition = "INT")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Basic
     @Column(name = "C_FROM_DATE", columnDefinition = "TEXT")
@@ -32,13 +24,22 @@ public class LeaveRequest {
     @Column(name = "C_REASON", columnDefinition = "TEXT")
     private String reason;
 
-    @ManyToOne(targetEntity = Employee.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Employee.class)
     @JoinColumn(name = "C_EMPLOYEE", referencedColumnName = "ID")
     private Employee employee;
 
-    @ManyToOne(targetEntity = CategoryElement.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = CategoryElement.class)
     @JoinColumn(name = "C_STATUS", referencedColumnName = "ID")
     private CategoryElement status;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public CategoryElement getStatus() {
         return status;
@@ -79,8 +80,6 @@ public class LeaveRequest {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-
-
 
 
 }
