@@ -1,37 +1,31 @@
 import com.datin.elms.model.*;
 import com.datin.elms.service.CategoryService;
+import com.datin.elms.service.EmailService;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+
 public class main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
 
-
-        Transaction transaction = null ;
-
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-
-            String hql = "UPDATE LeaveRequest lvr set lvr.status =:status WHERE lvr.id= :id";
-            Query query = session.createQuery(hql);
-            query.setParameter("status", CategoryService.getElementByName("accepted"));
-            query.setParameter("id", 32);
-
-            query.executeUpdate();
-           transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-
-        }
-
-
-
+//        EmailService emailService = new EmailService();
+//        Email email = emailService.getEmailById(57);
+//
+//        byte[] file = email.getAttach() ;
+//
+//        System.out.println(file.length);
+//        FileOutputStream outputStream = new FileOutputStream("D:/Test/Photo/MyPuppy.jpg");
+//        outputStream.write(file);
+//        outputStream.close();
+//        CommonsMultipartFile[] fileUpload ;
 
 
     }

@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<h1 class="page_title">Email Form</h1>
+
 <h1></h1>
 <div class="container">
     <h1></h1>

@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Blob;
 
 @WebServlet("/sendEmail")
 @MultipartConfig(maxFileSize = 16177215)
@@ -26,12 +28,16 @@ public class SendEmailSrv extends HttpServlet {
         String subject = req.getParameter("subject");
         String content = req.getParameter("content");
         String receiverEmail = req.getParameter("receiver");
-        InputStream inputStream = null ;
         Part filePart = req.getPart("file");
+        System.out.println(filePart.getName());
+        System.out.println(filePart.getContentType());
+        InputStream inputStream = null;
 
-        if (filePart != null) {
+        if (filePart != null ) {
             inputStream = filePart.getInputStream();
+
         }
+        byte[] fileBytes = new byte[inputStream.read()];
 
         Email email = new Email() ;
         email.setSubject(subject);
@@ -39,9 +45,11 @@ public class SendEmailSrv extends HttpServlet {
         email.setEmail_receiver(receiverEmail);
         email.setStatus(CategoryService.getElementByName("unread"));
 
-//        if (inputStream != null) {
-//            email.setAttach(inputStream);
-//        }
+        if (inputStream != null && fileBytes.length>0 ) {
+            email.setAttach(fileBytes);
+        }
+        inputStream.close();
+
         Employee employee = (Employee) req.getSession().getAttribute("employee");
         email.setEmail_sender(employee.getEmail());
         EmailService emailService = new EmailService() ;
@@ -49,16 +57,6 @@ public class SendEmailSrv extends HttpServlet {
         resp.sendRedirect("email");
     }
 
-    private static String getSubmittedFileName(Part part) {
-        for (String cd : part.getHeader("content-disposition").split(";")) {
-            if (cd.trim().startsWith("filename")) {
-                String fileName = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
-                return fileName.substring(fileName.lastIndexOf('/') + 1).substring(fileName.lastIndexOf('\\') + 1); // MSIE fix.
-            }
-        }
-        return null;
-
-    }
 
 }
 

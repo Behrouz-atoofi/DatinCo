@@ -1,7 +1,10 @@
 package com.datin.elms.model;
 
 
+import com.mysql.cj.jdbc.Blob;
+
 import javax.persistence.*;
+import java.io.InputStream;
 
 @Entity
 @Table(name = "T_EMAIL")
@@ -30,6 +33,7 @@ public class Email {
 
     @Basic
     @Column(name = "C_ATTACHMENT", columnDefinition = "BLOB")
+    @Lob
     private byte[] attach;
 
     @ManyToOne(targetEntity = CategoryElement.class)
@@ -84,7 +88,6 @@ public class Email {
         this.status = elements;
     }
 
-
     public byte[] getAttach() {
         return attach;
     }
@@ -92,6 +95,4 @@ public class Email {
     public void setAttach(byte[] attach) {
         this.attach = attach;
     }
-
-
 }
