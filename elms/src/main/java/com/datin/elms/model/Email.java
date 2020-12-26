@@ -1,10 +1,8 @@
 package com.datin.elms.model;
 
-
-import com.mysql.cj.jdbc.Blob;
-
 import javax.persistence.*;
-import java.io.InputStream;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "T_EMAIL")
@@ -32,9 +30,13 @@ public class Email {
     private String email_receiver;
 
     @Basic
-    @Column(name = "C_ATTACHMENT", columnDefinition = "BLOB")
-    @Lob
-    private byte[] attach;
+    @Column (name = "C_ATTACHMENT" ,columnDefinition = "BOOLEAN")
+    private Boolean attachment ;
+
+
+//    @OneToMany(mappedBy = "email", cascade = CascadeType.ALL)
+//    private Set<EmailFile> EmailFiles = new HashSet<EmailFile>();
+
 
     @ManyToOne(targetEntity = CategoryElement.class)
     @JoinColumn(name = "C_STATUS", referencedColumnName = "ID")
@@ -88,11 +90,11 @@ public class Email {
         this.status = elements;
     }
 
-    public byte[] getAttach() {
-        return attach;
+    public Boolean getAttachment() {
+        return attachment;
     }
 
-    public void setAttach(byte[] attach) {
-        this.attach = attach;
+    public void setAttachment(Boolean attachment) {
+        this.attachment = attachment;
     }
 }

@@ -1,12 +1,14 @@
 package com.datin.elms.service;
 
 import com.datin.elms.model.Email;
+import com.datin.elms.model.EmailFile;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.List;
+import java.util.Set;
 
 public class EmailService {
 
@@ -68,7 +70,6 @@ public class EmailService {
                 session.delete(email);
                 session.getTransaction().commit();
                 session.close();
-                transaction.commit();
             }
         }catch (Exception e) {
             e.printStackTrace();
@@ -117,7 +118,33 @@ public class EmailService {
 
         }
 
+    public void saveEmailFile(EmailFile emailFile ) {
+        Transaction transaction = null ;
 
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction() ;
+            session.save(emailFile) ;
+            transaction.commit();
+            session.close();
+
+        }
+
+    }
+
+    public EmailFile downloadAttachment(Email email) {
+
+        Transaction transaction = null ;
+        EmailFile emailFile = null ;
+        try (Session session= HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction() ;
+
+            emailFile  = (EmailFile) session.createQuery("FROM EmailFile emf WHERE emf.email=:email")
+                    .setParameter("email",email).uniqueResult() ;
+
+        }
+        return emailFile ;
+    }
     }
 
 

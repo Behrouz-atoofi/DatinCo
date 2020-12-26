@@ -1328,104 +1328,101 @@
     <table id="334" parent="2" name="t_employee">
       <Engine>MyISAM</Engine>
     </table>
-    <table id="335" parent="2" name="t_leave_request">
+    <table id="335" parent="2" name="t_file">
       <Engine>MyISAM</Engine>
     </table>
-    <column id="336" parent="330" name="next_val">
+    <table id="336" parent="2" name="t_leave_request">
+      <Engine>MyISAM</Engine>
+    </table>
+    <column id="337" parent="330" name="next_val">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="337" parent="331" name="ID">
+    <column id="338" parent="331" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="338" parent="331" name="C_NAME">
+    <column id="339" parent="331" name="C_NAME">
       <Position>2</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="339" parent="331" name="UK_q25jast0alhmy7s0dd3m85un">
+    <index id="340" parent="331" name="UK_q25jast0alhmy7s0dd3m85un">
       <ColNames>C_NAME</ColNames>
       <Unique>1</Unique>
       <Type>hash</Type>
     </index>
-    <key id="340" parent="331" name="PRIMARY">
+    <key id="341" parent="331" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="341" parent="331" name="UK_q25jast0alhmy7s0dd3m85un">
+    <key id="342" parent="331" name="UK_q25jast0alhmy7s0dd3m85un">
       <ColNames>C_NAME</ColNames>
       <UnderlyingIndexName>UK_q25jast0alhmy7s0dd3m85un</UnderlyingIndexName>
     </key>
-    <column id="342" parent="332" name="ID">
+    <column id="343" parent="332" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="343" parent="332" name="C_CODE">
+    <column id="344" parent="332" name="C_CODE">
       <Position>2</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="344" parent="332" name="C_NAME">
+    <column id="345" parent="332" name="C_NAME">
       <Position>3</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="345" parent="332" name="C_CATEGORY">
+    <column id="346" parent="332" name="C_CATEGORY">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="346" parent="332" name="FKb7aspk9r13f48n9yulo3a3djy">
+    <index id="347" parent="332" name="FKb7aspk9r13f48n9yulo3a3djy">
       <ColNames>C_CATEGORY</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="347" parent="332" name="PRIMARY">
+    <key id="348" parent="332" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="348" parent="333" name="ID">
+    <column id="349" parent="333" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="349" parent="333" name="C_ATTACHMENT">
-      <Position>2</Position>
-      <DataType>blob|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="350" parent="333" name="C_CONTENT">
-      <Position>3</Position>
+      <Position>2</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="351" parent="333" name="C_EMAIL_RECEIVER">
-      <Position>4</Position>
+      <Position>3</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="352" parent="333" name="C_EMAIL_SENDER">
-      <Position>5</Position>
+      <Position>4</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="353" parent="333" name="C_SUBJECT">
-      <Position>6</Position>
+      <Position>5</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="354" parent="333" name="C_STATUS">
-      <Position>7</Position>
+      <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1502,43 +1499,79 @@
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="370" parent="335" name="C_FROM_DATE">
+    <column id="370" parent="335" name="C_FILE_CONTENT">
       <Position>2</Position>
-      <DataType>text|0s</DataType>
+      <DataType>longblob|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="371" parent="335" name="C_REASON">
+    <column id="371" parent="335" name="C_FILE_NAME">
       <Position>3</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="372" parent="335" name="C_TO_DATE">
+    <column id="372" parent="335" name="C_FILE_TYPE">
       <Position>4</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="373" parent="335" name="C_EMPLOYEE">
+    <column id="373" parent="335" name="EMAIL_ID">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="374" parent="335" name="C_STATUS">
+    <index id="374" parent="335" name="FKmkivwjfdjem3e7ysikg8ulval">
+      <ColNames>EMAIL_ID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="375" parent="335" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="376" parent="336" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="377" parent="336" name="C_FROM_DATE">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="378" parent="336" name="C_REASON">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="379" parent="336" name="C_TO_DATE">
+      <Position>4</Position>
+      <DataType>text|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="380" parent="336" name="C_EMPLOYEE">
+      <Position>5</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="381" parent="336" name="C_STATUS">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="375" parent="335" name="FKbbj370rafu64nl9854ubi60wh">
+    <index id="382" parent="336" name="FKbbj370rafu64nl9854ubi60wh">
       <ColNames>C_EMPLOYEE</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="376" parent="335" name="FK5qelqx4udeestqnr2nmcf0ovi">
+    <index id="383" parent="336" name="FK5qelqx4udeestqnr2nmcf0ovi">
       <ColNames>C_STATUS</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="377" parent="335" name="PRIMARY">
+    <key id="384" parent="336" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>

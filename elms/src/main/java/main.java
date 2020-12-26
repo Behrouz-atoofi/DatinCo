@@ -16,25 +16,20 @@ public class main {
     public static void main(String[] args) throws IOException {
 
 
-//        EmailService emailService = new EmailService();
-//        Email email = emailService.getEmailById(57);
-//
-//        byte[] file = email.getAttach() ;
-//
-//        System.out.println(file.length);
-//        FileOutputStream outputStream = new FileOutputStream("D:/Test/Photo/MyPuppy.jpg");
-//        outputStream.write(file);
-//        outputStream.close();
-//        CommonsMultipartFile[] fileUpload ;
+        Transaction transaction = null;
+        EmailFile emailFile = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            emailFile = (EmailFile) session.createQuery("FROM EmailFile emf WHERE emf.email=:email")
+                    .setParameter("email", 108).uniqueResult();
+
+
+            emailFile.getFileType();
+        }
 
 
     }
-
-
-
-
-
-
 
 
     public static void loadData() {

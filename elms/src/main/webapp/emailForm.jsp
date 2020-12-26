@@ -46,29 +46,6 @@
         </form>
 
 
-
-<%--    <form enctype="multipart/form-data" action="sendEmail" method="post" >--%>
-
-<%--            <div class="col-lg-4 col-lg-offset-4">--%>
-
-<%--                <div class="form-group" >--%>
-<%--                    <label for="subject">Subject</label>--%>
-<%--                    <input type="text" class="form-control" id="subject" name="subject">--%>
-
-<%--                    <label for="receiver">receiver Email</label>--%>
-<%--                    <input type="text" class="form-control" id="receiver" name="receiver">--%>
-
-<%--                    <label for="content">Content</label>--%>
-<%--                    <input type="text" class="form-control" id="content" name="content" size="50">--%>
-
-<%--                    <label for="file">attach File</label>--%>
-<%--                    <input type="file" class="form-control" id="file" name="file">--%>
-
-<%--                </div></div>--%>
-
-<%--            <button type="submit" class="btn btn-primary">Send</button>--%>
-<%--</form>--%>
-
 </div>
 
 
