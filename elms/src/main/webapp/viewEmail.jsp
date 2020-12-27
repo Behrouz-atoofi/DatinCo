@@ -32,8 +32,8 @@
                 <label for="sender">content</label>
                 <input type="text" class="form-control" id="sender" name="content"  value="<%=email.getContent()%>" readonly>
                 <h1></h1>
-                <a <%if(!email.getAttachment()) {%> hidden <%}%> href="download?id=<%=email.getId()%>">Delete</a></td>
-<%--                <button  type="button" id="file" <%if(!email.getAttachment()) {%> hidden <%}%>class="btn btn-primary" href="download?id=<%=email.getId()%>"> Download Attachment </button>--%>
+
+                <a <%if(!email.getAttachment()) {%> hidden <%}%> class="btn btn-primary" href="download?id=<%=email.getId()%>" role="button">Download Attachment</a>
 
             </div>
 

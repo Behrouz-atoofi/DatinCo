@@ -2,6 +2,7 @@ package com.datin.elms.model;
 
 
 import javax.persistence.*;
+import java.sql.Blob;
 
 @Entity
 @Table(name = "t_FILE")
@@ -21,9 +22,8 @@ public class EmailFile {
     private String fileType ;
 
     @Lob
-    @Basic
-    @Column(name="C_FILE_CONTENT", nullable=false)
-    private byte[] content;
+    @Column(name="C_FILE_DATA", nullable=false)
+    private Blob data;
 
     @ManyToOne
     @JoinColumn(name ="EMAIL_ID")
@@ -53,19 +53,19 @@ public class EmailFile {
         this.fileType = fileType;
     }
 
-    public byte[] getContent() {
-        return content;
-    }
-
-    public void setContent(byte[] content) {
-        this.content = content;
-    }
-
     public Email getEmail() {
         return email;
     }
 
     public void setEmail(Email email) {
         this.email = email;
+    }
+
+    public Blob getData() {
+        return data;
+    }
+
+    public void setData(Blob data) {
+        this.data = data;
     }
 }
