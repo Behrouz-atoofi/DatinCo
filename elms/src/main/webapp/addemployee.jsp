@@ -22,22 +22,22 @@
 
             <div class="form-group" >
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name">
+                <input type="text" class="form-control" id="name" name="name" required="required" pattern="[A-Za-z0-9]{1,20}" >
 
                 <label for="family">Family</label>
-                <input type="text" class="form-control" id="family" name="family">
+                <input type="text" class="form-control" id="family" name="family" required="required" pattern="[A-Za-z0-9]{1,20}">
 
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username">
+                <input type="text" class="form-control" id="username" name="username" required="required" pattern="[A-Za-z0-9]{1,20}" >
 
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password">
+                <input type="password" class="form-control" id="password" name="password" required="required" pattern="[A-Za-z0-9]{1,20}" >
 
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email">
+                <input type="email" class="form-control" id="email" name="email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" >
 
                 <label for="phonenumber">PhoneNumber</label>
-                <input type="text" class="form-control" id="phonenumber" name="phonenumber">
+                <input type="text" size="11" class="form-control" id="phonenumber" name="phonenumber" required="required" pattern="{1,20}" >
 
                 <label for="roleName">Role</label>
                 <select class="form-control" name="roleName" id="roleName">

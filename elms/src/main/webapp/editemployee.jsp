@@ -1,6 +1,6 @@
+<%@ page import="com.datin.elms.model.CategoryElement" %>
 <%@ page import="com.datin.elms.model.Employee" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.datin.elms.model.CategoryElement" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,41 +35,45 @@
 
             <div class="form-group">
                 <label for="family">Family</label>
-                <input type="text" class="form-control" id="family" name="family"value="<%=employee.getFamily()%>">
+                <input type="text" class="form-control" id="family" name="family" value="<%=employee.getFamily()%>">
             </div>
 
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" value="<%=employee.getUsername()%>">
+                <input type="text" class="form-control" id="username" name="username"
+                       value="<%=employee.getUsername()%>">
             </div>
             <div class="form-group">
                 <label for="password">Passwrod</label>
-                <input type="text" class="form-control" id="password" name="password" value="<%=employee.getPassword()%>" >
+                <input type="text" class="form-control" id="password" name="password"
+                       value="<%=employee.getPassword()%>">
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" class="form-control" id="email" name="email" value="<%=employee.getEmail()%>" >
+                <input type="text" class="form-control" id="email" name="email" value="<%=employee.getEmail()%>">
             </div>
             <div class="form-group">
                 <label for="phonenumber">PhoneNumber</label>
-                <input type="text" class="form-control" id="phonenumber" name="phonenumber" value="<%=employee.getPhoneNumber()%>" >
+                <input type="text" class="form-control" id="phonenumber" name="phonenumber"
+                       value="<%=employee.getPhoneNumber()%>">
             </div>
             <label for="roleName">Role</label>
-            <select class="form-control" name="roleName" id="roleName" >
+            <select class="form-control" name="roleName" id="roleName">
                 <%
                     List<CategoryElement> roles = (List<CategoryElement>) request.getAttribute("roleList");
                     for (CategoryElement role : roles) {
                 %>
-                <option value="<%=role.getId()%>"><%=role.getName()%></option>
+                <option value="<%=role.getId()%>"><%=role.getName()%>
+                </option>
 
                 <% } %>
             </select>
 
 
-
             <div class="form-group">
                 <label for="manager">Manager</label>
-                <input type="option" class="form-control" id="manager" name="manager" value="<%=employee.getManager().getName()%>" readonly>
+                <input type="option" class="form-control" id="manager" name="manager"
+                       value="<%=employee.getManager().getName()%>" readonly>
             </div>
 
             <button type="submit" class="btn btn-primary">update</button>
@@ -92,8 +96,9 @@
         <h2 class="menu_title">Menu</h2>
 
         <ul class="list_load">
-            <h1>  </h1>
-            <div class="spacer_box"><p><%="Welcome : " + employee.getName()%></p></div>
+            <h1></h1>
+            <div class="spacer_box"><p><%="Welcome : " + employee.getName()%>
+            </p></div>
             <li class="list_item"><a href="myProfile">My Profile</a></li>
             <li class="list_item"><a href="employees">employees</a></li>
             <li class="list_item"><a href="manageRequests">manage requests</a></li>

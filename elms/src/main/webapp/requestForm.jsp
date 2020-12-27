@@ -26,13 +26,13 @@
 
             <div class="form-group" >
                 <label for="fromDate">From Date</label>
-                <input type="text" class="form-control" id="fromDate" name="fromDate" >
+                <input type="text" class="form-control" id="fromDate" name="fromDate" required="required">
 
                 <label for="toDate">To date </label>
-                <input type="text" class="form-control" id="toDate" name="toDate">
+                <input type="text" class="form-control" id="toDate" name="toDate"  required="required" >
 
                 <label for="reason">Reason</label>
-                <input type="text" class="form-control" id="reason" name="reason" >
+                <input type="text" class="form-control" id="reason" name="reason" required="required" size="10" required="required">
 
             </div></div>
 

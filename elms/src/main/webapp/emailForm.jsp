@@ -23,15 +23,15 @@
             <table border="0">
                 <tr>
                     <td>Subject: </td>
-                    <td><input type="text" name="subject" size="50"/></td>
+                    <td><input type="text" name="subject" size="50" required="required" pattern="[A-Za-z0-9]{1,20}{ }" /></td>
                 </tr>
                 <tr>
                     <td>Receiver: </td>
-                    <td><input type="text" name="receiver" size="50"/></td>
+                    <td><input type="text" name="receiver" size="50" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" /></td>
                 </tr>
                 <tr>
-                    <td>Content: </td>
-                    <td><input type="text" name="content" size="50"/></td>
+                    <td>text: </td>
+                    <td><input type="text" name="content" size="50" required="required" pattern="[A-Za-z0-9]{1,20}{ }" /></td>
                 </tr>
                 <tr>
                     <td>Attach File: </td>
