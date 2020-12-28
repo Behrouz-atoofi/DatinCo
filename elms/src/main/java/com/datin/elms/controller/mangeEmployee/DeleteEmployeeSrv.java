@@ -1,6 +1,6 @@
 package com.datin.elms.controller.mangeEmployee;
 
-import com.datin.elms.service.EmployeeService;
+import com.datin.elms.repository.EmployeeDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +18,8 @@ public class DeleteEmployeeSrv extends HttpServlet {
 
         int id = Integer.parseInt(req.getParameter("id"));
 
-        EmployeeService employeeService = new EmployeeService();
-        employeeService.deleteEmployee(id);
+        EmployeeDao employeeDao = new EmployeeDao();
+        employeeDao.deleteEmployee(id);
         req.getRequestDispatcher("employees").forward(req,resp);
 
     }

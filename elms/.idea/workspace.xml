@@ -8,18 +8,68 @@
   <component name="ChangeListManager">
     <list default="true" id="ab567d2a-2d1d-4b3f-90f2-2f9856588b57" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/EmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/addemployee.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/addemployee.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/email/DeleteEmailSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/email/DeleteEmailSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/email/DownloadAttachmentSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/email/DownloadAttachmentSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/email/EmailsSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/email/EmailsSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/email/SendEmailSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/email/SendEmailSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/email/ViewEmailSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/email/ViewEmailSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/leaveRequest/DeleteRequestSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/leaveRequest/DeleteRequestSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/leaveRequest/RequestsSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/leaveRequest/RequestsSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/leaveRequest/SendRequestSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/leaveRequest/SendRequestSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/login/LoginSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/login/LoginSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/manageRequest/AcceptRequestSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/manageRequest/AcceptRequestSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/manageRequest/ManageRequestsSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/manageRequest/ManageRequestsSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/manageRequest/RejectRequestSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/manageRequest/RejectRequestSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/AddEmpToDbSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/AddEmpToDbSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/AddEmployeeFormSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/AddEmployeeFormSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/DeleteEmployeeSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/DeleteEmployeeSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/EditEmployeeFormSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/EditEmployeeFormSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/EditEmployeeToDbSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/EditEmployeeToDbSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/GetEmployeesSrv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/controller/mangeEmployee/GetEmployeesSrv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/repository/CategoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/repository/CategoryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/repository/EmailDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/repository/EmailDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/repository/EmployeeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/repository/EmployeeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/repository/LoginDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/repository/LoginDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/repository/RequestDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datin/elms/repository/RequestDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/CategoryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/EmailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/EmployeeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/LoginService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datin/elms/service/RequestService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/editemployee.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/editemployee.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/emailForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/emailForm.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/requestForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/requestForm.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/employees.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/employees.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/email/DeleteEmailSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/email/DeleteEmailSrv.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/email/DownloadAttachmentSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/email/DownloadAttachmentSrv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/email/EmailsSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/email/EmailsSrv.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/email/SendEmailSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/email/SendEmailSrv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/email/ViewEmailSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/email/ViewEmailSrv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/leaveRequest/DeleteRequestSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/leaveRequest/DeleteRequestSrv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/leaveRequest/RequestsSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/leaveRequest/RequestsSrv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/leaveRequest/SendRequestSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/leaveRequest/SendRequestSrv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/login/LoginSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/login/LoginSrv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/manageRequest/AcceptRequestSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/manageRequest/AcceptRequestSrv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/manageRequest/RejectRequestSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/manageRequest/RejectRequestSrv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/manageRequest/manageRequestsSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/manageRequest/manageRequestsSrv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/mangeEmployee/AddEmpToDbSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/mangeEmployee/AddEmpToDbSrv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/mangeEmployee/AddEmployeeFormSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/mangeEmployee/AddEmployeeFormSrv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/mangeEmployee/DeleteEmployeeSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/mangeEmployee/DeleteEmployeeSrv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/mangeEmployee/EditEmployeeFormSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/mangeEmployee/EditEmployeeFormSrv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/mangeEmployee/EditEmployeeToDbSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/mangeEmployee/EditEmployeeToDbSrv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/mangeEmployee/GetEmployeesSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/controller/mangeEmployee/GetEmployeesSrv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/repository/CategoryDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/repository/CategoryDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/repository/EmailDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/repository/EmailDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/repository/EmployeeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/repository/EmployeeDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/repository/LoginDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/repository/LoginDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/repository/RequestDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/datin/elms/repository/RequestDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/service/CategoryService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/service/EmailService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/service/EmployeeService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/service/LoginService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/datin/elms/service/RequestService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/elms.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/controller/email/DownloadAttachmentSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/controller/email/DownloadAttachmentSrv.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/controller/email/SendEmailSrv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/WEB-INF/classes/com/datin/elms/controller/email/SendEmailSrv.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/elms/editemployee.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/elms/editemployee.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,20 +348,6 @@
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
                 <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@3bc5c494" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@1feb8b31" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
             </expand>
             <select />
           </treeState>
@@ -345,7 +381,8 @@
       <workItem from="1608813208077" duration="8476000" />
       <workItem from="1608883896997" duration="20761000" />
       <workItem from="1609000109548" duration="17804000" />
-      <workItem from="1609057526841" duration="17905000" />
+      <workItem from="1609057526841" duration="18839000" />
+      <workItem from="1609149366124" duration="2373000" />
     </task>
     <task id="LOCAL-00001" summary="updated 990927">
       <created>1608204525157</created>
@@ -473,7 +510,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609077081423</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="updated 991008 01:00">
+      <created>1609105063501</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1609105063501</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -492,7 +536,8 @@
     <MESSAGE value="updated 991005 14:00" />
     <MESSAGE value="updated 991006 01:00" />
     <MESSAGE value="updated 991007 17:00" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated 991007 17:00" />
+    <MESSAGE value="updated 991008 01:00" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated 991008 01:00" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="73" key="#Assign_Data_Sources" timestamp="1608929114034">
@@ -515,10 +560,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1609060013166" />
-    <state x="406" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1608896984332">
+    <state x="406" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1609149518197">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="406" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1608896984332" />
+    <state x="406" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1609149518197" />
     <state x="499" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608720551210">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -527,10 +572,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="162" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824@0.0.1536.824" timestamp="1608887915145" />
-    <state x="350" y="6" key="CommitChangelistDialog2" timestamp="1609077078932">
+    <state x="350" y="6" key="CommitChangelistDialog2" timestamp="1609105061493">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="350" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1609077078932" />
+    <state x="350" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1609105061493" />
     <state x="569" y="117" key="ExecutionTargetDialog" timestamp="1608107924519">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -539,54 +584,54 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="144" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1609077126283" />
-    <state width="1211" height="111" key="GridCell.Tab.0.bottom" timestamp="1609104757995">
+    <state width="1211" height="215" key="GridCell.Tab.0.bottom" timestamp="1609149846886">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="111" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609104757995" />
-    <state width="1211" height="111" key="GridCell.Tab.0.center" timestamp="1609104757995">
+    <state width="1211" height="215" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609149846886" />
+    <state width="1211" height="215" key="GridCell.Tab.0.center" timestamp="1609149846886">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="111" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609104757995" />
-    <state width="1211" height="111" key="GridCell.Tab.0.left" timestamp="1609104757995">
+    <state width="1211" height="215" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609149846886" />
+    <state width="1211" height="215" key="GridCell.Tab.0.left" timestamp="1609149846885">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="111" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609104757995" />
-    <state width="1211" height="111" key="GridCell.Tab.0.right" timestamp="1609104757995">
+    <state width="1211" height="215" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609149846885" />
+    <state width="1211" height="215" key="GridCell.Tab.0.right" timestamp="1609149846886">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="111" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609104757995" />
-    <state width="1211" height="111" key="GridCell.Tab.1.bottom" timestamp="1609103445493">
+    <state width="1211" height="215" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609149846886" />
+    <state width="1211" height="215" key="GridCell.Tab.1.bottom" timestamp="1609149846796">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="111" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609103445493" />
-    <state width="1211" height="111" key="GridCell.Tab.1.center" timestamp="1609103445493">
+    <state width="1211" height="215" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609149846796" />
+    <state width="1211" height="215" key="GridCell.Tab.1.center" timestamp="1609149846796">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="111" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1609103445493" />
-    <state width="1211" height="111" key="GridCell.Tab.1.left" timestamp="1609103445493">
+    <state width="1211" height="215" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1609149846796" />
+    <state width="1211" height="215" key="GridCell.Tab.1.left" timestamp="1609149846795">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="111" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1609103445493" />
-    <state width="1211" height="111" key="GridCell.Tab.1.right" timestamp="1609103445493">
+    <state width="1211" height="215" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1609149846795" />
+    <state width="1211" height="215" key="GridCell.Tab.1.right" timestamp="1609149846796">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="111" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1609103445493" />
-    <state width="1211" height="111" key="GridCell.Tab.2.bottom" timestamp="1609103445493">
+    <state width="1211" height="215" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1609149846796" />
+    <state width="1211" height="215" key="GridCell.Tab.2.bottom" timestamp="1609149846796">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="111" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609103445493" />
-    <state width="1211" height="111" key="GridCell.Tab.2.center" timestamp="1609103445493">
+    <state width="1211" height="215" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609149846796" />
+    <state width="1211" height="215" key="GridCell.Tab.2.center" timestamp="1609149846796">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="111" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1609103445493" />
-    <state width="1211" height="111" key="GridCell.Tab.2.left" timestamp="1609103445493">
+    <state width="1211" height="215" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1609149846796" />
+    <state width="1211" height="215" key="GridCell.Tab.2.left" timestamp="1609149846796">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="111" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1609103445493" />
-    <state width="1211" height="111" key="GridCell.Tab.2.right" timestamp="1609103445493">
+    <state width="1211" height="215" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1609149846796" />
+    <state width="1211" height="215" key="GridCell.Tab.2.right" timestamp="1609149846796">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1211" height="111" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1609103445493" />
+    <state width="1211" height="215" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1609149846796" />
     <state width="1211" height="135" key="GridCell.Tab.3.bottom" timestamp="1608245905458">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -635,10 +680,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="478" y="62" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1608898279736" />
-    <state x="477" y="239" key="com.intellij.ide.util.TipDialog" timestamp="1609057564539">
+    <state x="477" y="239" key="com.intellij.ide.util.TipDialog" timestamp="1609149365788">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="477" y="239" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1609057564539" />
+    <state x="477" y="239" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1609149365788" />
     <state x="557" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1608310230570">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

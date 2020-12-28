@@ -1,7 +1,7 @@
 package com.datin.elms.controller.login;
 
 import com.datin.elms.model.Employee;
-import com.datin.elms.service.LoginService;
+import com.datin.elms.repository.LoginDao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,10 +14,10 @@ import java.io.IOException;
 @WebServlet("/login")
 public class LoginSrv extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private LoginService loginService;
+    private LoginDao loginDao;
 
     public void init() {
-        loginService= new LoginService();
+        loginDao = new LoginDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,8 +39,8 @@ public class LoginSrv extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        if (loginService.validate(username, password) != null ) {
-            Employee employee = loginService.validate(username,password);
+        if (loginDao.validate(username, password) != null ) {
+            Employee employee = loginDao.validate(username,password);
             request.getSession().setAttribute("employee",employee);
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);

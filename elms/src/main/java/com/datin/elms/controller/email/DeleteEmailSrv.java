@@ -1,7 +1,7 @@
 package com.datin.elms.controller.email;
 
 
-import com.datin.elms.service.EmailService;
+import com.datin.elms.repository.EmailDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,8 +16,8 @@ public class DeleteEmailSrv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id =  Integer.parseInt(req.getParameter("id"));
-        EmailService emailService = new EmailService() ;
-        emailService.deleteById(id);
+        EmailDao emailDao = new EmailDao() ;
+        emailDao.deleteById(id);
         req.getRequestDispatcher("email").forward(req,resp);
     }
 }

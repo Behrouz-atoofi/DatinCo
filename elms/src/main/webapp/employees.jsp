@@ -49,7 +49,7 @@
             <td><%=employee.getEmail()%></td>
             <td><%=employee.getPhoneNumber()%></td>
             <td><%=employee.getRole().getCode()%></td>
-            <td><%=employee.getManager().getFamily()%></td>
+            <td><%=employee.getManager().getId()%></td>
             <td><a href="editEmployeeForm?id=<%=employee.getId()%>">Update</a></td>
             <td><a href="deleteEmployee?id=<%=employee.getId()%>">Delete</a></td>
         </tr>

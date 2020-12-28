@@ -3,7 +3,7 @@ package com.datin.elms.controller.mangeEmployee;
 
 import com.datin.elms.model.CategoryElement;
 import com.datin.elms.model.Employee;
-import com.datin.elms.service.EmployeeService;
+import com.datin.elms.repository.EmployeeDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,9 +19,9 @@ public class EditEmployeeFormSrv extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id")) ;
-        EmployeeService employeeService = new EmployeeService() ;
-        Employee employee = employeeService.getEmployeeById(id) ;
-        List<CategoryElement> roleList = employeeService.getRole() ;
+        EmployeeDao employeeDao = new EmployeeDao() ;
+        Employee employee = employeeDao.getEmployeeById(id) ;
+        List<CategoryElement> roleList = employeeDao.getRole() ;
 
         //System.out.println(employee.getName());
         req.setAttribute("roleList",roleList);

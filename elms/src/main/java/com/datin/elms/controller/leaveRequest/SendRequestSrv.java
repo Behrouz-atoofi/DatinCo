@@ -3,8 +3,8 @@ package com.datin.elms.controller.leaveRequest;
 
 import com.datin.elms.model.Employee;
 import com.datin.elms.model.LeaveRequest;
-import com.datin.elms.service.CategoryService;
-import com.datin.elms.service.RequestService;
+import com.datin.elms.repository.CategoryDao;
+import com.datin.elms.repository.RequestDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,10 +28,10 @@ public class SendRequestSrv extends HttpServlet {
         leaveRequest.setTo_date(toDate);
         leaveRequest.setReason(reason);
         leaveRequest.setEmployee(employee);
-        leaveRequest.setStatus(CategoryService.getElementByName("pending"));
+        leaveRequest.setStatus(CategoryDao.getElementByName("pending"));
 
-        RequestService requestService = new RequestService() ;
-        requestService.saveRequest(leaveRequest);
+        RequestDao requestDao = new RequestDao() ;
+        requestDao.saveRequest(leaveRequest);
 
         resp.sendRedirect("myRequests");
 

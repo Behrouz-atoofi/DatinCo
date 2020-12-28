@@ -1,16 +1,9 @@
 import com.datin.elms.model.*;
-import com.datin.elms.service.CategoryService;
-import com.datin.elms.service.EmailService;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Blob;
 
 public class main {
     public static void main(String[] args) throws IOException {

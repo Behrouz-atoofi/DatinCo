@@ -4,8 +4,8 @@ package com.datin.elms.controller.email;
 import com.datin.elms.model.Email;
 import com.datin.elms.model.EmailFile;
 import com.datin.elms.model.Employee;
-import com.datin.elms.service.CategoryService;
-import com.datin.elms.service.EmailService;
+import com.datin.elms.repository.CategoryDao;
+import com.datin.elms.repository.EmailDao;
 import com.datin.elms.util.HibernateUtil;
 import org.apache.commons.io.FileUtils;
 import javax.servlet.ServletException;
@@ -34,11 +34,11 @@ public class SendEmailSrv extends HttpServlet {
         String content = req.getParameter("content");
         String receiverEmail = req.getParameter("receiver");
 
-        EmailService emailService = new EmailService();
+        EmailDao emailDao = new EmailDao();
         email.setSubject(subject);
         email.setContent(content);
         email.setEmail_receiver(receiverEmail);
-        email.setStatus(CategoryService.getElementByName("unread"));
+        email.setStatus(CategoryDao.getElementByName("unread"));
         Employee employee = (Employee) req.getSession().getAttribute("employee");
         email.setEmail_sender(employee.getEmail());
 
@@ -49,7 +49,7 @@ public class SendEmailSrv extends HttpServlet {
 
         if (filePart.getSize() > 0) {
             email.setAttachment(true);
-            emailService.save(email);
+            emailDao.save(email);
             InputStream inputStream = null;
             inputStream = filePart.getInputStream();
             File targetFile = new File("src/main/resources/targetFile.tmp");
@@ -61,11 +61,11 @@ public class SendEmailSrv extends HttpServlet {
             emailFile.setFileType(filePart.getContentType());
             emailFile.setData(data);
             emailFile.setEmail(email);
-            emailService.saveEmailFile(emailFile);
+            emailDao.saveEmailFile(emailFile);
             inputStream.close();
         } else {
             email.setAttachment(false);
-            emailService.save(email);
+            emailDao.save(email);
         }
 
         resp.sendRedirect("email");

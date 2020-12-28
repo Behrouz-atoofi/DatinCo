@@ -2,7 +2,7 @@ package com.datin.elms.controller.mangeEmployee;
 
 
 import com.datin.elms.model.CategoryElement;
-import com.datin.elms.service.EmployeeService;
+import com.datin.elms.repository.EmployeeDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -18,8 +18,8 @@ public class AddEmployeeFormSrv extends HttpServlet {
     @Override
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
 
-        EmployeeService employeeService = new EmployeeService() ;
-        List<CategoryElement> roleList = employeeService.getRole() ;
+        EmployeeDao employeeDao = new EmployeeDao() ;
+        List<CategoryElement> roleList = employeeDao.getRole() ;
         req.setAttribute("roleList",roleList);
         req.getRequestDispatcher("addemployee.jsp").forward(req,res);
 

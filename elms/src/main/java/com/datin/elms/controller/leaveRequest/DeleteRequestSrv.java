@@ -1,7 +1,7 @@
 package com.datin.elms.controller.leaveRequest;
 
 
-import com.datin.elms.service.RequestService;
+import com.datin.elms.repository.RequestDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +18,8 @@ public class DeleteRequestSrv extends HttpServlet {
 
         int requestID = Integer.parseInt(req.getParameter("id")) ;
 
-        RequestService requestService = new RequestService() ;
-        requestService.deleteRequestById(requestID) ;
+        RequestDao requestDao = new RequestDao() ;
+        requestDao.deleteRequestById(requestID) ;
 
         resp.sendRedirect("myRequests");
 

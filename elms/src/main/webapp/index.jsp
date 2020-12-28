@@ -1,7 +1,7 @@
 <%@ page import="com.datin.elms.model.Employee" %>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="com.datin.elms.service.EmployeeService" %>
-<%@ page import="com.datin.elms.service.LoginService" %>
+<%@ page import="com.datin.elms.repository.EmployeeDao" %>
+<%@ page import="com.datin.elms.repository.LoginDao" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,8 +34,8 @@
         <h2 class="menu_title">Menu</h2>
 
 <%--        should be changed--%>
-        <% LoginService loginService = new LoginService() ;
-        Employee employee = loginService.validate("admin","admin") ;
+        <% LoginDao loginDao = new LoginDao() ;
+        Employee employee = loginDao.validate("admin","admin") ;
         request.getSession().setAttribute("employee",employee);
         %>
 <%--        <% Employee employee = (Employee) request.getSession().getAttribute("employee");%>--%>

@@ -1,8 +1,8 @@
 package com.datin.elms.controller.mangeEmployee;
 
 import com.datin.elms.model.Employee;
-import com.datin.elms.service.CategoryService;
-import com.datin.elms.service.EmployeeService;
+import com.datin.elms.repository.CategoryDao;
+import com.datin.elms.repository.EmployeeDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -39,11 +39,11 @@ public class EditEmployeeToDbSrv extends HttpServlet {
         employee.setPassword(password);
         employee.setEmail(email);
         employee.setPhoneNumber(phoneNumber);
-        employee.setRole(CategoryService.getElementById(roleId));
+        employee.setRole(CategoryDao.getElementById(roleId));
         employee.setManager(null);
 
-        EmployeeService employeeService = new EmployeeService() ;
-        employeeService.updateEmployee(employee);
+        EmployeeDao employeeDao = new EmployeeDao() ;
+        employeeDao.updateEmployee(employee);
 
         req.getRequestDispatcher("employees").forward(req, res); ;
 
