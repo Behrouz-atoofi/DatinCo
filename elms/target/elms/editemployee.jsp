@@ -73,7 +73,7 @@
             <div class="form-group">
                 <label for="manager">Manager</label>
                 <input type="option" class="form-control" id="manager" name="manager"
-                       value="<%=employee.getManager().getName()%>" readonly>
+                       value="<%=employee.getManager().getName()+" "+employee.getManager().getFamily()+" | managerID : "+ employee.getManager().getId()%>" readonly>
             </div>
 
             <button type="submit" class="btn btn-primary">update</button>
