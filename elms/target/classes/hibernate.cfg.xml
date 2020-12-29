@@ -33,7 +33,7 @@
         <mapping class="com.datin.elms.model.CategoryElement"/>
         <mapping class="com.datin.elms.model.Email"/>
         <mapping class="com.datin.elms.model.LeaveRequest"/>
-        <mapping class="com.datin.elms.model.EmailFile"/>
+        <mapping class="com.datin.elms.model.Attachment"/>
 
     </session-factory>
 </hibernate-configuration>

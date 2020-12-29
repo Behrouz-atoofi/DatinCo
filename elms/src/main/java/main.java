@@ -10,15 +10,15 @@ public class main {
 
 
         Transaction transaction = null;
-        EmailFile emailFile = null;
+        Attachment attachment = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
-            emailFile = (EmailFile) session.createQuery("FROM EmailFile emf WHERE emf.email=:email")
+            attachment = (Attachment) session.createQuery("FROM Attachment emf WHERE emf.email=:email")
                     .setParameter("email", 108).uniqueResult();
 
 
-            emailFile.getFileType();
+            attachment.getFileType();
         }
 
 

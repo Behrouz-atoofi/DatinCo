@@ -10,6 +10,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import java.io.IOException;
+
+import com.datin.elms.service.EmployeeService;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
@@ -31,19 +33,8 @@ public class EditEmployeeToDbSrv extends HttpServlet {
         int roleId = Integer.parseInt(req.getParameter("roleName")) ;
         String manager = req.getParameter("manager") ;
 
-        Employee employee = new Employee() ;
-        employee.setId(id);
-        employee.setName(name);
-        employee.setFamily(family);
-        employee.setUsername(username);
-        employee.setPassword(password);
-        employee.setEmail(email);
-        employee.setPhoneNumber(phoneNumber);
-        employee.setRole(CategoryDao.getElementById(roleId));
-        employee.setManager(null);
-
-        EmployeeDao employeeDao = new EmployeeDao() ;
-        employeeDao.updateEmployee(employee);
+        EmployeeService employeeService = new EmployeeService() ;
+        employeeService.updateEmployee(id,name,family,username,password,email,phoneNumber,roleId);
 
         req.getRequestDispatcher("employees").forward(req, res); ;
 

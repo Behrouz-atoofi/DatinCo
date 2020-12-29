@@ -32,7 +32,7 @@ public class RequestDao {
 
     }
 
-    public void saveRequest(LeaveRequest leaveRequest) {
+    public boolean saveRequest(LeaveRequest leaveRequest) {
 
         Transaction transaction = null;
 
@@ -42,17 +42,19 @@ public class RequestDao {
 
             session.save(leaveRequest);
             transaction.commit();
+            return true ;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
+                return false ;
             }
             e.printStackTrace();
         }
-
+   return false ;
 
     }
 
-    public void deleteRequestById(int id) {
+    public boolean deleteRequestById(int id) {
 
         Transaction transaction = null;
         LeaveRequest leaveRequest = null;
@@ -64,11 +66,14 @@ public class RequestDao {
             if (leaveRequest != null) {
                 session.delete(leaveRequest);
                 transaction.commit();
+                return true ;
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+            return false ;
         }
+        return false ;
     }
 
     public List<LeaveRequest> getRequestsByManager(Employee manager) {
@@ -89,7 +94,7 @@ public class RequestDao {
 
     }
 
-    public void updateStatusToAccepted(int requestID) {
+    public boolean updateStatusToAccepted(int requestID) {
 
 
         Transaction transaction = null;
@@ -104,17 +109,19 @@ public class RequestDao {
 
             query.executeUpdate();
             transaction.commit();
+            return true ;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
+
             }
             e.printStackTrace();
-
+            return false ;
         }
 
     }
 
-    public void updateStatusToRejected(int requestID) {
+    public boolean updateStatusToRejected(int requestID) {
 
         Transaction transaction = null;
 
@@ -128,12 +135,13 @@ public class RequestDao {
 
             query.executeUpdate();
             transaction.commit();
+            return true ;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
-
+            return false ;
         }
 
     }

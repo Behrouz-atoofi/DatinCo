@@ -4,6 +4,7 @@ import com.datin.elms.controller.mangeEmployee.EditEmployeeToDbSrv;
 import com.datin.elms.model.Email;
 import com.datin.elms.model.Employee;
 import com.datin.elms.repository.EmailDao;
+import com.datin.elms.service.EmailService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -22,11 +23,12 @@ public class EmailsSrv extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Employee employee = (Employee) req.getSession().getAttribute("employee");
-        EmailDao emailDao = new EmailDao();
-        List<Email> inbox = emailDao.getEmailByReceiver(employee.getEmail());
+        EmailService emailService = new EmailService() ;
+
+        List<Email> inbox = emailService.getInboxEmails(employee);
         req.setAttribute("inbox", inbox);
 
-        List<Email> sent = emailDao.getEmailBySender(employee.getEmail());
+        List<Email> sent = emailService.getSentEmails(employee) ;
         req.setAttribute("sent", sent);
 
         req.getRequestDispatcher("email.jsp").forward(req, resp);

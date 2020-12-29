@@ -6,7 +6,7 @@ import java.sql.Blob;
 
 @Entity
 @Table(name = "t_FILE")
-public class EmailFile {
+public class Attachment {
 
     @Id
     @Column(name = "ID", columnDefinition = "INT")

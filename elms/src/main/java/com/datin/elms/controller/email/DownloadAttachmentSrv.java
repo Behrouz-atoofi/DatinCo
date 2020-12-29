@@ -1,9 +1,8 @@
 package com.datin.elms.controller.email;
 
 
-import com.datin.elms.model.Email;
-import com.datin.elms.model.EmailFile;
-import com.datin.elms.repository.EmailDao;
+import com.datin.elms.model.Attachment;
+import com.datin.elms.service.EmailService;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletException;
@@ -22,11 +21,11 @@ public class DownloadAttachmentSrv extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int emailId = Integer.parseInt(req.getParameter("id")) ;
 
-        EmailDao emailDao = new EmailDao() ;
-        Email email = emailDao.getEmailById(emailId);
-        EmailFile attachment = emailDao.downloadAttachment(email) ;
+
+        int emailId = Integer.parseInt(req.getParameter("id")) ;
+        EmailService emailService = new EmailService() ;
+        Attachment attachment = emailService.getEmailAttachment(emailId); ;
 
 
         try {

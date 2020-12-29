@@ -1,13 +1,14 @@
 package com.datin.elms.repository;
 
 import com.datin.elms.model.Email;
-import com.datin.elms.model.EmailFile;
+import com.datin.elms.model.Attachment;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class EmailDao {
 
@@ -42,7 +43,7 @@ public class EmailDao {
 
     }
 
-    public void save(Email email) {
+    public boolean save(Email email) {
 
         Transaction transaction = null;
 
@@ -52,11 +53,16 @@ public class EmailDao {
             session.save(email);
             transaction.commit();
             session.close();
-
+            return true ;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false ;
         }
     }
 
-    public void deleteById(int id) {
+    public boolean deleteEmailById(int id) {
+
+
         Transaction transaction = null;
         Email email = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -67,13 +73,15 @@ public class EmailDao {
 
             if (email != null) {
                 session.delete(email);
-                session.getTransaction().commit();
+                transaction.commit();
                 session.close();
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-
+        return false;
     }
 
     public Email getEmailById(int id) {
@@ -93,7 +101,7 @@ public class EmailDao {
 
     }
 
-    public void updateStatus(Email email) {
+    public boolean updateStatus(Email email) {
 
         Transaction transaction = null;
 
@@ -107,42 +115,46 @@ public class EmailDao {
             query.setParameter("id", email.getId());
             query.executeUpdate();
             transaction.commit();
+            return true;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
-
+            return false;
         }
 
     }
 
-    public void saveEmailFile(EmailFile emailFile) {
+    public boolean saveEmailAttachment(Attachment attachment) {
         Transaction transaction = null;
 
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.save(emailFile);
+            session.save(attachment);
             transaction.commit();
             session.close();
-
+            return true ;
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            return false ;
         }
 
     }
 
-    public EmailFile downloadAttachment(Email email) {
+    public Attachment downloadAttachment(Email email) {
 
         Transaction transaction = null;
-        EmailFile emailFile = null;
+        Attachment attachment = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
-            emailFile = (EmailFile) session.createQuery("FROM EmailFile emf WHERE emf.email=:email")
+            attachment = (Attachment) session.createQuery("FROM Attachment emf WHERE emf.email=:email")
                     .setParameter("email", email).uniqueResult();
 
         }
-        return emailFile;
+        return attachment;
     }
 }
 

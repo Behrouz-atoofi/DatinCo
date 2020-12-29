@@ -36,6 +36,7 @@ public class LoginSrv extends HttpServlet {
 
     private void authenticate(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 

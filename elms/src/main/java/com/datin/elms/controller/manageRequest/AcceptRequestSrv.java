@@ -2,6 +2,7 @@ package com.datin.elms.controller.manageRequest;
 
 
 import com.datin.elms.repository.RequestDao;
+import com.datin.elms.service.RequestService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,8 +17,8 @@ public class AcceptRequestSrv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int requestId = Integer.parseInt(req.getParameter("id")) ;
-        RequestDao requestDao = new RequestDao() ;
-        requestDao.updateStatusToAccepted(requestId);
+        RequestService requestService =  new RequestService() ;
+        requestService.acceptRequest(requestId);
         resp.sendRedirect("manageRequests");
     }
 }

@@ -2,6 +2,7 @@ package com.datin.elms.controller.leaveRequest;
 
 
 import com.datin.elms.repository.RequestDao;
+import com.datin.elms.service.RequestService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,10 +17,10 @@ public class DeleteRequestSrv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        int requestID = Integer.parseInt(req.getParameter("id")) ;
+        int requestId = Integer.parseInt(req.getParameter("id")) ;
 
-        RequestDao requestDao = new RequestDao() ;
-        requestDao.deleteRequestById(requestID) ;
+        RequestService requestService = new RequestService() ;
+        requestService.deleteLeaveRequest(requestId);
 
         resp.sendRedirect("myRequests");
 

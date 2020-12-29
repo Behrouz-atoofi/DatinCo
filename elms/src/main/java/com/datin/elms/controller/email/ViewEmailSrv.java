@@ -2,8 +2,9 @@ package com.datin.elms.controller.email;
 
 
 import com.datin.elms.model.Email;
-import com.datin.elms.model.EmailFile;
+import com.datin.elms.model.Attachment;
 import com.datin.elms.repository.EmailDao;
+import com.datin.elms.service.EmailService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,14 +20,8 @@ public class ViewEmailSrv extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int emailId = Integer.parseInt(req.getParameter("id"));
-        EmailDao emailDao = new EmailDao();
-        Email email = emailDao.getEmailById(emailId);
-        emailDao.updateStatus(email);
-
-        if (email.getAttachment()) {
-            EmailFile emailFile = emailDao.downloadAttachment(email);
-            req.setAttribute("emailFile",emailFile);
-        }
+        EmailService emailService = new EmailService() ;
+        Email email = emailService.viewEmail(emailId);
 
         req.setAttribute("email", email);
         req.getRequestDispatcher("viewEmail.jsp").forward(req, resp);

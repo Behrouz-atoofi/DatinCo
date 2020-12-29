@@ -57,7 +57,7 @@ public class EmployeeDao {
         return roles;
     }
 
-    public void saveEmployee(Employee employee) {
+    public boolean saveEmployee(Employee employee) {
 
         Transaction transaction = null;
 
@@ -66,17 +66,18 @@ public class EmployeeDao {
             transaction = session.beginTransaction();
             session.save(employee);
             transaction.commit();
-
+            return true ;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
+            return false ;
         }
 
     }
 
-    public void deleteEmployee(int id) {
+    public boolean deleteEmployee(int id) {
 
         Transaction transaction = null;
         Employee employee = null;
@@ -91,13 +92,16 @@ public class EmployeeDao {
                 session.getTransaction().commit();
                 session.close();
                 transaction.commit();
+                return true ;
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return false ;
         }
+        return false ;
     }
 
-    public void updateEmployee(Employee employee) {
+    public boolean updateEmployee(Employee employee) {
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -125,13 +129,16 @@ public class EmployeeDao {
 
             // commit transaction
             transaction.commit();
+            return true ;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
+                return false ;
             }
             e.printStackTrace();
 
         }
+        return false ;
     }
 
     public Employee getEmployeeById(int id) {

@@ -3,6 +3,7 @@ package com.datin.elms.controller.mangeEmployee;
 import com.datin.elms.model.Employee;
 import com.datin.elms.repository.CategoryDao;
 import com.datin.elms.repository.EmployeeDao;
+import com.datin.elms.service.EmployeeService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,19 +25,11 @@ public class AddEmpToDbSrv extends HttpServlet {
         String email = req.getParameter("email");
         String phoneNumber = req.getParameter("phonenumber");
         int roleId = Integer.parseInt(req.getParameter("roleName")) ;
-        Employee superVisor = (Employee) req.getSession().getAttribute("employee") ;
-        Employee employee = new Employee();
-        employee.setName(name);
-        employee.setFamily(family);
-        employee.setUsername(username);
-        employee.setPassword(password);
-        employee.setEmail(email);
-        employee.setRole(CategoryDao.getElementById(roleId));
-        employee.setPhoneNumber(phoneNumber);
-        employee.setManager(superVisor);
+        Employee manager = (Employee) req.getSession().getAttribute("employee") ;
+        EmployeeService employeeService = new EmployeeService() ;
 
-        EmployeeDao employeeDao = new EmployeeDao();
-        employeeDao.saveEmployee(employee);
+        employeeService.AddEmployee(name,family,username,password,email,phoneNumber,roleId,manager);
+
         resp.sendRedirect("employees");
 
     }
