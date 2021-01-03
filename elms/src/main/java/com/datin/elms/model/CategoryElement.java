@@ -62,8 +62,7 @@ public class CategoryElement {
 
     }
 
-    public CategoryElement(int id, String code, String name, Category category) {
-        this.id = id;
+    public CategoryElement(String code, String name, Category category) {
         this.code = code;
         this.name = name;
         this.category = category;

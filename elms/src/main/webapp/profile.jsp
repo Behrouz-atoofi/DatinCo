@@ -54,6 +54,10 @@
                 <label for="phonenumber">PhoneNumber</label>
                 <input type="text" class="form-control" id="phonenumber" name="phonenumber" value="<%=employee.getPhoneNumber()%>" >
             </div>
+            <div class="form-group">
+                <label for="Role">My Role </label>
+                <input type="text" class="form-control" id="Role" name="Role" value="<%=employee.getRole().getName()%>" readonly>
+            </div>
 
 <%--            <button type="submit" class="btn btn-primary">update</button>--%>
         </div>

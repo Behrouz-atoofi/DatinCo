@@ -8,6 +8,7 @@ public class Category {
 
     @Id
     @Column(name = "ID", columnDefinition = "INT")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Basic
@@ -36,8 +37,7 @@ public class Category {
 
     }
 
-    public Category(int id, String name) {
-        this.id = id;
+    public Category(String name) {
         this.name = name;
 
     }

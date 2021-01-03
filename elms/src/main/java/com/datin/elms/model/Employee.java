@@ -9,8 +9,8 @@ import java.io.Serializable;
 @Table(name = "T_EMPLOYEE")
 public class Employee implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(name = "C_NAME", columnDefinition = "VARCHAR(40)")

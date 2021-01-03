@@ -2,6 +2,7 @@ package com.datin.elms.controller.login;
 
 import com.datin.elms.model.Employee;
 import com.datin.elms.repository.LoginDao;
+import com.datin.elms.service.LoginService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,9 +16,11 @@ import java.io.IOException;
 public class LoginSrv extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private LoginDao loginDao;
+    private LoginService loginService ;
 
     public void init() {
         loginDao = new LoginDao();
+        loginService = new LoginService() ;
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,14 +42,26 @@ public class LoginSrv extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        Employee employee = loginDao.validate(username,password);
 
-        if (loginDao.validate(username, password) != null ) {
-            Employee employee = loginDao.validate(username,password);
-            request.getSession().setAttribute("employee",employee);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-            dispatcher.forward(request, response);
+        if (employee != null ) {
+
+
+            if (loginService.isManager(employee)) {
+                request.getSession().setAttribute("employee",employee);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("administrator/index.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                request.getSession().setAttribute("employee",employee);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                dispatcher.forward(request, response);
+            }
+
         }else {
             response.sendRedirect("error.jsp");
         }
+
     }
+
+
 }

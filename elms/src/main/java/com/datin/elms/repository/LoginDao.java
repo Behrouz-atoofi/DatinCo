@@ -13,16 +13,16 @@ public class LoginDao {
         Transaction transaction = null;
         Employee employee = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            // start a transaction
+
             transaction = session.beginTransaction();
-            // get an user object
+
             employee = (Employee) session.createQuery("FROM Employee WHERE username = :c_username").setParameter("c_username", username)
                     .uniqueResult();
 
             if (employee != null && employee.getPassword().equals(password)) {
                 return employee;
             }
-            // commit transaction
+
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
