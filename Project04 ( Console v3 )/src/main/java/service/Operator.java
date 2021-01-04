@@ -34,8 +34,8 @@ public class Operator {
         String[] debtorDeposit = deposits.get(0).split("\t");
         String[] debtorTrans = payments.get(0).split("\t");
 
-        int size = deposits.size() ;
-        int divided = (int) Math.floor(size/3) ;
+        int size = deposits.size();
+        int divided = (int) Math.floor(size / 3);
         System.out.println(divided);
 
 
@@ -62,7 +62,7 @@ public class Operator {
         };
         Runnable paymentThread2 = () -> {
 
-            for (int i = divided+1; i <= divided*2; i++) {
+            for (int i = divided + 1; i <= divided * 2; i++) {
                 String[] transactionSLine = payments.get(i).split("\t");
                 String[] accountSLine = deposits.get(i).split("\t");
                 BigDecimal updatedAmount = BigDecimal.valueOf(Integer.parseInt(accountSLine[1]) + Integer.parseInt(transactionSLine[2]));
@@ -83,7 +83,7 @@ public class Operator {
         };
         Runnable paymentThread3 = () -> {
 
-            for (int i = divided*2+1; i < size; i++) {
+            for (int i = divided * 2 + 1; i < size; i++) {
                 String[] transactionSLine = payments.get(i).split("\t");
                 String[] accountSLine = deposits.get(i).split("\t");
                 BigDecimal updatedAmount = BigDecimal.valueOf(Integer.parseInt(accountSLine[1]) + Integer.parseInt(transactionSLine[2]));

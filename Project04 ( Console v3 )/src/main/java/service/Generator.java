@@ -1,6 +1,7 @@
 package service;
 
 import dto.Deposit;
+import dto.Payment;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
@@ -13,8 +14,6 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import dto.*;
 
 public class Generator {
 
@@ -49,11 +48,10 @@ public class Generator {
         debtorDeposit.setAmount(Generator.generateRandomValue(1));
 
         try {
-            Files.write(depositFile,(debtorDeposit.toString()+"\n").getBytes()) ;
+            Files.write(depositFile, (debtorDeposit.toString() + "\n").getBytes());
         } catch (IOException e) {
             log.warn("debtor Deposit couldn't write ");
         }
-
 
 
         for (int i = 1; i < n; i++) {
@@ -63,16 +61,16 @@ public class Generator {
             creditorDeposit.setAmount(generateRandomValue(0));
 
             try {
-                Files.write(depositFile,(creditorDeposit.toString()+"\n").getBytes() , StandardOpenOption.APPEND) ;
+                Files.write(depositFile, (creditorDeposit.toString() + "\n").getBytes(), StandardOpenOption.APPEND);
             } catch (IOException e) {
                 log.warn("creditorDeposit couldn't write");
             }
 
         }
 
-        List<String> depositList = null ;
+        List<String> depositList = null;
         try {
-            depositList = Files.readAllLines(depositFile) ;
+            depositList = Files.readAllLines(depositFile);
         } catch (IOException e) {
             log.warn(" depositFile couldn't read ");
         }
@@ -119,7 +117,7 @@ public class Generator {
 
     public static String buildDepositAccNumber(int i) {
 
-        String accountNumber ;
+        String accountNumber;
         int tempNum = (int) Math.floor(i / 1000);
         int fnum = (i - tempNum * 1000);
         accountNumber = "1.20." + (100 + tempNum) + "." + (fnum);

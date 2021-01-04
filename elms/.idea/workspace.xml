@@ -8,6 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab567d2a-2d1d-4b3f-90f2-2f9856588b57" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/java/StartingPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/java/StartingPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/java/service/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/java/service/Generator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/resources/deposits.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/resources/deposits.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/resources/report.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/resources/transactions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/resources/transactions.txt" afterDir="false" />
@@ -349,7 +350,7 @@
       <workItem from="1609497706154" duration="1018000" />
       <workItem from="1609499924155" duration="7678000" />
       <workItem from="1609681728799" duration="2216000" />
-      <workItem from="1609749640660" duration="1053000" />
+      <workItem from="1609749640660" duration="1605000" />
     </task>
     <task id="LOCAL-00001" summary="updated 990927">
       <created>1608204525157</created>
