@@ -59,7 +59,7 @@ public class Generator {
         for (int i = 1; i < n; i++) {
 
             Deposit creditorDeposit = new Deposit();
-            creditorDeposit.setDepositNumber(DepositBuilder(i));
+            creditorDeposit.setDepositNumber(buildDepositAccNumber(i));
             creditorDeposit.setAmount(generateRandomValue(0));
 
             try {
@@ -92,7 +92,7 @@ public class Generator {
             BigDecimal randomValue = generateRandomValue(0);
             Payment payment = new Payment();
             payment.setType(Payment.DepositType.creditor);
-            payment.setDepositNumber(DepositBuilder(i));
+            payment.setDepositNumber(buildDepositAccNumber(i));
             payment.setAmount(randomValue);
             paymentList.add(payment.toString());
             totalTransactions = totalTransactions.add(randomValue);
@@ -117,7 +117,7 @@ public class Generator {
         return paymentList;
     }
 
-    public static String DepositBuilder(int i) {
+    public static String buildDepositAccNumber(int i) {
 
         String accountNumber ;
         int tempNum = (int) Math.floor(i / 1000);

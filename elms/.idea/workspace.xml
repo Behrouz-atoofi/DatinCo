@@ -8,11 +8,13 @@
   <component name="ChangeListManager">
     <list default="true" id="ab567d2a-2d1d-4b3f-90f2-2f9856588b57" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/java/StartingPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/java/StartingPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/java/service/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/java/service/Generator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/java/service/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/java/service/Operator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/resources/deposits.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/resources/deposits.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/resources/report.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/resources/transactions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/resources/transactions.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/StartingPoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/StartingPoint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/service/Generator.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/service/Generator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/service/Operator.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/service/Operator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/deposits.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/deposits.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/transactions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/transactions.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +104,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Project04 ( Console v3 )" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15820312" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -293,6 +295,11 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@a5ee6b5" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
             </expand>
             <select />
           </treeState>
@@ -342,7 +349,7 @@
       <workItem from="1609497706154" duration="1018000" />
       <workItem from="1609499924155" duration="7678000" />
       <workItem from="1609681728799" duration="2216000" />
-      <workItem from="1609749640660" duration="795000" />
+      <workItem from="1609749640660" duration="1053000" />
     </task>
     <task id="LOCAL-00001" summary="updated 990927">
       <created>1608204525157</created>
@@ -580,10 +587,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="569" y="117" key="ExecutionTargetDialog/0.0.1536.824@0.0.1536.824" timestamp="1608107924519" />
-    <state x="549" y="144" key="FileChooserDialogImpl" timestamp="1609683959649">
+    <state x="549" y="144" key="FileChooserDialogImpl" timestamp="1609757473914">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="144" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1609683959649" />
+    <state x="549" y="144" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1609757473914" />
     <state width="1464" height="84" key="GridCell.Tab.0.bottom" timestamp="1609683965354">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
