@@ -7,13 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab567d2a-2d1d-4b3f-90f2-2f9856588b57" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/META-INF/Project04 ( Console v3 ).kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/deposits.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/report.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/java/StartingPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/java/StartingPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/java/service/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/java/service/Generator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/java/service/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/src/main/java/service/Operator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/StartingPoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/StartingPoint.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/service/Generator.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/service/Generator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/service/Operator.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/service/Operator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/temp.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project04 ( Console v3 )/target/classes/transactions.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +102,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Project04 ( Console v3 )" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15820312" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -292,42 +291,7 @@
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@2033f2b2" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@11bc839b" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@522db6f5" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@5a5a5ab3" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@6e9db756" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="hibernate.cfg.xml/Hibernate: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@47d030ab" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
             </expand>
             <select />
@@ -378,6 +342,7 @@
       <workItem from="1609497706154" duration="1018000" />
       <workItem from="1609499924155" duration="7678000" />
       <workItem from="1609681728799" duration="2216000" />
+      <workItem from="1609749640660" duration="795000" />
     </task>
     <task id="LOCAL-00001" summary="updated 990927">
       <created>1608204525157</created>
