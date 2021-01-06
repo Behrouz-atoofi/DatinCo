@@ -1,8 +1,6 @@
 package service;
 
 import dto.Deposit;
-import dto.Report;
-import exception.AmountException;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -21,128 +19,59 @@ public class Operator {
 
     static Logger log = Logger.getLogger(Generator.class.getName());
 
-    public static void payment(List<String> deposits, List<String> payments) {
-
-        List<String> tempList1 = new ArrayList<>();
-        List<String> tempList2 = new ArrayList<>();
-        List<String> tempList3 = new ArrayList<>();
-
-        List<String> reportList1 = new ArrayList<>();
-        List<String> reportList2 = new ArrayList<>();
-        List<String> reportList3 = new ArrayList<>();
-
-        String[] debtorDeposit = deposits.get(0).split("\t");
-        String[] debtorTrans = payments.get(0).split("\t");
-
-        int size = deposits.size();
-        int divided = (int) Math.floor(size / 3);
-        System.out.println(divided);
+    public static void payment(List<String> deposits, List<String> payments, int thread) throws InterruptedException {
 
 
-        Runnable paymentThread1 = () -> {
+        int depositSize = deposits.size();
 
-            for (int i = 1; i <= divided; i++) {
-                String[] transactionSLine = payments.get(i).split("\t");
-                String[] accountSLine = deposits.get(i).split("\t");
-                BigDecimal updatedAmount = BigDecimal.valueOf(Integer.parseInt(accountSLine[1]) + Integer.parseInt(transactionSLine[2]));
-
-                Deposit updatedDep = new Deposit();
-                updatedDep.setDepositNumber(accountSLine[0]);
-                updatedDep.setAmount(updatedAmount);
-                tempList1.add(updatedDep.toString());
-
-                Report report = new Report();
-                report.setSrcDepositNumber(debtorDeposit[0]);
-                report.setDstDepositNumber(transactionSLine[1]);
-                report.setAmount(Integer.parseInt(transactionSLine[2]));
-                reportList1.add(report.toString());
-
-            }
-
-        };
-        Runnable paymentThread2 = () -> {
-
-            for (int i = divided + 1; i <= divided * 2; i++) {
-                String[] transactionSLine = payments.get(i).split("\t");
-                String[] accountSLine = deposits.get(i).split("\t");
-                BigDecimal updatedAmount = BigDecimal.valueOf(Integer.parseInt(accountSLine[1]) + Integer.parseInt(transactionSLine[2]));
-
-                Deposit updatedDep = new Deposit();
-                updatedDep.setDepositNumber(accountSLine[0]);
-                updatedDep.setAmount(updatedAmount);
-                tempList2.add(updatedDep.toString());
-
-                Report report = new Report();
-                report.setSrcDepositNumber(debtorDeposit[0]);
-                report.setDstDepositNumber(transactionSLine[1]);
-                report.setAmount(Integer.parseInt(transactionSLine[2]));
-                reportList2.add(report.toString());
-
-
-            }
-        };
-        Runnable paymentThread3 = () -> {
-
-            for (int i = divided * 2 + 1; i < size; i++) {
-                String[] transactionSLine = payments.get(i).split("\t");
-                String[] accountSLine = deposits.get(i).split("\t");
-                BigDecimal updatedAmount = BigDecimal.valueOf(Integer.parseInt(accountSLine[1]) + Integer.parseInt(transactionSLine[2]));
-
-                Deposit updatedDep = new Deposit();
-                updatedDep.setDepositNumber(accountSLine[0]);
-                updatedDep.setAmount(updatedAmount);
-                tempList3.add(updatedDep.toString());
-
-                Report report = new Report();
-                report.setSrcDepositNumber(debtorDeposit[0]);
-                report.setDstDepositNumber(transactionSLine[1]);
-                report.setAmount(Integer.parseInt(transactionSLine[2]));
-                reportList3.add(report.toString());
-
-            }
-        };
-
-        try {
-
-            if (!checkDebtorAmount(deposits, payments))
-                throw new AmountException("Not Enough Money for processing this transaction");
-
-            else {
-                ExecutorService executor = Executors.newFixedThreadPool(3);
-
-                executor.execute(paymentThread1);
-                executor.execute(paymentThread2);
-                executor.execute(paymentThread3);
-
-                executor.awaitTermination(2, TimeUnit.SECONDS);
-                executor.shutdown();
-
-            }
-
-        } catch (AmountException | InterruptedException e) {
-            log.warn("not enough money");
-            System.out.println(e.getMessage());
+        if ((depositSize - 1) % thread != 0) {
+            log.warn("The number of thread should be divisible for deposit size");
+            log.info("application stopped...");
+            System.exit(0);
+        } else if (deposits.size() != payments.size()) {
+            log.warn("The size of deposits should be equals to payments");
+            log.info("application stopped...");
+            System.exit(0);
+        } else if (!checkDebtorAmount(deposits, payments)) {
+            log.warn("Not enough money for processing this transaction");
+            log.info("application stopped...");
+            System.exit(0);
         }
 
 
-        List<String> tempList = new ArrayList<>();
-        tempList.addAll(tempList1);
-        tempList.addAll(tempList2);
-        tempList.addAll(tempList3);
-
+        List<String> paymentList = new ArrayList<>();
         List<String> reportList = new ArrayList<>();
-        reportList.addAll(reportList1);
-        reportList.addAll(reportList2);
-        reportList.addAll(reportList3);
+        int divided = depositSize / thread;
+        CThread cThread = new CThread();
+
+        if (thread > 1) {
+
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+
+            for (int i = 0; i < thread; i++) {
+                int finalI = i;
+                executor.execute(() -> paymentList.addAll(cThread.processPayment(deposits, payments, divided * finalI + 1, divided * (finalI + 1))));
+                executor.execute(() -> reportList.addAll(cThread.processReport(deposits, payments, divided * finalI + 1, divided * (finalI + 1))));
+            }
+            executor.awaitTermination(1, TimeUnit.SECONDS);
+            executor.shutdown();
+
+        } else {
+            paymentList.addAll(cThread.processPayment(deposits, payments, 1, depositSize - 1));
+            reportList.addAll(cThread.processReport(deposits, payments, 1, depositSize - 1));
+        }
 
         // Update deposit Amount
+        String[] debtorDeposit = deposits.get(0).split("\t");
+        String[] debtorTrans = payments.get(0).split("\t");
         Deposit updatedDebtor = new Deposit();
         updatedDebtor.setDepositNumber(debtorDeposit[0]);
         updatedDebtor.setAmount(BigDecimal.valueOf(Integer.parseInt(debtorDeposit[1]) - Integer.parseInt(debtorTrans[2])));
-        tempList.add(0, updatedDebtor.toString());
+        paymentList.add(0, updatedDebtor.toString());
 
 
-        updateDepositFile(tempList);
+
+        updateDepositFile(paymentList);
         buildReportFile(reportList);
 
     }
@@ -158,7 +87,7 @@ public class Operator {
             log.warn("tempFile couldn't write ");
         }
 
-        // Update DepositFile
+         // Update DepositFile
         Path depositFile = Paths.get("src/main/resources/", "deposits.txt");
         try {
             Files.delete(depositFile);

@@ -54,7 +54,7 @@ public class Generator {
         }
 
 
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i <=n; i++) {
 
             Deposit creditorDeposit = new Deposit();
             creditorDeposit.setDepositNumber(buildDepositAccNumber(i));
@@ -85,7 +85,7 @@ public class Generator {
 
         BigDecimal totalTransactions = BigDecimal.valueOf(0);
 
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i <=n; i++) {
 
             BigDecimal randomValue = generateRandomValue(0);
             Payment payment = new Payment();
@@ -119,8 +119,8 @@ public class Generator {
 
         String accountNumber;
         int tempNum = (int) Math.floor(i / 1000);
-        int fnum = (i - tempNum * 1000);
-        accountNumber = "1.20." + (100 + tempNum) + "." + (fnum);
+        int fNum = (i - tempNum * 1000);
+        accountNumber = "1.20." + (100 + tempNum) + "." + (fNum);
 
         return accountNumber;
 
