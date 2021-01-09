@@ -7,6 +7,8 @@ import com.datin.elms.repository.EmployeeDao;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class EmployeeService {
@@ -27,7 +29,7 @@ public class EmployeeService {
         return roleList ;
     }
 
-    public void AddEmployee (String name , String family, String username, String password ,String email , String phoneNumber,int roleId  , Employee manager) {
+    public void AddEmployee (String name , String family, String username, String password ,String email , String phoneNumber,int roleId , Employee manager,int isActive) {
             BasicConfigurator.configure();
         Employee employee = new Employee();
         employee.setName(name);
@@ -38,7 +40,16 @@ public class EmployeeService {
         employee.setRole(CategoryDao.getElementById(roleId));
         employee.setPhoneNumber(phoneNumber);
         employee.setManager(manager);
+        employee.setActive(isActive == 1);
+        employee.setDisabled(false);
+        employee.setInUse(false);
 
+        Date dTime = new Date( );
+        SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
+        String date_created = df.format(dTime);
+
+        employee.setDate_created(date_created);
+        employee.setLast_modified(date_created);
 
         EmployeeDao employeeDao = new EmployeeDao();
 
@@ -74,8 +85,13 @@ public class EmployeeService {
             return employee ;
     }
 
-    public void updateEmployee (int id , String name , String family, String username, String password,String email,String phoneNumber,int roleId) {
+    public void updateEmployee (int id , String name , String family, String username, String password,String email,String phoneNumber,int roleId,int isActive,boolean inUse) {
         BasicConfigurator.configure();
+
+        Date dTime = new Date( );
+        SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
+        String last_modified = df.format(dTime);
+
         Employee employee = new Employee() ;
         employee.setId(id);
         employee.setName(name);
@@ -85,7 +101,9 @@ public class EmployeeService {
         employee.setEmail(email);
         employee.setPhoneNumber(phoneNumber);
         employee.setRole(CategoryDao.getElementById(roleId));
-
+        employee.setActive(isActive == 1);
+        employee.setInUse(inUse);
+        employee.setLast_modified(last_modified);
         EmployeeDao employeeDao = new EmployeeDao() ;
 
 
@@ -106,5 +124,23 @@ public class EmployeeService {
         log.info("Number of employees is :" + employeeList.size());
 
         return employeeList ;
+    }
+
+    public void setInUse(int id , boolean inUse ) {
+
+        EmployeeDao employeeDao = new EmployeeDao() ;
+
+        if (employeeDao.setInUse(id,inUse)) {
+            log.info("InUse column updated");
+        } else {
+            log.info("The status of InUse column couldn't be changed");
+        }
+    }
+
+    public boolean checkInUse (int employeeId) {
+        EmployeeDao employeeDao = new EmployeeDao() ;
+
+        return employeeDao.isInUse(employeeId) ;
+
     }
 }

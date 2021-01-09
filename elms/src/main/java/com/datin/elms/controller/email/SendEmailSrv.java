@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet("/sendEmail")
 @MultipartConfig(maxFileSize = 16177215)
@@ -24,10 +26,10 @@ public class SendEmailSrv extends HttpServlet {
         String subject = req.getParameter("subject");
         String content = req.getParameter("content");
         String receiverEmail = req.getParameter("receiver");
-        Part filePart = req.getPart("file");
+        List<Part> fileParts = req.getParts().stream().filter(part -> "file".equals(part.getName()) && part.getSize() > 0).collect(Collectors.toList());
 
         EmailService emailService =  new EmailService() ;
-        emailService.sendEmail(employee,subject,receiverEmail,content,filePart) ;
+        emailService.sendEmail(employee,subject,receiverEmail,content,fileParts) ;
 
         resp.sendRedirect("email");
 

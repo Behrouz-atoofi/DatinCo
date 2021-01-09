@@ -25,10 +25,11 @@ public class AddEmpToDbSrv extends HttpServlet {
         String email = req.getParameter("email");
         String phoneNumber = req.getParameter("phonenumber");
         int roleId = Integer.parseInt(req.getParameter("roleName")) ;
+        int isActive = Integer.parseInt(req.getParameter("active")) ;
         Employee manager = (Employee) req.getSession().getAttribute("employee") ;
         EmployeeService employeeService = new EmployeeService() ;
 
-        employeeService.AddEmployee(name,family,username,password,email,phoneNumber,roleId,manager);
+        employeeService.AddEmployee(name,family,username,password,email,phoneNumber,roleId,manager,isActive);
 
         resp.sendRedirect("employees");
 

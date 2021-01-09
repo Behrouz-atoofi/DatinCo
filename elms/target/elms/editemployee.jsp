@@ -69,6 +69,12 @@
                 <% } %>
             </select>
 
+            <label for="active">Activation</label>
+            <select class="form-control" name="active" id="active">
+                <option value="1">Active</option>
+                <option value="0">DeActive</option>
+            </select>
+
 
             <div class="form-group">
                 <label for="manager">Manager</label>

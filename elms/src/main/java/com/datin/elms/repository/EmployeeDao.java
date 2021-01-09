@@ -8,6 +8,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -21,7 +23,7 @@ public class EmployeeDao {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
             transaction = session.beginTransaction();
-            employeeList = session.createQuery("FROM Employee empl", Employee.class).list();
+            employeeList = session.createQuery("FROM Employee empl where empl.disabled=:disabled", Employee.class).setParameter("disabled",false).list();
 
         } catch (Exception e) {
             if (transaction != null) {
@@ -66,13 +68,13 @@ public class EmployeeDao {
             transaction = session.beginTransaction();
             session.save(employee);
             transaction.commit();
-            return true ;
+            return true;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
-            return false ;
+            return false;
         }
 
     }
@@ -80,28 +82,35 @@ public class EmployeeDao {
     public boolean deleteEmployee(int id) {
 
         Transaction transaction = null;
-        Employee employee = null;
+
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            Date dTime = new Date( );
+            SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
+            String last_modified = df.format(dTime);
 
             transaction = session.beginTransaction();
 
-            employee = (Employee) session.createQuery("FROM Employee WHERE id = :id").setParameter("id", id)
-                    .uniqueResult();
-            if (employee != null) {
-                session.delete(employee);
-                session.getTransaction().commit();
-                session.close();
-                transaction.commit();
-                return true ;
-            }
+            String hql = "UPDATE Employee set disabled = :disabled , last_modified=:last_modified " + "WHERE id = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("disabled", true);
+            query.setParameter("last_modified",last_modified) ;
+            query.setParameter("id", id);
+            query.executeUpdate();
+            transaction.commit();
+
+            return true;
+
         } catch (Exception e) {
             e.printStackTrace();
-            return false ;
+            return false;
         }
-        return false ;
     }
 
     public boolean updateEmployee(Employee employee) {
+
+
+        setInUse(employee.getId(),true) ;
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -113,7 +122,10 @@ public class EmployeeDao {
                     ",password=:password ," +
                     "phoneNumber=:phonenumber," +
                     "email=:email ," +
-                    "role=:role " +
+                    "role=:role  ," +
+                    "isActive=:isActive ," +
+                    "inUse=:inUse ," +
+                    "last_modified=:last_modified " +
                     "WHERE id = :id";
             Query query = session.createQuery(hql);
             query.setParameter("name", employee.getName());
@@ -123,22 +135,26 @@ public class EmployeeDao {
             query.setParameter("phonenumber", employee.getPhoneNumber());
             query.setParameter("email", employee.getEmail());
             query.setParameter("role", employee.getRole());
+            query.setParameter("isActive", employee.isActive());
+            query.setParameter("inUse", employee.isInUse());
+            query.setParameter("last_modified", employee.getLast_modified());
             query.setParameter("id", employee.getId());
+
 
             query.executeUpdate();
 
             // commit transaction
             transaction.commit();
-            return true ;
+            return true;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
-                return false ;
+                return false;
             }
             e.printStackTrace();
 
         }
-        return false ;
+        return false;
     }
 
     public Employee getEmployeeById(int id) {
@@ -177,6 +193,51 @@ public class EmployeeDao {
 
         }
         return managerList;
+    }
+
+    public boolean setInUse (int id , boolean inUse) {
+
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            transaction = session.beginTransaction();
+
+            String hql = "UPDATE Employee set inUse = :inUse " +
+                    "WHERE id = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("inUse", inUse);
+            query.setParameter("id", id);
+
+            query.executeUpdate();
+            transaction.commit();
+
+            return true;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+                return false;
+            }
+            e.printStackTrace();
+
+        }
+        return false;
+    }
+
+    public boolean isInUse (int employeeId) {
+
+        Transaction transaction= null ;
+
+        Employee employee = null ;
+
+        try(Session session=HibernateUtil.getSessionFactory().openSession()) {
+
+            transaction = session.beginTransaction() ;
+            employee = (Employee) session.createQuery("From Employee emp where id=:id").setParameter("id",employeeId).uniqueResult() ;
+            if (employee.isInUse())
+                return false ;
+            return true ;
+
+        }
     }
 
 }

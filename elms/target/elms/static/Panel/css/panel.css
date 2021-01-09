@@ -2,10 +2,10 @@
 
 body {
 
-    background: #36BDD1;
-    background: -webkit-linear-gradient(left top, #027, #36BDD1);
-    background: -moz-linear-gradient(bottom right, #027, #36BDD1);
-    background: linear-gradient(to bottom right, #027, #36BDD1);
+    background: #F11485;
+    background: -webkit-linear-gradient(left top, #027, #F11485);
+    background: -moz-linear-gradient(bottom right, #027, #F11485);
+    background: linear-gradient(to bottom right, #027, #F11485);
     color: #fff;
     font-family: 'Raleway', Helvetica, Arial, sans-serif;
     font-size: 18px;

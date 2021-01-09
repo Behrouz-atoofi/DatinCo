@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "T_LEAVE_REQUEST")
-public class LeaveRequest {
+public class LeaveRequest extends DateTime{
 
 
     @Id
@@ -23,6 +23,11 @@ public class LeaveRequest {
     @Basic
     @Column(name = "C_REASON", columnDefinition = "TEXT")
     private String reason;
+
+    @Basic
+    @Column(name = "C_DISABLED", columnDefinition = "Bool")
+    private boolean disabled;
+
 
     @ManyToOne(targetEntity = Employee.class)
     @JoinColumn(name = "C_EMPLOYEE", referencedColumnName = "ID")

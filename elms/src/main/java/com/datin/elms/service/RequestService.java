@@ -9,6 +9,8 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 import javax.persistence.Basic;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class RequestService {
@@ -37,11 +39,18 @@ public class RequestService {
 
     public void sendRequest (String fromDate , String toDate ,String reason , Employee employee) {
         BasicConfigurator.configure();
+
+        Date dTime = new Date( );
+        SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
+        String date_created = df.format(dTime);
+
         LeaveRequest leaveRequest =  new LeaveRequest() ;
         leaveRequest.setFrom_date(fromDate);
         leaveRequest.setTo_date(toDate);
         leaveRequest.setReason(reason);
         leaveRequest.setEmployee(employee);
+        leaveRequest.setDate_created(date_created);
+        leaveRequest.setLast_modified(date_created);
         leaveRequest.setStatus(CategoryDao.getElementByName("pending"));
 
         RequestDao requestDao = new RequestDao() ;
@@ -79,7 +88,7 @@ public class RequestService {
         BasicConfigurator.configure();
 
 
-        List<LeaveRequest> leaveRequests = requestDao.getRequestsByEmployee(employee) ;
+        List<LeaveRequest> leaveRequests = requestDao.getRequestsByManager(employee) ;
         log.info("Number of subset requests is : " + leaveRequests.size() );
 
         return leaveRequests ;

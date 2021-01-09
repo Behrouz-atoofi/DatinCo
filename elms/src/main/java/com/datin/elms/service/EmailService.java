@@ -17,6 +17,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class EmailService {
@@ -31,11 +33,28 @@ public class EmailService {
 
     }
 
-    public Attachment getEmailAttachment(int emailId) {
+    public List<Attachment> getEmailAttachments(int emailId) {
         BasicConfigurator.configure();
 
         Email email = emailDao.getEmailById(emailId) ;
-        Attachment attachment =  emailDao.downloadAttachment(email) ;
+        List<Attachment> attachments =  emailDao.downloadAttachments(email) ;
+
+        if (attachments != null) {
+            log.info("Attachment loaded Successfully ...");
+            return attachments;
+        } else {
+            log.warn("Attachment couldn't load ...");
+            return null ;
+        }
+
+    }
+
+    public Attachment getAttachmentById(int attachmentId) {
+
+
+        BasicConfigurator.configure();
+
+        Attachment attachment = emailDao.downloadSingleAttachment(attachmentId) ;
 
         if (attachment != null) {
             log.info("Attachment loaded Successfully ...");
@@ -64,8 +83,11 @@ public class EmailService {
 
     }
 
-    public void sendEmail (Employee employee ,String subject , String receiver , String content , Part filePart) throws IOException {
+    public void sendEmail (Employee employee ,String subject , String receiver , String content , List<Part> fileParts) throws IOException {
         BasicConfigurator.configure();
+        Date dTime = new Date( );
+        SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
+        String date_created = df.format(dTime);
 
         Email email = new Email();
 
@@ -74,8 +96,11 @@ public class EmailService {
         email.setContent(content);
         email.setStatus(CategoryDao.getElementByName("unread"));
         email.setEmail_sender(employee.getEmail());
+        email.setDisabled(false);
+        email.setDate_created(date_created);
+        email.setLast_modified(date_created);
 
-        if (filePart.getSize() > 0) {
+        if (fileParts.size() > 0) {
             log.info("Email contains Attachment ...");
             email.setAttachment(true);
             if (emailDao.save(email) ) {
@@ -84,25 +109,27 @@ public class EmailService {
                 log.warn("Email Couldn't be saved ...");
             }
 
-            InputStream inputStream = null;
-            inputStream = filePart.getInputStream();
-            File targetFile = new File("src/main/resources/targetFile.tmp");
-            FileUtils.copyInputStreamToFile(inputStream, targetFile);
-            FileInputStream fis = new FileInputStream(targetFile);
-            Blob data = HibernateUtil.getHibernateSession().getLobHelper().createBlob(fis, filePart.getSize());
-            Attachment attachment = new Attachment();
-            attachment.setFileName("attachment");
-            attachment.setFileType(filePart.getContentType());
-            attachment.setData(data);
-            attachment.setEmail(email);
+            for (Part filePart : fileParts) {
+                InputStream inputStream = null;
+                inputStream = filePart.getInputStream();
+                File targetFile = new File("src/main/resources/targetFile.tmp");
+                FileUtils.copyInputStreamToFile(inputStream, targetFile);
+                FileInputStream fis = new FileInputStream(targetFile);
+                Blob data = HibernateUtil.getHibernateSession().getLobHelper().createBlob(fis, filePart.getSize());
+                Attachment attachment = new Attachment();
+                attachment.setFileName("attachment");
+                attachment.setFileType(filePart.getContentType());
+                attachment.setData(data);
+                attachment.setEmail(email);
 
-            if ( emailDao.saveEmailAttachment(attachment)) {
-                log.info("Attachment saved successfully ...");
-            } else {
-                log.warn("Attachment couldn't be saved ...");
+                if ( emailDao.saveEmailAttachment(attachment)) {
+                    log.info("Attachment saved successfully ...");
+                } else {
+                    log.warn("Attachment couldn't be saved ...");
+                }
+                inputStream.close();
             }
 
-            inputStream.close();
         } else {
             email.setAttachment(false);
             emailDao.save(email);

@@ -4,11 +4,14 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class main {
     public static void main(String[] args) throws IOException {
 
-        loadData();
+
+
     }
 
 
@@ -43,6 +46,10 @@ public class main {
         administrator.setPhoneNumber("000000000");
         administrator.setManager(administrator);
         administrator.setRole(founder);
+
+        administrator.setDisabled(false);
+        administrator.setInUse(false);
+        administrator.setActive(true);
 
         Transaction transaction = null ;
 

@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet("/download")
 public class DownloadAttachmentSrv extends HttpServlet {
@@ -22,25 +23,26 @@ public class DownloadAttachmentSrv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
-        int emailId = Integer.parseInt(req.getParameter("id")) ;
-        EmailService emailService = new EmailService() ;
-        Attachment attachment = emailService.getEmailAttachment(emailId); ;
-
+        int attachmentId = Integer.parseInt(req.getParameter("id"));
+        EmailService emailService = new EmailService();
+        Attachment attachment = emailService.getAttachmentById(attachmentId);
 
         try {
+
             resp.setHeader("Content-Disposition", "inline; filename=\"" + "attachment" + "\"");
             OutputStream out = resp.getOutputStream();
             resp.setContentType(attachment.getFileType());
 
-            IOUtils.copy(attachment.getData().getBinaryStream() , out);
+            IOUtils.copy(attachment.getData().getBinaryStream(), out);
             out.flush();
             out.close();
 
-        }  catch (IOException | SQLException e) {
+        } catch (IOException | SQLException e) {
             System.out.println(e.toString());
-            //Handle exception here
+
+
         }
 
     }
+
 }

@@ -22,11 +22,11 @@ public class Attachment {
     private String fileType ;
 
     @Lob
-    @Column(name="C_FILE_DATA", nullable=false)
+    @Column(name="C_FILE_DATA", nullable=false, columnDefinition = "longblob")
     private Blob data;
 
-    @ManyToOne
-    @JoinColumn(name ="EMAIL_ID")
+    @ManyToOne(targetEntity = Email.class)
+    @JoinColumn(name = "EMAIL_ID")
     private Email email ;
 
     public int getId() {

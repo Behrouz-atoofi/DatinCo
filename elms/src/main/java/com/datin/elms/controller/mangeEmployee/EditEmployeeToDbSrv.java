@@ -1,9 +1,5 @@
 package com.datin.elms.controller.mangeEmployee;
 
-import com.datin.elms.model.Employee;
-import com.datin.elms.repository.CategoryDao;
-import com.datin.elms.repository.EmployeeDao;
-
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -32,9 +28,10 @@ public class EditEmployeeToDbSrv extends HttpServlet {
         String phoneNumber = req.getParameter("phonenumber") ;
         int roleId = Integer.parseInt(req.getParameter("roleName")) ;
         String manager = req.getParameter("manager") ;
+        int isActive = Integer.parseInt(req.getParameter("active")) ;
 
         EmployeeService employeeService = new EmployeeService() ;
-        employeeService.updateEmployee(id,name,family,username,password,email,phoneNumber,roleId);
+        employeeService.updateEmployee(id,name,family,username,password,email,phoneNumber,roleId,isActive,false);
 
         req.getRequestDispatcher("employees").forward(req, res); ;
 

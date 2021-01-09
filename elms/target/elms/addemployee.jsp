@@ -50,6 +50,13 @@
                     <% } %>
                 </select>
 
+                <label for="active">Activation</label>
+                <select class="form-control" name="active" id="active">
+                    <option value="1">Active</option>
+                    <option value="0">DeActive</option>
+                </select>
+
+
             </div></div>
 
             <button type="submit" class="btn btn-primary">Add</button>

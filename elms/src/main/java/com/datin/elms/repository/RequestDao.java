@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class RequestDao {
@@ -20,8 +22,13 @@ public class RequestDao {
 
             transaction = session.beginTransaction();
 
-            requestList = session.createQuery("FROM LeaveRequest request where request.employee=:employee")
-                    .setParameter("employee", employee).list();
+
+            Query query = session.createQuery("FROM LeaveRequest request where request.disabled=:disabled and request.employee=:employee") ;
+            query.setParameter("disabled",false) ;
+            query.setParameter("employee",employee) ;
+
+            requestList = query.list() ;
+
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -57,23 +64,33 @@ public class RequestDao {
     public boolean deleteRequestById(int id) {
 
         Transaction transaction = null;
-        LeaveRequest leaveRequest = null;
+
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            Date dTime = new Date( );
+            SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
+            String last_modified = df.format(dTime);
+
             transaction = session.beginTransaction();
-            leaveRequest = (LeaveRequest) session.createQuery("FROM LeaveRequest lvr WHERE lvr.id =:id")
-                    .setParameter("id", id).uniqueResult();
 
-            if (leaveRequest != null) {
-                session.delete(leaveRequest);
-                transaction.commit();
-                return true ;
-            }
+            String hql = "UPDATE LeaveRequest lvr set lvr.disabled =:disabled , lvr.last_modified =:last_modified "+
+                    "WHERE lvr.id= :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("last_modified", last_modified );
+            query.setParameter("disabled", true );
+            query.setParameter("id", id);
 
+            query.executeUpdate();
+            transaction.commit();
+            return true ;
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+
+            }
             e.printStackTrace();
             return false ;
         }
-        return false ;
     }
 
     public List<LeaveRequest> getRequestsByManager(Employee manager) {
@@ -101,10 +118,13 @@ public class RequestDao {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-
-            String hql = "UPDATE LeaveRequest lvr set lvr.status =:status WHERE lvr.id= :id";
+            Date dTime = new Date( );
+            SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
+            String last_modified = df.format(dTime);
+            String hql = "UPDATE LeaveRequest lvr set lvr.status =:status ,lvr.last_modified=:last_modified WHERE lvr.id= :id";
             Query query = session.createQuery(hql);
             query.setParameter("status", CategoryDao.getElementByName("accepted"));
+            query.setParameter("last_modified",last_modified );
             query.setParameter("id", requestID);
 
             query.executeUpdate();
@@ -126,11 +146,17 @@ public class RequestDao {
         Transaction transaction = null;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            Date dTime = new Date( );
+            SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
+            String last_modified = df.format(dTime);
+
             transaction = session.beginTransaction();
 
-            String hql = "UPDATE LeaveRequest lvr set lvr.status =:status WHERE lvr.id= :id";
+            String hql = "UPDATE LeaveRequest lvr set lvr.status =:status , lvr.last_modified=:last_modified WHERE lvr.id= :id";
             Query query = session.createQuery(hql);
             query.setParameter("status", CategoryDao.getElementByName("rejected"));
+            query.setParameter("last_modified",last_modified) ;
             query.setParameter("id", requestID);
 
             query.executeUpdate();

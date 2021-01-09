@@ -1,12 +1,13 @@
 package com.datin.elms.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "T_EMAIL")
-public class Email {
+public class Email extends DateTime {
 
     @Id
     @Column(name = "ID", columnDefinition = "INT")
@@ -34,13 +35,21 @@ public class Email {
     private Boolean attachment ;
 
 
-//    @OneToMany(mappedBy = "email", cascade = CascadeType.ALL)
-//    private Set<EmailFile> EmailFiles = new HashSet<EmailFile>();
+    @Basic
+    @Column (name = "C_DISABLED",columnDefinition = "BOOLEAN")
+    private Boolean disabled ;
+
+    @OneToMany(targetEntity = Attachment.class ,cascade = CascadeType.ALL)
+    @JoinColumn(name = "EMAIL_ID")
+    private Set<Attachment> attachments  ;
 
 
     @ManyToOne(targetEntity = CategoryElement.class)
     @JoinColumn(name = "C_STATUS", referencedColumnName = "ID")
     private CategoryElement status;
+
+
+
 
     public int getId() {
         return id;
@@ -96,5 +105,21 @@ public class Email {
 
     public void setAttachment(Boolean attachment) {
         this.attachment = attachment;
+    }
+
+    public Boolean getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(Boolean disabled) {
+        this.disabled = disabled;
+    }
+
+    public Set<Attachment> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(Set<Attachment> attachments) {
+        this.attachments = attachments;
     }
 }

@@ -3,7 +3,6 @@ package com.datin.elms.controller.mangeEmployee;
 
 import com.datin.elms.model.CategoryElement;
 import com.datin.elms.model.Employee;
-import com.datin.elms.repository.EmployeeDao;
 import com.datin.elms.service.EmployeeService;
 
 import javax.servlet.ServletException;
@@ -19,16 +18,19 @@ public class EditEmployeeFormSrv extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int employeeId = Integer.parseInt(req.getParameter("id")) ;
-
         EmployeeService employeeService = new EmployeeService() ;
-        Employee employee = employeeService.getEmployee(employeeId);
-        List<CategoryElement> roleList = employeeService.getRoles() ;
+        int employeeId = Integer.parseInt(req.getParameter("id")) ;
+        if (employeeService.checkInUse(employeeId)) {
 
-        //System.out.println(employee.getName());
-        req.setAttribute("roleList",roleList);
-        req.setAttribute("employee",employee);
-        req.getRequestDispatcher("editemployee.jsp").forward(req,resp);
-
+            Employee employee = employeeService.getEmployee(employeeId);
+            List<CategoryElement> roleList = employeeService.getRoles();
+            req.setAttribute("roleList", roleList);
+            req.setAttribute("employee", employee);
+            req.getRequestDispatcher("editemployee.jsp").forward(req, resp);
+        }
+        else {
+            req.setAttribute("msg" , "The selected employee is in Use right now ! ");
+            req.getRequestDispatcher("error.jsp").forward(req,resp);
+        }
     }
 }

@@ -1,5 +1,8 @@
+<%@ page import="com.datin.elms.model.Attachment" %>
 <%@ page import="com.datin.elms.model.Email" %>
 <%@ page import="com.datin.elms.model.Employee" %>
+<%@ page import="com.datin.elms.service.EmailService" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,23 +22,35 @@
 <div class="container">
     <h1></h1>
 
-                <%Email email = (Email) request.getAttribute("email") ;%>
-                <label for="subject">Subject</label>
-                <input type="text" class="form-control" id="subject" name="subject" value="<%=email.getSubject()%>" readonly>
+    <%Email email = (Email) request.getAttribute("email");%>
+    <label for="subject">Subject</label>
+    <input type="text" class="form-control" id="subject" name="subject" value="<%=email.getSubject()%>" readonly>
 
-                <label for="receiver">receiver</label>
-                <input type="text" class="form-control" id="receiver" name="receiver"  value="<%=email.getEmail_receiver()%>" readonly>
+    <label for="receiver">receiver</label>
+    <input type="text" class="form-control" id="receiver" name="receiver" value="<%=email.getEmail_receiver()%>"
+           readonly>
 
-                <label for="sender">Sender</label>
-                <input type="text" class="form-control" id="sender" name="content"  value="<%=email.getEmail_sender()%>" readonly>
+    <label for="sender">Sender</label>
+    <input type="text" class="form-control" id="sender" name="content" value="<%=email.getEmail_sender()%>" readonly>
 
-                <label for="sender">content</label>
-                <input type="text" class="form-control" id="sender" name="content"  value="<%=email.getContent()%>" readonly>
-                <h1></h1>
+    <label for="sender">content</label>
+    <input type="text" class="form-control" id="sender" name="content" value="<%=email.getContent()%>" readonly>
+    <h1></h1>
 
-                <a <%if(!email.getAttachment()) {%> hidden <%}%> class="btn btn-primary" href="download?id=<%=email.getId()%>" role="button">Download Attachment</a>
+    <%
+        if (email.getAttachment()) {
+            EmailService emailService = new EmailService();
+            List<Attachment> attachments = emailService.getEmailAttachments(email.getId());
+            int i = 1 ;
+            for (Attachment attachment : attachments) {
 
-            </div>
+    %>
+    <a class="btn btn-primary" href="download?id=<%=attachment.getId()%>" role="button">Download Attachment <%=i%></a>
+    <% i++ ; }
+    }%>
+
+
+</div>
 
 <div class="side_menu">
     <div class="burger_box">
@@ -54,8 +69,9 @@
         <% Employee employee = (Employee) request.getSession().getAttribute("employee");%>
 
         <ul class="list_load">
-            <h1>  </h1>
-            <div class="spacer_box"><p><%="Welcome : " + employee.getName()%></p></div>
+            <h1></h1>
+            <div class="spacer_box"><p><%="Welcome : " + employee.getName()%>
+            </p></div>
             <li class="list_item"><a href="myProfile">My Profile</a></li>
             <li class="list_item"><a href="employees">employees</a></li>
             <li class="list_item"><a href="manageRequests">manage requests</a></li>
