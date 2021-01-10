@@ -1,4 +1,6 @@
 import com.datin.elms.model.*;
+import com.datin.elms.repository.EmployeeDao;
+import com.datin.elms.service.EmployeeService;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -10,7 +12,10 @@ import java.util.Date;
 public class main {
     public static void main(String[] args) throws IOException {
 
+        EmployeeService employeeService = new EmployeeService() ;
 
+
+        System.out.println(employeeService.checkEmployeeByEmail("mr.atoufi@gmail.com"));
 
     }
 

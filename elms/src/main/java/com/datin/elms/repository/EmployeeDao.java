@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 
 public class EmployeeDao {
@@ -83,8 +84,9 @@ public class EmployeeDao {
 
         Transaction transaction = null;
 
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Date dTime = new Date( );
             SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
             String last_modified = df.format(dTime);
@@ -238,6 +240,29 @@ public class EmployeeDao {
             return true ;
 
         }
+    }
+
+    public boolean checkEmployeeByEmail (String email) {
+
+        Transaction transaction = null ;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction() ;
+
+            String hql = "From Employee emp WHERE emp.email = :email" ;
+
+            Query query = session.createQuery(hql) ;
+            query.setParameter("email",email) ;
+
+            if ( query.uniqueResult() != null ) {
+                return true ;
+            } else
+                return false ;
+        }catch (Exception e ) {
+            e.printStackTrace();
+            return false ;
+        }
+
     }
 
 }

@@ -3,9 +3,11 @@ package com.datin.elms.service;
 import com.datin.elms.model.CategoryElement;
 import com.datin.elms.model.Employee;
 import com.datin.elms.repository.CategoryDao;
+import com.datin.elms.repository.EmailDao;
 import com.datin.elms.repository.EmployeeDao;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
+import sun.rmi.runtime.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -143,4 +145,20 @@ public class EmployeeService {
         return employeeDao.isInUse(employeeId) ;
 
     }
+
+    public boolean checkEmployeeByEmail (String email) {
+        BasicConfigurator.configure();
+        EmployeeDao employeeDao = new EmployeeDao() ;
+
+
+        if (employeeDao.checkEmployeeByEmail(email)) {
+            log.info("Employee exists in db by this emailAddress");
+            return true;
+
+        } else {
+            log.warn("Employee does not exist in db by this email Address");
+            return false ;
+        }
+    }
+
 }
