@@ -3,6 +3,7 @@ package com.datin.elms.controller.email;
 
 import com.datin.elms.model.Employee;
 import com.datin.elms.service.EmailService;
+import com.datin.elms.service.EmployeeService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -25,13 +26,19 @@ public class SendEmailSrv extends HttpServlet {
         Employee employee = (Employee) req.getSession().getAttribute("employee");
         String subject = req.getParameter("subject");
         String content = req.getParameter("content");
-        String receiverEmail = req.getParameter("receiver");
+        String receiver = req.getParameter("receiver");
         List<Part> fileParts = req.getParts().stream().filter(part -> "file".equals(part.getName()) && part.getSize() > 0).collect(Collectors.toList());
 
-        EmailService emailService =  new EmailService() ;
-        emailService.sendEmail(employee,subject,receiverEmail,content,fileParts) ;
+        EmployeeService employeeService = new EmployeeService() ;
 
-        resp.sendRedirect("email");
+        if (employeeService.checkEmployeeByEmail(receiver)) {
+            EmailService emailService = new EmailService();
+            emailService.sendEmail(employee, subject, receiver, content, fileParts);
+            resp.sendRedirect("email");
+        }else {
+            req.setAttribute("msg","One or Some Emails don't exist in DB");
+            req.getRequestDispatcher("error.jsp").forward(req,resp);
+            }
 
     }
 }

@@ -2,6 +2,10 @@ package com.datin.elms.model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -39,6 +43,9 @@ public class Employee extends DateTime {
     @Basic
     @Column(name = "C_INUSE", columnDefinition = "Bool")
     private boolean inUse;
+
+    @ManyToMany(mappedBy = "receivers")
+    private List<Email> Emails= new ArrayList<Email>();
 
 
     @ManyToOne(targetEntity = Employee.class)
@@ -129,6 +136,13 @@ public class Employee extends DateTime {
         isActive = active;
     }
 
+    public List<Email> getEmails() {
+        return Emails;
+    }
+
+    public void setEmails(List<Email> emails) {
+        Emails = emails;
+    }
 
     public boolean isDisabled() {
         return disabled;

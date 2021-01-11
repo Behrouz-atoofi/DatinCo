@@ -15,12 +15,12 @@ import java.util.List;
 
 public class EmployeeService {
     static Logger log = Logger.getLogger(EmailService.class.getName());
-    EmployeeDao employeeDao = new EmployeeDao() ;
+    EmployeeDao employeeDao = new EmployeeDao();
 
 
     public List<CategoryElement> getRoles() {
         BasicConfigurator.configure();
-        List<CategoryElement> roleList = employeeDao.getRole() ;
+        List<CategoryElement> roleList = employeeDao.getRole();
 
         if (roleList != null) {
             log.info("All roles loaded successfully ...");
@@ -28,11 +28,11 @@ public class EmployeeService {
             log.warn("Error for loading roles ...");
         }
 
-        return roleList ;
+        return roleList;
     }
 
-    public void AddEmployee (String name , String family, String username, String password ,String email , String phoneNumber,int roleId , Employee manager,int isActive) {
-            BasicConfigurator.configure();
+    public void AddEmployee(String name, String family, String username, String password, String email, String phoneNumber, int roleId, Employee manager, int isActive) {
+        BasicConfigurator.configure();
         Employee employee = new Employee();
         employee.setName(name);
         employee.setFamily(family);
@@ -46,7 +46,7 @@ public class EmployeeService {
         employee.setDisabled(false);
         employee.setInUse(false);
 
-        Date dTime = new Date( );
+        Date dTime = new Date();
         SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
         String date_created = df.format(dTime);
 
@@ -55,7 +55,7 @@ public class EmployeeService {
 
         EmployeeDao employeeDao = new EmployeeDao();
 
-        if ( employeeDao.saveEmployee(employee)) {
+        if (employeeDao.saveEmployee(employee)) {
             log.info("Employee added successfully ...");
         } else {
             log.warn("Employee Couldn't to be saved ...");
@@ -64,11 +64,11 @@ public class EmployeeService {
 
     }
 
-    public void deleteEmployee (int employeeId) {
+    public void deleteEmployee(int employeeId) {
         BasicConfigurator.configure();
         EmployeeDao employeeDao = new EmployeeDao();
 
-        if ( employeeDao.deleteEmployee(employeeId)) {
+        if (employeeDao.deleteEmployee(employeeId)) {
             log.info("Employee deleted successfully...");
         } else {
             log.warn("Error for deleting employee ...");
@@ -77,24 +77,24 @@ public class EmployeeService {
     }
 
     public Employee getEmployee(int employeeId) {
-        Employee employee = employeeDao.getEmployeeById(employeeId) ;
+        Employee employee = employeeDao.getEmployeeById(employeeId);
         BasicConfigurator.configure();
-        if (employee !=null) {
+        if (employee != null) {
             log.info("Employee exists in database ...");
         } else {
             log.warn("Employee does not exists in database ...");
         }
-            return employee ;
+        return employee;
     }
 
-    public void updateEmployee (int id , String name , String family, String username, String password,String email,String phoneNumber,int roleId,int isActive,boolean inUse) {
+    public void updateEmployee(int id, String name, String family, String username, String password, String email, String phoneNumber, int roleId, int isActive, boolean inUse) {
         BasicConfigurator.configure();
 
-        Date dTime = new Date( );
+        Date dTime = new Date();
         SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
         String last_modified = df.format(dTime);
 
-        Employee employee = new Employee() ;
+        Employee employee = new Employee();
         employee.setId(id);
         employee.setName(name);
         employee.setFamily(family);
@@ -106,7 +106,7 @@ public class EmployeeService {
         employee.setActive(isActive == 1);
         employee.setInUse(inUse);
         employee.setLast_modified(last_modified);
-        EmployeeDao employeeDao = new EmployeeDao() ;
+        EmployeeDao employeeDao = new EmployeeDao();
 
 
         if (employeeDao.updateEmployee(employee)) {
@@ -121,44 +121,50 @@ public class EmployeeService {
     public List<Employee> getEmployees() {
         BasicConfigurator.configure();
 
-        List<Employee> employeeList = employeeDao.getEmployees() ;
+        List<Employee> employeeList = employeeDao.getEmployees();
 
         log.info("Number of employees is :" + employeeList.size());
 
-        return employeeList ;
+        return employeeList;
     }
 
-    public void setInUse(int id , boolean inUse ) {
+    public void setInUse(int id, boolean inUse) {
 
-        EmployeeDao employeeDao = new EmployeeDao() ;
+        EmployeeDao employeeDao = new EmployeeDao();
 
-        if (employeeDao.setInUse(id,inUse)) {
+        if (employeeDao.setInUse(id, inUse)) {
             log.info("InUse column updated");
         } else {
             log.info("The status of InUse column couldn't be changed");
         }
     }
 
-    public boolean checkInUse (int employeeId) {
-        EmployeeDao employeeDao = new EmployeeDao() ;
+    public boolean checkInUse(int employeeId) {
+        EmployeeDao employeeDao = new EmployeeDao();
 
-        return employeeDao.isInUse(employeeId) ;
+        return employeeDao.isInUse(employeeId);
 
     }
 
-    public boolean checkEmployeeByEmail (String email) {
+    public boolean checkEmployeeByEmail(String emails) {
         BasicConfigurator.configure();
-        EmployeeDao employeeDao = new EmployeeDao() ;
+        EmployeeDao employeeDao = new EmployeeDao();
 
+        String[] SplitReceiverBox = emails.split(",");
 
-        if (employeeDao.checkEmployeeByEmail(email)) {
-            log.info("Employee exists in db by this emailAddress");
-            return true;
+        for (String splitReceiverBox : SplitReceiverBox) {
 
-        } else {
-            log.warn("Employee does not exist in db by this email Address");
-            return false ;
+            if (employeeDao.checkEmployeeByEmail(splitReceiverBox)) {
+
+            } else {
+                log.warn("The Email" + splitReceiverBox + "does not exist in db");
+                return false;
+            }
         }
+            return true ;
+
     }
+
+
 
 }

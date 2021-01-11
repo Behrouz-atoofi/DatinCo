@@ -2,6 +2,7 @@ package com.datin.elms.repository;
 
 import com.datin.elms.model.Email;
 import com.datin.elms.model.Attachment;
+import com.datin.elms.model.Employee;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -14,19 +15,22 @@ import java.util.List;
 public class EmailDao {
 
 
-    public List<Email> getEmailByReceiver(String email) {
+    public List<Email> getEmailByReceiver(Employee receiver) {
 
         Transaction transaction = null;
-
+         ;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
             transaction = session.beginTransaction();
 
-            String hql = "FROM Email eml where eml.email_receiver=:email and eml.disabled=:disabled" ;
-            Query query = session.createQuery(hql) ;
-            query.setParameter("email",email) ;
-            query.setParameter("disabled",false) ;
+            String hql = "select distinct eml from Email eml " +
+                    "join eml.receivers t " +
+                    "where t.email in (:receiver) and t.disabled=:disabled" ;
+            Query query = session.createQuery(hql);
+            query.setParameter("receiver", receiver.getEmail());
+            query.setParameter("disabled", false);
+
             return query.list() ;
 
         } catch (Exception e ) {
@@ -35,7 +39,7 @@ public class EmailDao {
         return null ;
     }
 
-    public List<Email> getEmailBySender(String email) {
+    public List<Email> getEmailBySender(Employee sender) {
 
         Transaction transaction = null;
 
@@ -44,9 +48,9 @@ public class EmailDao {
 
             transaction = session.beginTransaction();
 
-            String hql = "FROM Email eml where eml.email_sender=:email and eml.disabled=:disabled" ;
+            String hql = "FROM Email eml where eml.sender=:sender and eml.disabled=:disabled" ;
             Query query = session.createQuery(hql) ;
-            query.setParameter("email",email) ;
+            query.setParameter("sender",sender) ;
             query.setParameter("disabled",false) ;
             return query.list() ;
 

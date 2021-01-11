@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.nio.file.SecureDirectoryStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -263,6 +264,25 @@ public class EmployeeDao {
             return false ;
         }
 
+    }
+
+    public Employee getEmployeeByEmail (String email) {
+
+        Transaction transaction = null ;
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction() ;
+            Employee receiver = null ;
+            String hql = "From Employee emp Where emp.email=:email" ;
+
+            Query query = session.createQuery(hql) ;
+            query.setParameter("email",email) ;
+            receiver = (Employee) query.uniqueResult() ;
+
+            return receiver ;
+        } catch (Exception e ) {
+            return null;
+        }
     }
 
 }

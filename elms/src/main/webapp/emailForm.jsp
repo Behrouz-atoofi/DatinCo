@@ -27,7 +27,8 @@
                 </tr>
                 <tr>
                     <td>Receiver: </td>
-                    <td><input type="text" name="receiver" size="70" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" /></td>
+                    <td><input type="text" name="receiver" size="70" required="required"  /></td>
+<%--                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"--%>
                 </tr>
                 <tr>
                     <td>text: </td>

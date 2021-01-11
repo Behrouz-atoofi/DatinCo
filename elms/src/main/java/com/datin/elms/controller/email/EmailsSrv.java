@@ -23,6 +23,7 @@ public class EmailsSrv extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Employee employee = (Employee) req.getSession().getAttribute("employee");
+
         EmailService emailService = new EmailService() ;
 
         List<Email> inbox = emailService.getInboxEmails(employee);

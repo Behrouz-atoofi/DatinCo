@@ -1,9 +1,7 @@
 package com.datin.elms.model;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "T_EMAIL")
@@ -22,13 +20,20 @@ public class Email extends DateTime {
     @Column(name = "C_CONTENT", columnDefinition = "TEXT")
     private String content;
 
-    @Basic
-    @Column(name = "C_EMAIL_SENDER", columnDefinition = "TEXT")
-    private String email_sender;
+    @ManyToOne (targetEntity = Employee.class)
+    @JoinColumn(name="C_SENDER" , referencedColumnName = "ID")
+    private Employee sender ;
 
-    @Basic
-    @Column(name = "C_EMAIL_RECEIVER", columnDefinition = "TEXT")
-    private String email_receiver;
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "T_EMAIL_EMPLOYEE",
+            joinColumns = @JoinColumn(name = "EMAIL_ID"),
+            inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID")
+    )
+    private List<Employee> receivers = new ArrayList<Employee>();
 
     @Basic
     @Column (name = "C_ATTACHMENT" ,columnDefinition = "BOOLEAN")
@@ -75,20 +80,20 @@ public class Email extends DateTime {
         this.content = content;
     }
 
-    public String getEmail_sender() {
-        return email_sender;
+    public Employee getSender() {
+        return sender;
     }
 
-    public void setEmail_sender(String email_sender) {
-        this.email_sender = email_sender;
+    public void setSender(Employee sender) {
+        this.sender = sender;
     }
 
-    public String getEmail_receiver() {
-        return email_receiver;
+    public List<Employee> getReceivers() {
+        return receivers;
     }
 
-    public void setEmail_receiver(String email_receiver) {
-        this.email_receiver = email_receiver;
+    public void setReceivers(List<Employee> receivers) {
+        this.receivers = receivers;
     }
 
     public CategoryElement getStatus() {

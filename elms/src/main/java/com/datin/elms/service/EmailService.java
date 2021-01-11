@@ -6,16 +6,21 @@ import com.datin.elms.model.Attachment;
 import com.datin.elms.model.Employee;
 import com.datin.elms.repository.CategoryDao;
 import com.datin.elms.repository.EmailDao;
+import com.datin.elms.repository.EmployeeDao;
 import com.datin.elms.util.HibernateUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
+import org.apache.taglibs.standard.lang.jstl.EmptyOperator;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.SecureDirectoryStream;
 import java.sql.Blob;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,6 +29,7 @@ import java.util.List;
 public class EmailService {
     static Logger log = Logger.getLogger(EmailService.class.getName());
     EmailDao emailDao = new EmailDao();
+    EmployeeDao employeeDao = new EmployeeDao() ;
 
     public void deleteEmail(int emailId) {
         BasicConfigurator.configure();
@@ -66,9 +72,9 @@ public class EmailService {
 
     }
 
-    public List<Email> getInboxEmails (Employee employee) {
+    public List<Email> getInboxEmails (Employee receiver) {
         BasicConfigurator.configure();
-        List<Email> inbox = emailDao.getEmailByReceiver(employee.getEmail());
+        List<Email> inbox = emailDao.getEmailByReceiver(receiver);
 
             log.info("number of emails By receiver EmailAddress is : " + inbox.size() );
             return inbox ;
@@ -76,26 +82,33 @@ public class EmailService {
 
     public List<Email> getSentEmails (Employee employee) {
         BasicConfigurator.configure();
-        List<Email> sent = emailDao.getEmailBySender(employee.getEmail());
+        List<Email> sent = emailDao.getEmailBySender(employee);
 
         log.info("number of emails By sender EmailAddress is : "+sent.size());
         return sent ;
 
     }
 
-    public void sendEmail (Employee employee ,String subject , String receiver , String content , List<Part> fileParts) throws IOException {
+    public void sendEmail (Employee employee ,String subject , String receiversEmail , String content , List<Part> fileParts) throws IOException {
         BasicConfigurator.configure();
         Date dTime = new Date( );
         SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
         String date_created = df.format(dTime);
 
         Email email = new Email();
+        Employee receiverEmployee ;
+        String [] receivers = receiversEmail.split(",") ;
+
+        for (String receiverEmail : receivers) {
+            receiverEmployee = employeeDao.getEmployeeByEmail(receiverEmail) ;
+            email.getReceivers().add(receiverEmployee);
+        }
+
 
         email.setSubject(subject);
-        email.setEmail_receiver(receiver);
         email.setContent(content);
         email.setStatus(CategoryDao.getElementByName("unread"));
-        email.setEmail_sender(employee.getEmail());
+        email.setSender(employee);
         email.setDisabled(false);
         email.setDate_created(date_created);
         email.setLast_modified(date_created);
@@ -151,6 +164,7 @@ public class EmailService {
 
         return email ;
     }
+
 
 
 }
