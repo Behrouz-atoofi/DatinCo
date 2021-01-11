@@ -41,7 +41,7 @@
         <tr>
             <td><%=email.getId()%></td>
             <td><%=email.getSubject()%></td>
-            <td><%=email.getEmail_sender()%></td>
+            <td><%=email.getSender().getEmail()%></td>
             <td><%=email.getAttachment()? "YES" : "NO" %></td>
             <td><a href="viewEmail?id=<%=email.getId()%>">view</a></td>
 
@@ -66,7 +66,6 @@
         <tr>
             <th>Email ID</th>
             <th>Subject</th>
-            <th>Receiver</th>
             <th>Status</th>
             <th>Attachment</th>
             <th>Delete</th>
@@ -83,7 +82,7 @@
         <tr>
             <td><%=email.getId()%></td>
             <td><%=email.getSubject()%></td>
-            <td><%=email.getEmail_receiver()%></td>
+
             <td><%=email.getStatus().getName()%></td>
             <td><%= email.getAttachment()? "YES" : "NO" %></td>
             <td><a href="deleteEmail?id=<%=email.getId()%>">Delete</a></td>

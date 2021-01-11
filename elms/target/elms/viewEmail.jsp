@@ -27,11 +27,11 @@
     <input type="text" class="form-control" id="subject" name="subject" value="<%=email.getSubject()%>" readonly>
 
     <label for="receiver">receiver</label>
-    <input type="text" class="form-control" id="receiver" name="receiver" value="<%=email.getEmail_receiver()%>"
+    <input type="text" class="form-control" id="receiver" name="receiver" value="receivers"
            readonly>
 
     <label for="sender">Sender</label>
-    <input type="text" class="form-control" id="sender" name="content" value="<%=email.getEmail_sender()%>" readonly>
+    <input type="text" class="form-control" id="sender" name="content" value="<%=email.getSender().getEmail()%>" readonly>
 
     <label for="sender">content</label>
     <input type="text" class="form-control" id="sender" name="content" value="<%=email.getContent()%>" readonly>

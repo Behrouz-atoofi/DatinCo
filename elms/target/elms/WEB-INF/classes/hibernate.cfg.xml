@@ -35,5 +35,6 @@
         <mapping class="com.datin.elms.model.LeaveRequest"/>
         <mapping class="com.datin.elms.model.Attachment"/>
 
+
     </session-factory>
 </hibernate-configuration>
