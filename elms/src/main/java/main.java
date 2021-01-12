@@ -1,4 +1,5 @@
 import com.datin.elms.model.*;
+import com.datin.elms.repository.EmailDao;
 import com.datin.elms.repository.EmployeeDao;
 import com.datin.elms.service.EmployeeService;
 import com.datin.elms.util.HibernateUtil;
@@ -12,10 +13,15 @@ import java.util.Date;
 public class main {
     public static void main(String[] args) throws IOException {
 
-        EmployeeService employeeService = new EmployeeService() ;
+        EmailDao emailDao =  new EmailDao() ;
+
+        Email email  = emailDao.getEmailById(123);
 
 
-        System.out.println(employeeService.checkEmployeeByEmail("mr.atoufi@gmail.com"));
+        for (int i = 0 ; i<email.getReceivers().size() ;i++) {
+            System.out.println(email.getReceivers().get(i).getEmail());
+        }
+
 
     }
 

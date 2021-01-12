@@ -1,7 +1,6 @@
 <%@ page import="com.datin.elms.model.Email" %>
 <%@ page import="com.datin.elms.model.Employee" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.io.PrintWriter" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,6 +68,7 @@
         <tr>
             <th>Email ID</th>
             <th>Subject</th>
+            <th>sent to</th>
             <th>Status</th>
             <th>Attachment</th>
             <th>Delete</th>
@@ -85,7 +85,7 @@
         <tr>
             <td><%=email.getId()%></td>
             <td><%=email.getSubject()%></td>
-
+            <td><%=email.getReceivers().size() +"persons"%></td>
             <td><%=email.getStatus().getName()%></td>
             <%=email.getAttachment()?  "YES" : "NO" %>
 

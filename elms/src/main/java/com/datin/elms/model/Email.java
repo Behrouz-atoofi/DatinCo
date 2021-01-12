@@ -25,7 +25,7 @@ public class Email extends DateTime {
     private Employee sender ;
 
 
-    @ManyToMany(cascade = {
+    @ManyToMany(fetch = FetchType.EAGER ,cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })

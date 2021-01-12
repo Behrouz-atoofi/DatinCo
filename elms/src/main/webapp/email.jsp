@@ -84,7 +84,6 @@
         <tr>
             <td><%=email.getId()%></td>
             <td><%=email.getSubject()%></td>
-
             <td><%=email.getStatus().getName()%></td>
             <%=email.getAttachment()?  "YES" : "NO" %>
 
