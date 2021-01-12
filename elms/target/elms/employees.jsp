@@ -23,12 +23,11 @@
             <th>Id</th>
             <th>Name</th>
             <th>Family</th>
-            <th>Username</th>
-            <th>Password</th>
             <th>Email</th>
             <th>Phone</th>
             <th>Role</th>
             <th>Manager</th>
+            <th>Active</th>
             <th>update</th>
             <th>delete</th>
 
@@ -44,14 +43,17 @@
             <td><%=employee.getId()%></td>
             <td><%=employee.getName()%></td>
             <td><%=employee.getFamily()%></td>
-            <td><%=employee.getUsername()%></td>
-            <td><%=employee.getPassword()%></td>
             <td><%=employee.getEmail()%></td>
             <td><%=employee.getPhoneNumber()%></td>
             <td><%=employee.getRole().getCode()%></td>
             <td><%=employee.getManager().getId()%></td>
-            <td><a href="editEmployeeForm?id=<%=employee.getId()%>">Update</a></td>
-            <td><a href="deleteEmployee?id=<%=employee.getId()%>">Delete</a></td>
+            <%if (employee.isActive()) {%>
+            <td><img src="static/Panel/images/tick.png" style="width:30px;height:30px;" /> </td>
+            <%} else {%>
+            <td><img src="static/Panel/images/untick.png"  style="width:30px;height:30px;" /> </td>
+            <%}%>
+            <td><a href="editEmployeeForm?id=<%=employee.getId()%>"><img src="static/Panel/images/update.png" style="width:30px;height:30px;"></a></td>
+            <td><a href="deleteEmployee?id=<%=employee.getId()%>"><img src="static/Panel/images/untick.png" style="width:30px;height:30px;"></a></td>
         </tr>
         <%
             }

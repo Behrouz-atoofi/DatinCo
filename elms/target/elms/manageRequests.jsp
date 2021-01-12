@@ -46,7 +46,12 @@
             <td><%=leaveRequest.getReason()%></td>
             <td><%=leaveRequest.getEmployee().getId()%></td>
             <td><%=leaveRequest.getEmployee().getFamily()%></td>
-            <td><%=leaveRequest.getStatus().getName()%></td>
+            <%if (leaveRequest.getStatus().getName().equals("accepted")) {%>
+            <td><img src="static/Panel/images/acc.png" style="width:50px;height:50px;" /> </td>
+            <%} else {%>
+            <td><img src="static/Panel/images/rejc.png"  style="width:50px;height:50px;" /> </td>
+            <%}%>
+
             <td><a href="acceptRequest?id=<%=leaveRequest.getId()%>">Accept</a></td>
             <td><a href="rejectRequest?id=<%=leaveRequest.getId()%>">Reject</a></td>
         </tr>

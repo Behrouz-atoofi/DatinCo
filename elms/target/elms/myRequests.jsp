@@ -44,7 +44,11 @@
             <td><%=leaveRequest.getFrom_date()%></td>
             <td><%=leaveRequest.getTo_date()%></td>
             <td><%=leaveRequest.getReason()%></td>
-            <td><%=leaveRequest.getStatus().getCode()%></td>
+            <%if (leaveRequest.getStatus().getName().equals("accepted")) {%>
+            <td><img src="static/Panel/images/acc.png" style="width:50px;height:50px;" /> </td>
+            <%} else {%>
+            <td><img src="static/Panel/images/rejc.png"  style="width:50px;height:50px;" /> </td>
+            <%}%>
             <td><a href="deleteRequest?id=<%=leaveRequest.getId()%>">Delete</a></td>
         </tr>
         <%

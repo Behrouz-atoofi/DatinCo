@@ -42,9 +42,12 @@
             <td><%=email.getId()%></td>
             <td><%=email.getSubject()%></td>
             <td><%=email.getSender().getEmail()%></td>
-            <td><%=email.getAttachment()? "YES" : "NO" %></td>
-            <td><a href="viewEmail?id=<%=email.getId()%>">view</a></td>
-
+            <%if (email.getAttachment()) {%>
+            <td><img src="static/Panel/images/tick.png" style="width:30px;height:30px;" /> </td>
+            <%} else {%>
+            <td><img src="static/Panel/images/untick.png"  style="width:30px;height:30px;" /> </td>
+            <%}%>
+            <td><a href="viewEmail?id=<%=email.getId()%>"><img src="static/Panel/images/view.png" style="width:30px;height:30px;"></a></td>
         </tr>
         <%
             }
@@ -84,8 +87,15 @@
             <td><%=email.getSubject()%></td>
 
             <td><%=email.getStatus().getName()%></td>
-            <td><%= email.getAttachment()? "YES" : "NO" %></td>
-            <td><a href="deleteEmail?id=<%=email.getId()%>">Delete</a></td>
+            <%=email.getAttachment()?  "YES" : "NO" %>
+
+            <%if (email.getAttachment()) {%>
+            <td><img src="static/Panel/images/tick.png" style="width:30px;height:30px;" /> </td>
+            <%} else {%>
+            <td><img src="static/Panel/images/untick.png"  style="width:30px;height:30px;" /> </td>
+            <%}%>
+            <td><a href="deleteEmail?id=<%=email.getId()%>"><img src="static/Panel/images/untick.png" style="width:30px;height:30px;"></a></td>
+
         </tr>
         <%
             }
