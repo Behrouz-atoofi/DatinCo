@@ -1,11 +1,9 @@
 package com.datin.elms.model;
 
-
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 
 @Entity
@@ -23,13 +21,13 @@ public class Employee extends DateTime {
     @Column(name = "C_FAMILY", columnDefinition = "VARCHAR(40)")
     private String family;
     @Basic
-    @Column(name = "C_USERNAME", columnDefinition = "VARCHAR(40)")
+    @Column(name = "C_USERNAME",unique = true ,columnDefinition = "VARCHAR(40)")
     private String username;
     @Basic
     @Column(name = "C_PASSWORD", columnDefinition = "VARCHAR(40)")
     private String password;
     @Basic
-    @Column(name = "C_EMAIL", columnDefinition = "VARCHAR(40)")
+    @Column(name = "C_EMAIL",unique = true ,columnDefinition = "VARCHAR(40)")
     private String email;
     @Basic
     @Column(name = "C_PHONENUMBER", columnDefinition = "VARCHAR(11)")

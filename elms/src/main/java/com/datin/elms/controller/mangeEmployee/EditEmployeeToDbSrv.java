@@ -30,10 +30,16 @@ public class EditEmployeeToDbSrv extends HttpServlet {
         String manager = req.getParameter("manager") ;
         int isActive = Integer.parseInt(req.getParameter("active")) ;
 
-        EmployeeService employeeService = new EmployeeService() ;
-        employeeService.updateEmployee(id,name,family,username,password,email,phoneNumber,roleId,isActive,false);
 
-        req.getRequestDispatcher("employees").forward(req, res); ;
+        EmployeeService employeeService = new EmployeeService() ;
+        if (employeeService.checkExistForUpdate(id,username,email)) {
+            employeeService.updateEmployee(id,name,family,username,password,email,phoneNumber,roleId,isActive,false);
+            req.getRequestDispatcher("employees").forward(req, res);
+        } else {
+            req.setAttribute("msg","Email or Username Exist in Database");
+            req.getRequestDispatcher("error.jsp").forward(req,res);
+        }
+
 
     }
 

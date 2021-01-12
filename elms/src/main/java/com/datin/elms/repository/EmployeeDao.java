@@ -8,11 +8,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import java.nio.file.SecureDirectoryStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 
 public class EmployeeDao {
@@ -25,7 +23,7 @@ public class EmployeeDao {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
             transaction = session.beginTransaction();
-            employeeList = session.createQuery("FROM Employee empl where empl.disabled=:disabled", Employee.class).setParameter("disabled",false).list();
+            employeeList = session.createQuery("FROM Employee empl where empl.disabled=:disabled", Employee.class).setParameter("disabled", false).list();
 
         } catch (Exception e) {
             if (transaction != null) {
@@ -86,9 +84,8 @@ public class EmployeeDao {
         Transaction transaction = null;
 
 
-
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Date dTime = new Date( );
+            Date dTime = new Date();
             SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
             String last_modified = df.format(dTime);
 
@@ -97,7 +94,7 @@ public class EmployeeDao {
             String hql = "UPDATE Employee set disabled = :disabled , last_modified=:last_modified " + "WHERE id = :id";
             Query query = session.createQuery(hql);
             query.setParameter("disabled", true);
-            query.setParameter("last_modified",last_modified) ;
+            query.setParameter("last_modified", last_modified);
             query.setParameter("id", id);
             query.executeUpdate();
             transaction.commit();
@@ -113,7 +110,7 @@ public class EmployeeDao {
     public boolean updateEmployee(Employee employee) {
 
 
-        setInUse(employee.getId(),true) ;
+        setInUse(employee.getId(), true);
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -198,7 +195,7 @@ public class EmployeeDao {
         return managerList;
     }
 
-    public boolean setInUse (int id , boolean inUse) {
+    public boolean setInUse(int id, boolean inUse) {
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -226,62 +223,108 @@ public class EmployeeDao {
         return false;
     }
 
-    public boolean isInUse (int employeeId) {
+    public boolean isInUse(int employeeId) {
 
-        Transaction transaction= null ;
+        Transaction transaction = null;
 
-        Employee employee = null ;
-
-        try(Session session=HibernateUtil.getSessionFactory().openSession()) {
-
-            transaction = session.beginTransaction() ;
-            employee = (Employee) session.createQuery("From Employee emp where id=:id").setParameter("id",employeeId).uniqueResult() ;
-            if (employee.isInUse())
-                return false ;
-            return true ;
-
-        }
-    }
-
-    public boolean checkEmployeeByEmail (String email) {
-
-        Transaction transaction = null ;
+        Employee employee = null;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction() ;
 
-            String hql = "From Employee emp WHERE emp.email = :email" ;
+            transaction = session.beginTransaction();
+            employee = (Employee) session.createQuery("From Employee emp where id=:id").setParameter("id", employeeId).uniqueResult();
+            if (employee.isInUse())
+                return false;
+            return true;
 
-            Query query = session.createQuery(hql) ;
-            query.setParameter("email",email) ;
+        }
+    }
 
-            if ( query.uniqueResult() != null ) {
-                return true ;
+    public boolean checkEmployeeByEmail(String email) {
+
+        Transaction transaction = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            String hql = "From Employee emp WHERE emp.email = :email";
+
+            Query query = session.createQuery(hql);
+            query.setParameter("email", email);
+
+            if (query.uniqueResult() != null) {
+                return true;
             } else
-                return false ;
-        }catch (Exception e ) {
+                return false;
+        } catch (Exception e) {
             e.printStackTrace();
-            return false ;
+            return false;
         }
 
     }
 
-    public Employee getEmployeeByEmail (String email) {
+    public Employee getEmployeeByEmail(String email) {
 
-        Transaction transaction = null ;
+        Transaction transaction = null;
 
-        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction() ;
-            Employee receiver = null ;
-            String hql = "From Employee emp Where emp.email=:email" ;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            Employee receiver = null;
+            String hql = "From Employee emp Where emp.email=:email";
 
-            Query query = session.createQuery(hql) ;
-            query.setParameter("email",email) ;
-            receiver = (Employee) query.uniqueResult() ;
+            Query query = session.createQuery(hql);
+            query.setParameter("email", email);
+            receiver = (Employee) query.uniqueResult();
 
-            return receiver ;
-        } catch (Exception e ) {
+            return receiver;
+        } catch (Exception e) {
             return null;
+        }
+    }
+
+    public boolean checkExistInDb(String email, String username) {
+
+        Transaction transaction = null;
+        Employee employee = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM Employee emp WHERE emp.username=:username or emp.email=:email";
+
+            Query query = session.createQuery(hql);
+            query.setParameter("username", username);
+            query.setParameter("email", email);
+            employee = (Employee) query.uniqueResult();
+
+            if (employee == null) {
+                return true;
+            } else {
+                return false;
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean checkExistForUpdate(int id, String username, String email) {
+
+        Transaction transaction = null;
+        Employee employee = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            String hql = "FROM Employee emp WHERE emp.username=:username or emp.email=:email";
+
+            Query query = session.createQuery(hql);
+            query.setParameter("username", username);
+            query.setParameter("email", email);
+            employee = (Employee) query.uniqueResult();
+
+            if (employee.getId() == id) {
+                    return true ;
+                } else {
+                    return false ;
+                }
         }
     }
 

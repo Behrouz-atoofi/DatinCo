@@ -29,9 +29,14 @@ public class AddEmpToDbSrv extends HttpServlet {
         Employee manager = (Employee) req.getSession().getAttribute("employee") ;
         EmployeeService employeeService = new EmployeeService() ;
 
-        employeeService.AddEmployee(name,family,username,password,email,phoneNumber,roleId,manager,isActive);
+        if (employeeService.checkExistInDb(email,username)) {
+            employeeService.AddEmployee(name,family,username,password,email,phoneNumber,roleId,manager,isActive);
+            resp.sendRedirect("employees");
+        } else {
+            req.setAttribute("msg","Email or Username Exist in Database");
+            req.getRequestDispatcher("error.jsp").forward(req,resp);
+        }
 
-        resp.sendRedirect("employees");
 
     }
 }

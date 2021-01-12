@@ -18,7 +18,7 @@ public class EmailDao {
     public List<Email> getEmailByReceiver(Employee receiver) {
 
         Transaction transaction = null;
-         ;
+
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 

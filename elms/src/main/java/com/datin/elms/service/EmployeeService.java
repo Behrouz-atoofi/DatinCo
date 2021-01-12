@@ -165,6 +165,22 @@ public class EmployeeService {
 
     }
 
+    public boolean checkExistInDb (String email , String username) {
+
+        EmployeeDao employeeDao = new EmployeeDao() ;
+
+       return employeeDao.checkExistInDb(email,username) ;
+
+        }
+
+        public boolean checkExistForUpdate (int id , String username , String email) {
+
+        EmployeeDao employeeDao = new EmployeeDao() ;
+
+        return employeeDao.checkExistForUpdate(id,username,email) ;
+
+        }
+
 
 
 }
