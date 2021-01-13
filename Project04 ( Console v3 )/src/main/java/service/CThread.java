@@ -2,6 +2,7 @@ package service;
 
 import dto.Deposit;
 import dto.Report;
+import exception.NotMatchAccException;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -9,41 +10,57 @@ import java.util.List;
 
 public class CThread {
 
+    List<String> paymentList = new ArrayList<>();
+    List<String> reportList = new ArrayList<>();
 
-    public synchronized List<String> processPayment(List<String> deposits, List<String> payments, int fromIndex, int toIndex) {
+    public CThread(List<String> deposits, List<String> payments, int fromIndex, int toIndex) throws NotMatchAccException {
 
-        List<String> paymentList = new ArrayList<>();
-        for (int i = fromIndex; i <=toIndex; i++) {
-            String[] transactionSLine = payments.get(i).split("\t");
-            String[] accountSLine = deposits.get(i).split("\t");
-            BigDecimal updatedAmount = BigDecimal.valueOf(Integer.parseInt(accountSLine[1]) + Integer.parseInt(transactionSLine[2]));
-
-            Deposit updatedDep = new Deposit();
-            updatedDep.setDepositNumber(accountSLine[0]);
-            updatedDep.setAmount(updatedAmount);
-            paymentList.add(updatedDep.toString());
-
-        }
-        return paymentList;
-    }
-
-    public synchronized List<String> processReport(List<String> deposits, List<String> payments, int fromIndex, int toIndex) {
         String[] debtorDeposit = deposits.get(0).split("\t");
-        List<String> reportList = new ArrayList<>();
-        for (int i = fromIndex; i <=toIndex; i++) {
-            String[] transactionSLine = payments.get(i).split("\t");
-            String[] accountSLine = deposits.get(i).split("\t");
-            BigDecimal updatedAmount = BigDecimal.valueOf(Integer.parseInt(accountSLine[1]) + Integer.parseInt(transactionSLine[2]));
 
-            Report report = new Report();
-            report.setSrcDepositNumber(debtorDeposit[0]);
-            report.setDstDepositNumber(transactionSLine[1]);
-            report.setAmount(Integer.parseInt(transactionSLine[2]));
-            reportList.add(report.toString());
+        for (int i = fromIndex; i <toIndex; i++) {
 
-        }
+            String[] paymentSLine = payments.get(i).split("\t");
+            String[] depositSLine = deposits.get(i).split("\t");
 
-        return reportList;
+            if ("creditor".equals(paymentSLine[0])) {
+                if (paymentSLine[1].equals(depositSLine[0])) {
+                    BigDecimal newAmount = BigDecimal.valueOf(Integer.parseInt(depositSLine[1]) + Integer.parseInt(paymentSLine[2]));
+
+                    Deposit newDeposit = new Deposit();
+                    newDeposit.setDepositNumber(depositSLine[0]);
+                    newDeposit.setAmount(newAmount);
+                    paymentList.add(newDeposit.toString());
+
+                    Report report = new Report();
+                    report.setSrcDepositNumber(debtorDeposit[0]);
+                    report.setDstDepositNumber(paymentSLine[1]);
+                    report.setAmount(Integer.parseInt(paymentSLine[2]));
+                    reportList.add(report.toString());
+
+                } else {
+                    throw new NotMatchAccException("DepositNumber Not match .") ;
+                }
+
+
+            } else if (paymentSLine[1].equals(depositSLine[0])) {
+                    BigDecimal newAmount = BigDecimal.valueOf(Integer.parseInt(depositSLine[1]) - Integer.parseInt(paymentSLine[2]));
+                    Deposit newDeposit = new Deposit();
+                    newDeposit.setDepositNumber(depositSLine[0]);
+                    newDeposit.setAmount(newAmount);
+                    paymentList.add(0,newDeposit.toString());
+                }
+            }
+
     }
+
+    public synchronized List<String> getPaymentList() {
+        return paymentList ;
+    }
+
+    public synchronized List<String> getReportList () {
+        return reportList ;
+    }
+
+
 
 }
