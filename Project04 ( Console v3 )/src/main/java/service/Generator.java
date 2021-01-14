@@ -105,12 +105,12 @@ public class Generator {
         paymentList.add(0, debtorTransaction.toString());
         log.info("DebtorTransaction calculated based on total Transactions");
 
-        Path transactionFile = Paths.get("src/main/resources", "transactions.txt");
+        Path transactionFile = Paths.get("src/main/resources", "payments.txt");
         try {
             Files.write(transactionFile, paymentList);
         } catch (IOException e) {
             e.getMessage();
-            log.warn("TransactionFile couldn't write");
+            log.warn("PaymentFile couldn't write");
         }
         return paymentList;
     }

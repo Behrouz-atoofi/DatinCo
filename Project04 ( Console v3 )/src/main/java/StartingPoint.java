@@ -15,9 +15,9 @@ public class StartingPoint {
 
 
 
-        List<String> deposits = Generator.generateDeposits(1000);
-        List<String> payments = Generator.generatePayments(1000);
-        Operator.payment(deposits, payments,20);
+        List<String> deposits = Generator.generateDeposits(100000);
+        List<String> payments = Generator.generatePayments(500);
+        Operator.payment(deposits, payments,500);
 
 
 
