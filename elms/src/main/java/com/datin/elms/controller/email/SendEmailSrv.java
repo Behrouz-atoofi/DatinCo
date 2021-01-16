@@ -36,7 +36,7 @@ public class SendEmailSrv extends HttpServlet {
             emailService.sendEmail(employee, subject, receiver, content, fileParts);
             resp.sendRedirect("email");
         }else {
-            req.setAttribute("msg","One or Some Emails don't exist in DB");
+            req.setAttribute("msg","One or Some receivers don't exist in DB");
             req.getRequestDispatcher("error.jsp").forward(req,resp);
             }
 

@@ -5,12 +5,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "T_CATEGORY_ELEMENT")
-public class CategoryElement {
+public class CategoryElement extends entity{
 
-    @Id
-    @Column(name = "ID", columnDefinition = "INT")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
 
     @Basic
     @Column(name = "C_CODE", columnDefinition = "TEXT")
@@ -24,14 +20,6 @@ public class CategoryElement {
     @JoinColumn(name = "C_CATEGORY")
     private Category category;
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getCode() {
         return code;
@@ -62,10 +50,12 @@ public class CategoryElement {
 
     }
 
-    public CategoryElement(String code, String name, Category category) {
+    public CategoryElement(String code, String name, Category category,String dateCreated,String dateModified) {
         this.code = code;
         this.name = name;
         this.category = category;
+        setDate_created(dateCreated);
+        setLast_modified(dateModified);
     }
 
 

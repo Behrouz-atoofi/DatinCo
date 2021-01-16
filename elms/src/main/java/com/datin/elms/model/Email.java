@@ -5,12 +5,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "T_EMAIL")
-public class Email extends DateTime {
-
-    @Id
-    @Column(name = "ID", columnDefinition = "INT")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+public class Email extends entity {
 
     @Basic
     @Column(name = "C_SUBJECT", columnDefinition = "TEXT")
@@ -35,10 +30,6 @@ public class Email extends DateTime {
     )
     private List<Employee> receivers = new ArrayList<Employee>();
 
-    @Basic
-    @Column (name = "C_ATTACHMENT" ,columnDefinition = "BOOLEAN")
-    private Boolean attachment ;
-
 
     @Basic
     @Column (name = "C_DISABLED",columnDefinition = "BOOLEAN")
@@ -54,15 +45,6 @@ public class Email extends DateTime {
     private CategoryElement status;
 
 
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int email_id) {
-        this.id = email_id;
-    }
 
     public String getSubject() {
         return subject;
@@ -104,13 +86,6 @@ public class Email extends DateTime {
         this.status = elements;
     }
 
-    public Boolean getAttachment() {
-        return attachment;
-    }
-
-    public void setAttachment(Boolean attachment) {
-        this.attachment = attachment;
-    }
 
     public Boolean getDisabled() {
         return disabled;

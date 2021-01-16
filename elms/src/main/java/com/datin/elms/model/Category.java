@@ -4,25 +4,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "T_CATEGORY")
-public class Category {
+public class Category extends entity {
 
-    @Id
-    @Column(name = "ID", columnDefinition = "INT")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
 
     @Basic
     @Column(name = "C_NAME", columnDefinition = "TEXT")
     private String name;
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -37,9 +25,10 @@ public class Category {
 
     }
 
-    public Category(String name) {
+    public Category(String name,String dateCreated,String lastModified) {
         this.name = name;
-
+        setDate_created(dateCreated);
+        setLast_modified(lastModified);
     }
 
 

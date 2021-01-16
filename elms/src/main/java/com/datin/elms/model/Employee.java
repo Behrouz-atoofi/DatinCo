@@ -8,11 +8,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "T_EMPLOYEE")
-public class Employee extends DateTime {
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+public class Employee extends entity {
+
+
+
     @Basic
     @Column(name = "C_NAME", columnDefinition = "VARCHAR(40)")
     private String name;
@@ -54,13 +53,6 @@ public class Employee extends DateTime {
     @JoinColumn(name = "C_ROLE")
     private CategoryElement role;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

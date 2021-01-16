@@ -6,20 +6,16 @@ import java.sql.Blob;
 
 @Entity
 @Table(name = "t_FILE")
-public class Attachment {
-
-    @Id
-    @Column(name = "ID", columnDefinition = "INT")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+public class Attachment extends entity{
 
     @Basic
     @Column(name="C_FILE_NAME" ,columnDefinition = "TEXT")
     private String fileName ;
 
-    @Basic
-    @Column(name="C_FILE_TYPE" , columnDefinition = "TEXT")
-    private String fileType ;
+
+    @ManyToOne(targetEntity = CategoryElement.class)
+    @JoinColumn(name="C_FILE_TYPE")
+    private CategoryElement fileType ;
 
     @Lob
     @Column(name="C_FILE_DATA", nullable=false, columnDefinition = "longblob")
@@ -29,13 +25,6 @@ public class Attachment {
     @JoinColumn(name = "EMAIL_ID")
     private Email email ;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getFileName() {
         return fileName;
@@ -45,11 +34,11 @@ public class Attachment {
         this.fileName = fileName;
     }
 
-    public String getFileType() {
+    public CategoryElement getFileType() {
         return fileType;
     }
 
-    public void setFileType(String fileType) {
+    public void setFileType(CategoryElement fileType) {
         this.fileType = fileType;
     }
 

@@ -100,9 +100,12 @@ public class RequestDao {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
+            String hql = "FROM LeaveRequest lvr join fetch lvr.employee lvre WHERE lvre.manager=:manager and lvre.disabled=:disabled" ;
+            Query query = session.createQuery(hql) ;
+            query.setParameter("manager", manager) ;
+            query.setParameter("disabled",true) ;
 
-            leaveRequests = session.createQuery("FROM LeaveRequest lvr join fetch lvr.employee lvre WHERE lvre.manager=:manager")
-                    .setParameter("manager", manager).list();
+            leaveRequests = query.list() ;
         } catch (Exception e) {
             e.printStackTrace();
         }

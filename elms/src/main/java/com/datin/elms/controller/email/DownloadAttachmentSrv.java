@@ -31,7 +31,7 @@ public class DownloadAttachmentSrv extends HttpServlet {
 
             resp.setHeader("Content-Disposition", "inline; filename=\"" + "attachment" + "\"");
             OutputStream out = resp.getOutputStream();
-            resp.setContentType(attachment.getFileType());
+            resp.setContentType(attachment.getFileType().getName());
 
             IOUtils.copy(attachment.getData().getBinaryStream(), out);
             out.flush();

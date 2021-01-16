@@ -4,13 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "T_LEAVE_REQUEST")
-public class LeaveRequest extends DateTime{
+public class LeaveRequest extends entity {
 
-
-    @Id
-    @Column(name = "ID", columnDefinition = "INT")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
 
     @Basic
     @Column(name = "C_FROM_DATE", columnDefinition = "TEXT")
@@ -37,14 +32,6 @@ public class LeaveRequest extends DateTime{
     @JoinColumn(name = "C_STATUS", referencedColumnName = "ID")
     private CategoryElement status;
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public CategoryElement getStatus() {
         return status;
