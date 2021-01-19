@@ -3,8 +3,8 @@ package service;
 import dto.Deposit;
 import dto.Payment;
 import dto.Report;
-import exception.NotMatchAccException;
 import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
@@ -12,26 +12,44 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CThread {
 
 
     List<Report> reportList = new ArrayList<>();
-    List<Deposit> newDepositList ;
+
     static Logger log = Logger.getLogger(Generator.class.getName());
 
-    public synchronized void process(List<Deposit> deposits, List<Payment> payments) throws NotMatchAccException, IOException {
+    public synchronized void process(List<Payment> payments) throws IOException {
 
-        newDepositList  = deposits ;
+        List<Deposit> newDepositList =
+                Collections.synchronizedList(new ArrayList<>());
 
-        int debtorIndex = getDebtorIndex(deposits,payments) ;
+        // Read Deposit File
+        Path depositFile = Paths.get("src/main/resources/", "deposits.txt");
+        List<String> depositLines = Files.readAllLines(depositFile);
 
-        for (int i = 0; i < payments.size() ; i++) {
-            Payment payment = payments.get(i) ;
+        // Read everyLine , Make VO objects and add them to newDepositList
+        for (String depositLine : depositLines) {
+            String[] split = depositLine.split("\t");
+            Deposit deposit = new Deposit();
+            deposit.setDepositNumber(split[0]);
+            deposit.setAmount(BigDecimal.valueOf(Long.parseLong(split[1])));
+            newDepositList.add(deposit);
+        }
 
-            for (int j = 0; j < deposits.size(); j++) {
-                Deposit deposit =  deposits.get(j) ;
+
+        int debtorIndex = getDebtorIndex(newDepositList, payments);
+
+
+        // Fetch Data from Lists
+        for (int i = 0; i < payments.size(); i++) {
+            Payment payment = payments.get(i);
+
+            for (int j = 0; j < newDepositList.size(); j++) {
+                Deposit deposit = newDepositList.get(j);
 
                 if (payment.getType().equals(Payment.DepositType.creditor)) {
 
@@ -50,7 +68,7 @@ public class CThread {
 
                         // calc new balance for debtor Deposit
                         BigDecimal ndBalance = BigDecimal.valueOf(0);
-                        ndBalance = ndBalance.add(deposits.get(debtorIndex).getAmount());
+                        ndBalance = ndBalance.add(newDepositList.get(debtorIndex).getAmount());
                         ndBalance = ndBalance.subtract(payment.getAmount());
 
                         // make new object for debtorDeposit
@@ -61,7 +79,7 @@ public class CThread {
 
                         // make an object for reportList
                         Report report = new Report();
-                        report.setSrcDepositNumber(deposits.get(debtorIndex).getDepositNumber());
+                        report.setSrcDepositNumber(newDepositList.get(debtorIndex).getDepositNumber());
                         report.setDstDepositNumber(payment.getDepositNumber());
                         report.setAmount(payment.getAmount());
                         reportList.add(report);
@@ -72,29 +90,9 @@ public class CThread {
 
                     }
                 }
-//                } else if (payment.getType().equals(Payment.DepositType.debtor)) {
-//                    if (payment.getDepositNumber().equals(deposit.getDepositNumber())) {
-//
-//                        BigDecimal ndBalance = BigDecimal.valueOf(0);
-//                        ndBalance = ndBalance.add(deposits.get(debtorIndex).getAmount());
-//                        ndBalance = ndBalance.subtract(payment.getAmount());
-//
-//                        Deposit nDebtorDeposit = new Deposit();
-//                        nDebtorDeposit.setDepositNumber(deposit.getDepositNumber());
-//                        nDebtorDeposit.setAmount(ndBalance);
-//                        newDepositList.set(j,nDebtorDeposit) ;
-//
-//                        buildReportFile(reportList);
-//                        updateDepositFile(newDepositList);
-//
-//                    }
-//                } else {
-//                    throw  new NotMatchAccException("The payment file contains Row or incorrect data") ;
-//                }
 
             }
-
-
+            log.info("Process Done !");
 
 
         }
@@ -102,30 +100,23 @@ public class CThread {
     }
 
 
+    public int getDebtorIndex(List<Deposit> deposits, List<Payment> payments) {
 
-
-
-
-
-
-
-    public int getDebtorIndex (List<Deposit> deposits ,List<Payment> payments) {
-
-        String debtorAcc = null ;
-        int index =0 ;
-        for (int i = 0 ; i< payments.size();i++) {
-            Payment payment = payments.get(i) ;
+        String debtorAcc = null;
+        int index = 0;
+        for (int i = 0; i < payments.size(); i++) {
+            Payment payment = payments.get(i);
             if (payment.getType().toString().equals("debtor")) {
                 debtorAcc = payment.getDepositNumber();
             }
         }
-        for (int i = 0 ; i< deposits.size();i++) {
-            Deposit deposit = deposits.get(i) ;
+        for (int i = 0; i < deposits.size(); i++) {
+            Deposit deposit = deposits.get(i);
             if (deposit.getDepositNumber().equals(debtorAcc)) {
-                index = i ;
+                index = i;
             }
         }
-        return index ;
+        return index;
 
 
     }
@@ -136,11 +127,11 @@ public class CThread {
         Path tempFile = Paths.get("src/main/resources/", "temp.txt");
         if (Files.exists(tempFile))
             Files.delete(tempFile);
-            Files.createFile(tempFile) ;
+        Files.createFile(tempFile);
         for (Deposit deposit : depositList) {
 
             try {
-                Files.write(tempFile,(deposit.toString()+ "\n" ).getBytes(),StandardOpenOption.APPEND);
+                Files.write(tempFile, (deposit.toString() + "\n").getBytes(), StandardOpenOption.APPEND);
             } catch (IOException e) {
                 e.getMessage();
                 log.warn("PaymentFile couldn't write");
@@ -170,11 +161,11 @@ public class CThread {
         Path reportFile = Paths.get("src/main/resources/", "report.txt");
         if (Files.exists(reportFile))
             Files.delete(reportFile);
-        Files.createFile(reportFile) ;
+        Files.createFile(reportFile);
         for (Report report : reportList) {
 
             try {
-                Files.write(reportFile,(report.toString()+ "\n" ).getBytes(), StandardOpenOption.APPEND);
+                Files.write(reportFile, (report.toString() + "\n").getBytes(), StandardOpenOption.APPEND);
             } catch (IOException e) {
                 e.getMessage();
                 log.warn("PaymentFile couldn't write");

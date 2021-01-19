@@ -42,12 +42,12 @@ public class Generator {
     public static List<Deposit> generateDeposits(int n) throws IOException {
 
         BasicConfigurator.configure();
-        List<Deposit> depositList = new ArrayList<>()  ;
+        List<Deposit> depositList = new ArrayList<>();
 
         Deposit debtorDeposit = new Deposit();
         debtorDeposit.setDepositNumber("1.10.100.1");
         debtorDeposit.setAmount(Generator.generateRandomValue(1));
-        depositList.add(debtorDeposit) ;
+        depositList.add(debtorDeposit);
 
         for (int i = 1; i < n; i++) {
 
@@ -55,7 +55,7 @@ public class Generator {
             creditorDeposit.setDepositNumber(buildDepositAccNumber(i));
             creditorDeposit.setAmount(generateRandomValue(0));
 
-            depositList.add(creditorDeposit) ;
+            depositList.add(creditorDeposit);
 
         }
         log.info("DepositsList generated successfully");
@@ -64,20 +64,19 @@ public class Generator {
 
         if (Files.exists(depositFile))
             Files.delete(depositFile);
-            Files.createFile(depositFile) ;
+        Files.createFile(depositFile);
 
 
-        for (int i =0 ; i<depositList.size() ; i++) {
+        for (int i = 0; i < depositList.size(); i++) {
 
-            try{
-                Files.write(depositFile,(depositList.get(i).toString()+ "\n" ).getBytes(),StandardOpenOption.APPEND) ;
+            try {
+                Files.write(depositFile, (depositList.get(i).toString() + "\n").getBytes(), StandardOpenOption.APPEND);
 
             } catch (Exception e) {
-               log.warn("DepositFile Could't write ...");
+                log.warn("DepositFile Could't write ...");
             }
 
         }
-
 
 
         return depositList;
@@ -112,12 +111,12 @@ public class Generator {
         Path paymentFile = Paths.get("src/main/resources", "payments.txt");
         if (Files.exists(paymentFile))
             Files.delete(paymentFile);
-        Files.createFile(paymentFile) ;
+        Files.createFile(paymentFile);
 
-        for ( int i = 0; i<paymentList.size() ;i++) {
+        for (int i = 0; i < paymentList.size(); i++) {
 
             try {
-                Files.write(paymentFile,(paymentList.get(i).toString()+ "\n" ).getBytes(),StandardOpenOption.APPEND);
+                Files.write(paymentFile, (paymentList.get(i).toString() + "\n").getBytes(), StandardOpenOption.APPEND);
             } catch (IOException e) {
                 e.getMessage();
                 log.warn("PaymentFile couldn't write");

@@ -40,27 +40,27 @@ public class Operator {
 
         if (thread > 1) {
 
-            ExecutorService executor = Executors.newFixedThreadPool(thread) ;
+            ExecutorService executor = Executors.newFixedThreadPool(thread);
             CThread cThread = new CThread();
 
             for (int i = 0; i < thread; i++) {
-            int finalI = i;
-            executor.execute(() -> {
-                try {
-                    cThread.process(deposits, payments.subList((divided * finalI), (divided * (finalI + 1))));
-                } catch (NotMatchAccException | IOException e) {
-                    e.printStackTrace();
-                }
-            });
+                int finalI = i;
+                executor.execute(() -> {
+                    try {
+                        cThread.process(payments.subList((divided * finalI), (divided * (finalI + 1))));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+
+            executor.awaitTermination(1, TimeUnit.SECONDS);
+            executor.shutdown();
+
+        } else {
+            CThread cThread = new CThread();
+            cThread.process(payments);
         }
-
-        executor.awaitTermination(1, TimeUnit.SECONDS);
-        executor.shutdown();
-
-    } else {
-        CThread cThread = new CThread();
-        cThread.process(deposits, payments);
-    }
 
 
     }
@@ -74,14 +74,13 @@ public class Operator {
 
         for (int i = 0; i < payments.size(); i++) {
 
-            Payment payment ;
-            payment =payments.get(i);
+            Payment payment;
+            payment = payments.get(i);
 
             if (payment.getType().toString().equals("creditor")) {
                 totalPayment = totalPayment.add(payment.getAmount());
 
-            }
-            else if (payment.getType().toString().equals("debtor")) {
+            } else if (payment.getType().toString().equals("debtor")) {
                 debtorAmount = debtorAmount.add(payment.getAmount());
                 debtorAccount = payment.getDepositNumber();
             }
@@ -92,8 +91,8 @@ public class Operator {
 
             for (int i = 0; i < deposits.size(); i++) {
 
-                Deposit deposit = new Deposit() ;
-                deposit = deposits.get(i) ;
+                Deposit deposit = new Deposit();
+                deposit = deposits.get(i);
                 if (deposit.getDepositNumber().equals(debtorAccount)) {
                     BigDecimal debtorBalance = deposit.getAmount();
                     return debtorBalance.compareTo(debtorAmount) == 1 ||
