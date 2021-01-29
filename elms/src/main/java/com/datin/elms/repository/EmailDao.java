@@ -1,15 +1,15 @@
 package com.datin.elms.repository;
 
-import com.datin.elms.model.Email;
 import com.datin.elms.model.Attachment;
+import com.datin.elms.model.Email;
 import com.datin.elms.model.Employee;
 import com.datin.elms.util.HibernateUtil;
+import com.github.mfathi91.time.PersianDate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class EmailDao {
@@ -17,83 +17,78 @@ public class EmailDao {
 
     public List<Email> getEmailByReceiver(Employee receiver) {
 
-        Transaction transaction = null;
-
-
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-
-            transaction = session.beginTransaction();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
 
             String hql = "select distinct eml from Email eml " +
                     "join eml.receivers t " +
-                    "where t.email in (:receiver) and t.disabled=:disabled" ;
+                    "where t.email in (:receiver) and t.disabled=:disabled";
             Query query = session.createQuery(hql);
             query.setParameter("receiver", receiver.getEmail());
             query.setParameter("disabled", false);
 
-            return query.list() ;
+            return query.list();
 
-        } catch (Exception e ) {
+        } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            session.close();
         }
-        return null ;
+        return null;
     }
 
     public List<Email> getEmailBySender(Employee sender) {
 
-        Transaction transaction = null;
 
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
 
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM Email eml where eml.sender=:sender and eml.disabled=:disabled";
+            Query query = session.createQuery(hql);
+            query.setParameter("sender", sender);
+            query.setParameter("disabled", false);
+            return query.list();
 
-            transaction = session.beginTransaction();
-
-            String hql = "FROM Email eml where eml.sender=:sender and eml.disabled=:disabled" ;
-            Query query = session.createQuery(hql) ;
-            query.setParameter("sender",sender) ;
-            query.setParameter("disabled",false) ;
-            return query.list() ;
-
-        } catch (Exception e ) {
-            e.printStackTrace();
-        }
-        return null ;
-    }
-
-    public boolean save(Email email) {
-
-        Transaction transaction = null;
-
-
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            session.save(email);
-            transaction.commit();
-            session.close();
-            return true ;
         } catch (Exception e) {
             e.printStackTrace();
-            return false ;
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    public void save(Email email) {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        try {
+
+            Transaction transaction = session.beginTransaction();
+            session.save(email);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
     public boolean deleteEmailById(int id) {
 
 
-        Transaction transaction = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try {
 
-            Date dTime = new Date( );
-            SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
-            String last_modified = df.format(dTime);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            String now = PersianDate.now().format(dtf);
 
-            transaction = session.beginTransaction();
+            Transaction transaction = session.beginTransaction();
 
-            String hql = "UPDATE Email set disabled = :disabled , last_modified=:last_modified " + "WHERE id = :id";
+            String hql = "UPDATE Email set disabled = :disabled , lastModified=:now " + "WHERE id = :id";
             Query query = session.createQuery(hql);
             query.setParameter("disabled", true);
-            query.setParameter("last_modified",last_modified) ;
+            query.setParameter("now", now);
             query.setParameter("id", id);
             query.executeUpdate();
             transaction.commit();
@@ -103,34 +98,36 @@ public class EmailDao {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        } finally {
+            session.close();
         }
 
     }
 
     public Email getEmailById(int id) {
 
-        Transaction transaction = null;
 
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
             Email email = null;
-
             email = (Email) session.createQuery("FROM Email eml WHERE eml.id=:id").setParameter("id", id).uniqueResult();
             return email;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        } finally {
+            session.close();
         }
 
     }
 
     public boolean updateStatus(Email email) {
 
-        Transaction transaction = null;
 
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
 
-            transaction = session.beginTransaction();
+            Transaction transaction = session.beginTransaction();
 
             String hql = "UPDATE Email set status = :status " + "WHERE id = :id";
             Query query = session.createQuery(hql);
@@ -140,55 +137,63 @@ public class EmailDao {
             transaction.commit();
             return true;
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             e.printStackTrace();
-            return false;
+        } finally {
+            session.close();
         }
-
+        return false;
     }
 
-    public boolean saveEmailAttachment(Attachment attachment) {
-        Transaction transaction = null;
+    public void saveEmailAttachment(Attachment attachment) {
 
-
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            Transaction transaction = session.beginTransaction();
             session.save(attachment);
             transaction.commit();
-            return true ;
-        } catch ( Exception e ) {
+
+        } catch (Exception e) {
             e.printStackTrace();
-            return false ;
+
+        } finally {
+            session.close();
         }
 
     }
 
     public List<Attachment> downloadAttachments(Email email) {
 
-        Transaction transaction = null;
+
         List<Attachment> attachments = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            Transaction transaction = session.beginTransaction();
+            String hql = "FROM Attachment emf WHERE emf.email=:email";
+            Query query = session.createQuery(hql);
+            attachments = query.setParameter("email", email).list();
 
-            attachments = session.createQuery("FROM Attachment emf WHERE emf.email=:email")
-                    .setParameter("email", email).list();
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
         return attachments;
     }
 
-    public Attachment downloadSingleAttachment (int attachmentId) {
+    public Attachment downloadSingleAttachment(int attachmentId) {
 
-        Transaction transaction = null;
-        Attachment attachment = null ;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
 
+        Attachment attachment = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            Transaction transaction = session.beginTransaction();
             attachment = (Attachment) session.createQuery("FROM Attachment emf WHERE emf.id=:id")
                     .setParameter("id", attachmentId).uniqueResult();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
         return attachment;
 

@@ -5,25 +5,24 @@ import javax.persistence.*;
 import java.sql.Blob;
 
 @Entity
-@Table(name = "t_FILE")
-public class Attachment extends entity{
+@Table(name = "t_file")
+public class Attachment extends entity {
 
     @Basic
-    @Column(name="C_FILE_NAME" ,columnDefinition = "TEXT")
-    private String fileName ;
-
+    @Column(name = "c_fileName", columnDefinition = "TEXT")
+    private String fileName;
 
     @ManyToOne(targetEntity = CategoryElement.class)
-    @JoinColumn(name="C_FILE_TYPE")
-    private CategoryElement fileType ;
+    @JoinColumn(name = "c_fileType")
+    private CategoryElement fileType;
 
     @Lob
-    @Column(name="C_FILE_DATA", nullable=false, columnDefinition = "longblob")
+    @Column(name = "c_fileData", nullable = false, columnDefinition = "longblob")
     private Blob data;
 
     @ManyToOne(targetEntity = Email.class)
-    @JoinColumn(name = "EMAIL_ID")
-    private Email email ;
+    @JoinColumn(name = "c_emailId")
+    private Email email;
 
 
     public String getFileName() {

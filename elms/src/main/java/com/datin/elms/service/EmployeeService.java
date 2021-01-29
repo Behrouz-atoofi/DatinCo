@@ -3,14 +3,12 @@ package com.datin.elms.service;
 import com.datin.elms.model.CategoryElement;
 import com.datin.elms.model.Employee;
 import com.datin.elms.repository.CategoryDao;
-import com.datin.elms.repository.EmailDao;
 import com.datin.elms.repository.EmployeeDao;
+import com.github.mfathi91.time.PersianDate;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
-import sun.rmi.runtime.Log;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class EmployeeService {
@@ -31,7 +29,7 @@ public class EmployeeService {
         return roleList;
     }
 
-    public void AddEmployee(String name, String family, String username, String password, String email, String phoneNumber, int roleId, Employee manager, int isActive) {
+    public void saveEmployee(String name, String family, String username, String password, String email, String phoneNumber, int roleId, Employee manager, int isActive) {
         BasicConfigurator.configure();
         Employee employee = new Employee();
         employee.setName(name);
@@ -42,24 +40,18 @@ public class EmployeeService {
         employee.setRole(CategoryDao.getElementById(roleId));
         employee.setPhoneNumber(phoneNumber);
         employee.setManager(manager);
-        employee.setActive(isActive == 1);
+        employee.setActive(true);
         employee.setDisabled(false);
-        employee.setInUse(false);
 
-        Date dTime = new Date();
-        SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
-        String date_created = df.format(dTime);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String now = PersianDate.now().format(dtf);
 
-        employee.setDate_created(date_created);
-        employee.setLast_modified(date_created);
+        employee.setDateCreated(now);
+        employee.setLastModified(now);
 
         EmployeeDao employeeDao = new EmployeeDao();
 
-        if (employeeDao.saveEmployee(employee)) {
-            log.info("Employee added successfully ...");
-        } else {
-            log.warn("Employee Couldn't to be saved ...");
-        }
+        employeeDao.saveEmployee(employee);
 
 
     }
@@ -87,12 +79,11 @@ public class EmployeeService {
         return employee;
     }
 
-    public void updateEmployee(int id, String name, String family, String username, String password, String email, String phoneNumber, int roleId, int isActive, boolean inUse) {
+    public void updateEmployee(int id, String name, String family, String username, String password, String email, String phoneNumber, int roleId, int isActive) {
         BasicConfigurator.configure();
 
-        Date dTime = new Date();
-        SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
-        String last_modified = df.format(dTime);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String now = PersianDate.now().format(dtf);
 
         Employee employee = new Employee();
         employee.setId(id);
@@ -103,9 +94,8 @@ public class EmployeeService {
         employee.setEmail(email);
         employee.setPhoneNumber(phoneNumber);
         employee.setRole(CategoryDao.getElementById(roleId));
-        employee.setActive(isActive == 1);
-        employee.setInUse(inUse);
-        employee.setLast_modified(last_modified);
+        employee.setActive(true);
+        employee.setLastModified(now);
         EmployeeDao employeeDao = new EmployeeDao();
 
 
@@ -128,25 +118,7 @@ public class EmployeeService {
         return employeeList;
     }
 
-    public void setInUse(int id, boolean inUse) {
-
-        EmployeeDao employeeDao = new EmployeeDao();
-
-        if (employeeDao.setInUse(id, inUse)) {
-            log.info("InUse column updated");
-        } else {
-            log.info("The status of InUse column couldn't be changed");
-        }
-    }
-
-    public boolean checkInUse(int employeeId) {
-        EmployeeDao employeeDao = new EmployeeDao();
-
-        return employeeDao.isInUse(employeeId);
-
-    }
-
-    public boolean checkEmployeeByEmail(String emails) {
+    public boolean checkExistByEmail(String emails) {
         BasicConfigurator.configure();
         EmployeeDao employeeDao = new EmployeeDao();
 
@@ -154,33 +126,32 @@ public class EmployeeService {
 
         for (String splitReceiverBox : SplitReceiverBox) {
 
-            if (employeeDao.checkEmployeeByEmail(splitReceiverBox)) {
+            if (employeeDao.checkExistByEmail(splitReceiverBox)) {
 
             } else {
                 log.warn("The Email" + splitReceiverBox + "does not exist in db");
                 return false;
             }
         }
-            return true ;
+        return true;
 
     }
 
-    public boolean checkExistInDb (String email , String username) {
+    public boolean isExist(String email, String username) {
 
-        EmployeeDao employeeDao = new EmployeeDao() ;
+        EmployeeDao employeeDao = new EmployeeDao();
 
-       return employeeDao.checkExistInDb(email,username) ;
+        return employeeDao.isExist(email, username);
 
-        }
+    }
 
-        public boolean checkExistForUpdate (int id , String username , String email) {
+    public boolean checkExistForUpdate(int id, String username, String email) {
 
-        EmployeeDao employeeDao = new EmployeeDao() ;
+        EmployeeDao employeeDao = new EmployeeDao();
 
-        return employeeDao.checkExistForUpdate(id,username,email) ;
+        return employeeDao.checkExistForUpdate(id, username, email);
 
-        }
-
+    }
 
 
 }

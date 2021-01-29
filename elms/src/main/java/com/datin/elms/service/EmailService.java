@@ -9,6 +9,7 @@ import com.datin.elms.repository.CategoryDao;
 import com.datin.elms.repository.EmailDao;
 import com.datin.elms.repository.EmployeeDao;
 import com.datin.elms.util.HibernateUtil;
+import com.github.mfathi91.time.PersianDate;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
@@ -19,8 +20,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class EmailService {
@@ -88,9 +88,9 @@ public class EmailService {
 
     public void sendEmail(Employee employee, String subject, String receiversEmail, String content, List<Part> fileParts) throws IOException {
         BasicConfigurator.configure();
-        Date dTime = new Date();
-        SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
-        String date_created = df.format(dTime);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String now  = PersianDate.now().format(dtf);
 
         Email email = new Email();
         Employee receiverEmployee;
@@ -107,8 +107,11 @@ public class EmailService {
         email.setStatus(CategoryDao.getElementByName("unread"));
         email.setSender(employee);
         email.setDisabled(false);
-        email.setDate_created(date_created);
-        email.setLast_modified(date_created);
+        email.setDateCreated(now);
+        email.setLastModified(now);
+        email.setActive(true);
+        email.setDisabled(false);
+
 
         if (fileParts.size() > 0) {
             log.info("Email contains Attachment ...");
@@ -125,8 +128,8 @@ public class EmailService {
                 attachment.setFileName("attachment");
                 attachment.setData(data);
                 attachment.setEmail(email);
-                attachment.setDate_created(date_created);
-                attachment.setLast_modified(date_created);
+                attachment.setDateCreated(now);
+                attachment.setLastModified(now);
 
                 CategoryElement fileType = new CategoryElement();
 
@@ -138,11 +141,9 @@ public class EmailService {
                     attachment.setFileType(CategoryDao.getElementByName("pdf"));
                 }
 
-                if (emailDao.saveEmailAttachment(attachment)) {
-                    log.info("Attachment saved successfully ...");
-                } else {
-                    log.warn("Attachment couldn't be saved ...");
-                }
+                emailDao.saveEmailAttachment(attachment) ;
+
+
                 inputStream.close();
             }
 

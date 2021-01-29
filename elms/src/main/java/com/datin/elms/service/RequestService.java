@@ -1,16 +1,14 @@
 package com.datin.elms.service;
 
-import com.datin.elms.model.Email;
 import com.datin.elms.model.Employee;
 import com.datin.elms.model.LeaveRequest;
 import com.datin.elms.repository.CategoryDao;
 import com.datin.elms.repository.RequestDao;
+import com.github.mfathi91.time.PersianDate;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
-import javax.persistence.Basic;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class RequestService {
@@ -32,7 +30,6 @@ public class RequestService {
     public List<LeaveRequest> getMyRequest(Employee employee) {
         BasicConfigurator.configure();
         List<LeaveRequest> leaveRequests  = requestDao.getRequestsByEmployee(employee) ;
-        log.info("number of my requests is : " + leaveRequests.size());
         return leaveRequests ;
 
     }
@@ -40,25 +37,20 @@ public class RequestService {
     public void sendRequest (String fromDate , String toDate ,String reason , Employee employee) {
         BasicConfigurator.configure();
 
-        Date dTime = new Date( );
-        SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
-        String date_created = df.format(dTime);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String now  = PersianDate.now().format(dtf);
 
         LeaveRequest leaveRequest =  new LeaveRequest() ;
         leaveRequest.setFrom_date(fromDate);
         leaveRequest.setTo_date(toDate);
         leaveRequest.setReason(reason);
         leaveRequest.setEmployee(employee);
-        leaveRequest.setDate_created(date_created);
-        leaveRequest.setLast_modified(date_created);
+        leaveRequest.setDateCreated(now);
+        leaveRequest.setLastModified(now);
         leaveRequest.setStatus(CategoryDao.getElementByName("pending"));
 
         RequestDao requestDao = new RequestDao() ;
-        if (requestDao.saveRequest(leaveRequest)) {
-            log.info("Request saved successfully...");
-        } else {
-            log.warn("Request couldn't to be sent ...");
-        }
+        requestDao.saveRequest(leaveRequest);
     }
 
     public void acceptRequest (int requestId) {
@@ -86,7 +78,6 @@ public class RequestService {
 
     public List<LeaveRequest> getSubsetRequests (Employee employee) {
         BasicConfigurator.configure();
-
 
         List<LeaveRequest> leaveRequests = requestDao.getRequestsByManager(employee) ;
         log.info("Number of subset requests is : " + leaveRequests.size() );

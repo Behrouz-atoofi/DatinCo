@@ -1,58 +1,50 @@
 package com.datin.elms.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-
 
 
 @Entity
-@Table(name = "T_EMPLOYEE")
+@Table(name = "t_employee")
 public class Employee extends entity {
 
 
-
     @Basic
-    @Column(name = "C_NAME", columnDefinition = "VARCHAR(40)")
+    @Column(name = "c_name", columnDefinition = "VARCHAR(40)")
     private String name;
 
     @Basic
-    @Column(name = "C_FAMILY", columnDefinition = "VARCHAR(40)")
+    @Column(name = "c_family", columnDefinition = "VARCHAR(40)")
     private String family;
     @Basic
-    @Column(name = "C_USERNAME",unique = true ,columnDefinition = "VARCHAR(40)")
+    @Column(name = "c_username", unique = true, columnDefinition = "VARCHAR(40)")
     private String username;
     @Basic
-    @Column(name = "C_PASSWORD", columnDefinition = "VARCHAR(40)")
+    @Column(name = "c_password", columnDefinition = "VARCHAR(40)")
     private String password;
     @Basic
-    @Column(name = "C_EMAIL",unique = true ,columnDefinition = "VARCHAR(40)")
+    @Column(name = "c_email", unique = true, columnDefinition = "VARCHAR(40)")
     private String email;
     @Basic
-    @Column(name = "C_PHONENUMBER", columnDefinition = "VARCHAR(11)")
+    @Column(name = "c_phoneNumber", columnDefinition = "VARCHAR(11)")
     private String phoneNumber;
-    @Basic
-    @Column(name = "C_ISACTIVE", columnDefinition = "Bool")
-    private boolean isActive;
-    @Basic
-    @Column(name = "C_DISABLED", columnDefinition = "Bool")
-    private boolean disabled;
-    @Basic
-    @Column(name = "C_INUSE", columnDefinition = "Bool")
-    private boolean inUse;
-
-    @ManyToMany(mappedBy = "receivers")
-    private List<Email> Emails= new ArrayList<Email>();
-
 
     @ManyToOne(targetEntity = Employee.class)
-    @JoinColumn(name = "C_MANAGER")
+    @JoinColumn(name = "c_manager")
     private Employee manager;
 
     @ManyToOne(targetEntity = CategoryElement.class)
-    @JoinColumn(name = "C_ROLE")
+    @JoinColumn(name = "c_role")
     private CategoryElement role;
 
+
+    public Employee(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Employee() {
+
+    }
 
     public String getName() {
         return name;
@@ -116,47 +108,6 @@ public class Employee extends entity {
 
     public void setRole(CategoryElement role) {
         this.role = role;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public List<Email> getEmails() {
-        return Emails;
-    }
-
-    public void setEmails(List<Email> emails) {
-        Emails = emails;
-    }
-
-    public boolean isDisabled() {
-        return disabled;
-    }
-
-    public void setDisabled(boolean disabaled) {
-        this.disabled = disabaled;
-    }
-
-    public boolean isInUse() {
-        return inUse;
-    }
-
-    public void setInUse(boolean inUse) {
-        this.inUse = inUse;
-    }
-
-    public Employee(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-    public Employee() {
-
     }
 
 

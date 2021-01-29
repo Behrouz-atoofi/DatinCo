@@ -1,19 +1,17 @@
 import com.datin.elms.model.*;
-import com.datin.elms.repository.EmailDao;
-import com.datin.elms.repository.EmployeeDao;
-import com.datin.elms.service.EmployeeService;
 import com.datin.elms.util.HibernateUtil;
+import com.github.mfathi91.time.PersianDate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
+
 
 public class main {
     public static void main(String[] args) throws IOException {
 
    //loadData();
+
     }
 
 
@@ -22,29 +20,27 @@ public class main {
 
         // load Category and Category Elements ...
 
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String now  = PersianDate.now().format(dtf);
 
-        Date dTime = new Date( );
-        SimpleDateFormat df = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss a");
-        String dateCreated = df.format(dTime);
-
-        Category role = new Category("role",dateCreated,dateCreated);
-        Category email_status = new Category("email_status",dateCreated,dateCreated);
-        Category leave_status = new Category("leave_status",dateCreated,dateCreated);
-        Category fileType = new Category("file_type",dateCreated,dateCreated) ;
-        CategoryElement developer = new CategoryElement("developer", "developer",role,dateCreated,dateCreated);
-        CategoryElement dataMiner = new CategoryElement("dataMiner", "dataMiner", role,dateCreated,dateCreated);
-        CategoryElement analyzer = new CategoryElement("analyzer", "analyzer", role,dateCreated,dateCreated);
-        CategoryElement manager = new CategoryElement("manager", "manager", role,dateCreated,dateCreated);
-        CategoryElement departmentManager = new CategoryElement("departmentManager", "departmentManager", role,dateCreated,dateCreated);
-        CategoryElement founder = new CategoryElement("founder", "founder", role,dateCreated,dateCreated);
-        CategoryElement read = new CategoryElement("read", "read", email_status,dateCreated,dateCreated);
-        CategoryElement unread = new CategoryElement("unread", "unread", email_status,dateCreated,dateCreated);
-        CategoryElement accepted = new CategoryElement("accepted", "accepted", leave_status,dateCreated,dateCreated);
-        CategoryElement rejected = new CategoryElement("rejected", "rejected", leave_status,dateCreated,dateCreated);
-        CategoryElement pending = new CategoryElement("pending", "pending", leave_status,dateCreated,dateCreated);
-        CategoryElement imageFile = new CategoryElement("image", "image", fileType,dateCreated,dateCreated);
-        CategoryElement textFile = new CategoryElement("text", "text", fileType,dateCreated,dateCreated);
-        CategoryElement pdfFile = new CategoryElement("application/pdf", "application/pdf", fileType,dateCreated,dateCreated);
+        Category role = new Category("role",now,now);
+        Category email_status = new Category("email_status",now,now);
+        Category leave_status = new Category("leave_status",now,now);
+        Category fileType = new Category("file_type",now,now) ;
+        CategoryElement developer = new CategoryElement("developer", "developer",role,now,now);
+        CategoryElement dataMiner = new CategoryElement("dataMiner", "dataMiner", role,now,now);
+        CategoryElement analyzer = new CategoryElement("analyzer", "analyzer", role,now,now);
+        CategoryElement manager = new CategoryElement("manager", "manager", role,now,now);
+        CategoryElement departmentManager = new CategoryElement("departmentManager", "departmentManager", role,now,now);
+        CategoryElement founder = new CategoryElement("founder", "founder", role,now,now);
+        CategoryElement read = new CategoryElement("read", "read", email_status,now,now);
+        CategoryElement unread = new CategoryElement("unread", "unread", email_status,now,now);
+        CategoryElement accepted = new CategoryElement("accepted", "accepted", leave_status,now,now);
+        CategoryElement rejected = new CategoryElement("rejected", "rejected", leave_status,now,now);
+        CategoryElement pending = new CategoryElement("pending", "pending", leave_status,now,now);
+        CategoryElement imageFile = new CategoryElement("image", "image", fileType,now,now);
+        CategoryElement textFile = new CategoryElement("text", "text", fileType,now,now);
+        CategoryElement pdfFile = new CategoryElement("application/pdf", "application/pdf", fileType,now,now);
 
         //load administrator ....
         Employee administrator = new Employee() ;
@@ -57,12 +53,8 @@ public class main {
         administrator.setPhoneNumber("000000000");
         administrator.setManager(administrator);
         administrator.setRole(founder);
-        administrator.setDate_created(dateCreated);
-        administrator.setLast_modified(dateCreated);
-
-        administrator.setDisabled(false);
-        administrator.setInUse(false);
-        administrator.setActive(true);
+        administrator.setDateCreated(now);
+        administrator.setLastModified(now);
 
         Transaction transaction = null ;
 

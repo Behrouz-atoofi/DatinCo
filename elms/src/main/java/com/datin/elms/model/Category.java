@@ -1,16 +1,29 @@
 package com.datin.elms.model;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "T_CATEGORY")
+@Table(name = "t_category")
 public class Category extends entity {
 
 
     @Basic
-    @Column(name = "C_NAME", columnDefinition = "TEXT")
+    @Column(name = "c_name", columnDefinition = "TEXT")
     private String name;
 
+
+    public Category() {
+
+    }
+
+    public Category(String name, String dateCreated, String lastModified) {
+        this.name = name;
+        setDateCreated(dateCreated);
+        setLastModified(lastModified);
+    }
 
     public String getName() {
         return name;
@@ -18,17 +31,6 @@ public class Category extends entity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-
-    public Category() {
-
-    }
-
-    public Category(String name,String dateCreated,String lastModified) {
-        this.name = name;
-        setDate_created(dateCreated);
-        setLast_modified(lastModified);
     }
 
 

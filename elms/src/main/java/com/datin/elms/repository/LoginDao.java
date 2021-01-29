@@ -4,17 +4,15 @@ package com.datin.elms.repository;
 import com.datin.elms.model.Employee;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 public class LoginDao {
 
     public Employee validate(String username, String password) {
 
-        Transaction transaction = null;
-        Employee employee = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
-            transaction = session.beginTransaction();
+        Employee employee = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
 
             employee = (Employee) session.createQuery("FROM Employee WHERE username = :c_username").setParameter("c_username", username)
                     .uniqueResult();
@@ -23,16 +21,14 @@ public class LoginDao {
                 return employee;
             }
 
-            transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             e.printStackTrace();
+
+        } finally {
+            session.close();
         }
         return null;
     }
-
 
 
 }

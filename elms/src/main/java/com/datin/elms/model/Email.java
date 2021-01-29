@@ -1,49 +1,46 @@
 package com.datin.elms.model;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "T_EMAIL")
+@Table(name = "t_email")
 public class Email extends entity {
 
     @Basic
-    @Column(name = "C_SUBJECT", columnDefinition = "TEXT")
+    @Column(name = "C_subject", columnDefinition = "TEXT")
     private String subject;
 
     @Basic
-    @Column(name = "C_CONTENT", columnDefinition = "TEXT")
+    @Column(name = "C_content", columnDefinition = "TEXT")
     private String content;
 
-    @ManyToOne (targetEntity = Employee.class)
-    @JoinColumn(name="C_SENDER" , referencedColumnName = "ID")
-    private Employee sender ;
+    @ManyToOne(targetEntity = Employee.class)
+    @JoinColumn(name = "C_sender", referencedColumnName = "id")
+    private Employee sender;
 
 
-    @ManyToMany(fetch = FetchType.EAGER ,cascade = {
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
-    @JoinTable(name = "T_EMAIL_EMPLOYEE",
-            joinColumns = @JoinColumn(name = "EMAIL_ID"),
-            inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID")
+    @JoinTable(name = "mm_email_employee",
+            joinColumns = @JoinColumn(name = "c_emailId"),
+            inverseJoinColumns = @JoinColumn(name = "c_EmployeeId")
     )
     private List<Employee> receivers = new ArrayList<Employee>();
 
 
-    @Basic
-    @Column (name = "C_DISABLED",columnDefinition = "BOOLEAN")
-    private Boolean disabled ;
-
-    @OneToMany(targetEntity = Attachment.class ,cascade = CascadeType.ALL)
-    @JoinColumn(name = "EMAIL_ID")
-    private Set<Attachment> attachments  ;
+    @OneToMany(targetEntity = Attachment.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "c_EmailId")
+    private Set<Attachment> attachments;
 
 
     @ManyToOne(targetEntity = CategoryElement.class)
-    @JoinColumn(name = "C_STATUS", referencedColumnName = "ID")
+    @JoinColumn(name = "c_status", referencedColumnName = "id")
     private CategoryElement status;
-
 
 
     public String getSubject() {
@@ -86,14 +83,6 @@ public class Email extends entity {
         this.status = elements;
     }
 
-
-    public Boolean getDisabled() {
-        return disabled;
-    }
-
-    public void setDisabled(Boolean disabled) {
-        this.disabled = disabled;
-    }
 
     public Set<Attachment> getAttachments() {
         return attachments;

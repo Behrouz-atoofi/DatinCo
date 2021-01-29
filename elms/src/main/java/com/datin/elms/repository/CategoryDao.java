@@ -4,64 +4,62 @@ import com.datin.elms.model.Category;
 import com.datin.elms.model.CategoryElement;
 import com.datin.elms.util.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 public class CategoryDao {
 
     public static CategoryElement getElementById(int id) {
 
-        Transaction transaction = null;
         CategoryElement category_element = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
-            transaction = session.beginTransaction();
+        try {
 
             category_element = (CategoryElement) session.createQuery("FROM CategoryElement catE WHERE catE.id=:id")
                     .setParameter("id", id).uniqueResult();
 
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-
             e.printStackTrace();
+        } finally {
+            session.close();
         }
 
         return category_element;
-
 
     }
 
     public static CategoryElement getElementByName(String name) {
 
 
-        CategoryElement category_element = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        CategoryElement categoryElement = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
 
-            category_element = (CategoryElement) session.createQuery("FROM CategoryElement  CatE WHERE CatE.name=:name")
+            categoryElement = (CategoryElement) session.createQuery("FROM CategoryElement  CatE WHERE CatE.name=:name")
                     .setParameter("name", name).uniqueResult();
             session.close();
 
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            session.close();
         }
-        return category_element;
+        return categoryElement;
 
     }
 
     public static Category getCategoryByName(String name) {
 
-        Transaction transaction = null;
-        Category category = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
 
+        Category category = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
             category = (Category) session.createQuery("FROM Category Cat WHERE Cat.name=:name")
                     .setParameter("name", name).uniqueResult();
-            session.close();
-            transaction.commit();
+
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            session.close();
         }
         return category;
 

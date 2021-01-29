@@ -1,4 +1,4 @@
-package com.datin.elms.util ;
+package com.datin.elms.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -42,7 +42,6 @@ public class HibernateUtil {
         final SessionFactory sf = new Configuration()
                 .configure("hibernate.cfg.xml").buildSessionFactory();
 
-        // factory = new Configuration().configure().buildSessionFactory();
         final Session session = sf.openSession();
         return session;
     }

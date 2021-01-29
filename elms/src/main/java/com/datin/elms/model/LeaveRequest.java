@@ -3,33 +3,29 @@ package com.datin.elms.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "T_LEAVE_REQUEST")
+@Table(name = "t_leaveRequest")
 public class LeaveRequest extends entity {
 
 
     @Basic
-    @Column(name = "C_FROM_DATE", columnDefinition = "TEXT")
+    @Column(name = "c_fromDate", columnDefinition = "TEXT")
     private String from_date;
 
     @Basic
-    @Column(name = "C_TO_DATE", columnDefinition = "TEXT")
+    @Column(name = "c_toDate", columnDefinition = "TEXT")
     private String to_date;
 
     @Basic
-    @Column(name = "C_REASON", columnDefinition = "TEXT")
+    @Column(name = "c_reason", columnDefinition = "TEXT")
     private String reason;
-
-    @Basic
-    @Column(name = "C_DISABLED", columnDefinition = "Bool")
-    private boolean disabled;
 
 
     @ManyToOne(targetEntity = Employee.class)
-    @JoinColumn(name = "C_EMPLOYEE", referencedColumnName = "ID")
+    @JoinColumn(name = "c_employee", referencedColumnName = "id")
     private Employee employee;
 
     @ManyToOne(targetEntity = CategoryElement.class)
-    @JoinColumn(name = "C_STATUS", referencedColumnName = "ID")
+    @JoinColumn(name = "C_status", referencedColumnName = "id")
     private CategoryElement status;
 
 
