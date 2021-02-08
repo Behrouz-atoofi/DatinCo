@@ -23,7 +23,7 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Request ID</th>
+            <th>Row</th>
             <th>From Date </th>
             <th>To date</th>
             <th>Reason</th>
@@ -34,14 +34,14 @@
         </thead>
 
         <%
-
+            int i = 1 ;
             List<LeaveRequest> leaveRequests = (List<LeaveRequest>) request.getAttribute("leaveRequests");
 
             for (LeaveRequest leaveRequest : leaveRequests) {
 
         %>
         <tr>
-            <td><%=leaveRequest.getId()%></td>
+            <td><%=i%></td>
             <td><%=leaveRequest.getFrom_date()%></td>
             <td><%=leaveRequest.getTo_date()%></td>
             <td><%=leaveRequest.getReason()%></td>
@@ -55,6 +55,7 @@
             <td><a href="request?action=deleteRequest&id=<%=leaveRequest.getId()%>">Delete</a></td>
         </tr>
         <%
+                i++ ;
             }
         %>
     </table>

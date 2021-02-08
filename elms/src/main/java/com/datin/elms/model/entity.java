@@ -58,6 +58,10 @@ public class entity implements Serializable {
         return active;
     }
 
+    public boolean getActive() {
+        return active;
+    }
+
     public void setActive(boolean active) {
         this.active = active;
     }

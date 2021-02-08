@@ -8,39 +8,30 @@ import com.github.mfathi91.time.PersianDate;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
+import java.text.ParseException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class RequestService {
     static Logger log = Logger.getLogger(EmailService.class.getName());
-    RequestDao requestDao = new RequestDao() ;
+    RequestDao requestDao = new RequestDao();
 
-    public void  deleteLeaveRequest (int requestId) {
-        BasicConfigurator.configure();
-
-        if ( requestDao.deleteRequestById(requestId) )  {
-            log.info("request deleted successfully...");
-        } else {
-            log.warn("request couldn't to be deleted ...");
-        }
-
-
+    public void deleteLeaveRequest(int requestId) {
+        requestDao.deleteRequestById(requestId);
     }
-
     public List<LeaveRequest> getMyRequest(Employee employee) {
         BasicConfigurator.configure();
-        List<LeaveRequest> leaveRequests  = requestDao.getRequestsByEmployee(employee) ;
-        return leaveRequests ;
-
+        List<LeaveRequest> leaveRequests = requestDao.getRequestsByEmployee(employee);
+        return leaveRequests;
     }
-
-    public void sendRequest (String fromDate , String toDate ,String reason , Employee employee) {
+    public void sendRequest(String fromDate, String toDate, String reason, Employee employee) {
         BasicConfigurator.configure();
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        String now  = PersianDate.now().format(dtf);
+        String now = PersianDate.now().format(dtf);
 
-        LeaveRequest leaveRequest =  new LeaveRequest() ;
+
+        LeaveRequest leaveRequest = new LeaveRequest();
         leaveRequest.setFrom_date(fromDate);
         leaveRequest.setTo_date(toDate);
         leaveRequest.setReason(reason);
@@ -49,39 +40,24 @@ public class RequestService {
         leaveRequest.setLastModified(now);
         leaveRequest.setStatus(CategoryDao.getElementByName("pending"));
 
-        RequestDao requestDao = new RequestDao() ;
+        RequestDao requestDao = new RequestDao();
         requestDao.saveRequest(leaveRequest);
     }
-
-    public void acceptRequest (int requestId) {
+    public void acceptRequest(int requestId) {
         BasicConfigurator.configure();
-        RequestDao requestDao = new RequestDao() ;
-
-        if (requestDao.updateStatusToAccepted(requestId)) {
-            log.info("Request accepted Successfully ...");
-        } else {
-            log.warn("The status couldn't to be changed ...");
-        }
-
+        RequestDao requestDao = new RequestDao();
+        requestDao.updateStatusToAccepted(requestId) ;
 
     }
-
-    public void rejectRequest ( int requestId) {
+    public void rejectRequest(int requestId) {
         BasicConfigurator.configure();
+        requestDao.updateStatusToRejected(requestId) ;
 
-        if ( requestDao.updateStatusToRejected(requestId)) {
-            log.info("Request rejected successfully ...");
-        } else {
-            log.warn("The status of Request couldn't be changed ...");
-        }
     }
-
-    public List<LeaveRequest> getSubsetRequests (Employee employee) {
+    public List<LeaveRequest> getSubsetRequests(Employee employee) {
         BasicConfigurator.configure();
-
-        List<LeaveRequest> leaveRequests = requestDao.getRequestsByManager(employee) ;
-        log.info("Number of subset requests is : " + leaveRequests.size() );
-
-        return leaveRequests ;
+        List<LeaveRequest> leaveRequests = requestDao.getRequestsByManager(employee);
+        log.info("Number of subset requests is : " + leaveRequests.size());
+        return leaveRequests;
     }
 }

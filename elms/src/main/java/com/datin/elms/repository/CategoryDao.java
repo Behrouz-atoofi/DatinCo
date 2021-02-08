@@ -9,7 +9,7 @@ public class CategoryDao {
 
     public static CategoryElement getElementById(int id) {
 
-        CategoryElement category_element = null;
+        CategoryElement category_element;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         try {
@@ -17,8 +17,6 @@ public class CategoryDao {
             category_element = (CategoryElement) session.createQuery("FROM CategoryElement catE WHERE catE.id=:id")
                     .setParameter("id", id).uniqueResult();
 
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -30,16 +28,13 @@ public class CategoryDao {
     public static CategoryElement getElementByName(String name) {
 
 
-        CategoryElement categoryElement = null;
+        CategoryElement categoryElement ;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
 
             categoryElement = (CategoryElement) session.createQuery("FROM CategoryElement  CatE WHERE CatE.name=:name")
                     .setParameter("name", name).uniqueResult();
-            session.close();
 
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -50,14 +45,12 @@ public class CategoryDao {
     public static Category getCategoryByName(String name) {
 
 
-        Category category = null;
+        Category category;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             category = (Category) session.createQuery("FROM Category Cat WHERE Cat.name=:name")
                     .setParameter("name", name).uniqueResult();
 
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             session.close();
         }

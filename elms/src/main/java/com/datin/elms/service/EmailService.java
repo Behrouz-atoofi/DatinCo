@@ -30,12 +30,8 @@ public class EmailService {
 
     public void deleteEmail(int emailId) {
         BasicConfigurator.configure();
-        if (emailDao.deleteEmailById(emailId))
-            log.info("Email deleted successfully...");
-        else log.warn("Email could not be deleted...");
-
+        emailDao.deleteEmailById(emailId);
     }
-
     public List<Attachment> getEmailAttachments(int emailId) {
         BasicConfigurator.configure();
 
@@ -51,7 +47,6 @@ public class EmailService {
         }
 
     }
-
     public Attachment getAttachmentById(int attachmentId) {
 
 
@@ -68,7 +63,6 @@ public class EmailService {
         }
 
     }
-
     public List<Email> getInboxEmails(Employee receiver) {
         BasicConfigurator.configure();
         List<Email> inbox = emailDao.getEmailByReceiver(receiver);
@@ -76,7 +70,6 @@ public class EmailService {
         log.info("number of emails By receiver EmailAddress is : " + inbox.size());
         return inbox;
     }
-
     public List<Email> getSentEmails(Employee employee) {
         BasicConfigurator.configure();
         List<Email> sent = emailDao.getEmailBySender(employee);
@@ -85,18 +78,16 @@ public class EmailService {
         return sent;
 
     }
-
-    public void sendEmail(Employee employee, String subject, String receiversEmail, String content, List<Part> fileParts) throws IOException {
+    public void sendEmail(Employee employee, String subject, String[] receiversEmail, String content, List<Part> fileParts) throws IOException {
         BasicConfigurator.configure();
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        String now  = PersianDate.now().format(dtf);
+        String now = PersianDate.now().format(dtf);
 
         Email email = new Email();
         Employee receiverEmployee;
-        String[] receivers = receiversEmail.split(",");
 
-        for (String receiverEmail : receivers) {
+        for (String receiverEmail : receiversEmail) {
             receiverEmployee = employeeDao.getEmployeeByEmail(receiverEmail);
             email.getReceivers().add(receiverEmployee);
         }
@@ -141,7 +132,7 @@ public class EmailService {
                     attachment.setFileType(CategoryDao.getElementByName("pdf"));
                 }
 
-                emailDao.saveEmailAttachment(attachment) ;
+                emailDao.saveEmailAttachment(attachment);
 
 
                 inputStream.close();
@@ -153,18 +144,9 @@ public class EmailService {
 
 
     }
-
     public Email viewEmail(int emailId) {
-        BasicConfigurator.configure();
-
         Email email = emailDao.getEmailById(emailId);
-
-        if (emailDao.updateStatus(email)) {
-            log.info("Email Viewed and status changed ...");
-        } else {
-            log.warn("The status of email couldn't to be changed ");
-        }
-
+        emailDao.updateStatus(email);
         return email;
     }
 

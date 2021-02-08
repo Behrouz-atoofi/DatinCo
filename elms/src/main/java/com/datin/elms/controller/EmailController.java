@@ -3,6 +3,7 @@ package com.datin.elms.controller;
 import com.datin.elms.model.Attachment;
 import com.datin.elms.model.Email;
 import com.datin.elms.model.Employee;
+import com.datin.elms.model.EmployeeVO;
 import com.datin.elms.service.EmailService;
 import com.datin.elms.service.EmployeeService;
 import org.apache.commons.io.IOUtils;
@@ -15,6 +16,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,16 +26,14 @@ import java.util.stream.Collectors;
 public class EmailController extends HttpServlet {
 
     private EmailService emailService;
-    private Attachment attachment;
     private Employee employee;
     private EmployeeService employeeService;
     private HttpSession session;
 
     @Override
-    public void init() throws ServletException {
+    public void init()  {
 
         emailService = new EmailService();
-        attachment = new Attachment();
         employee = new Employee();
         employeeService = new EmployeeService();
 
@@ -52,29 +52,16 @@ public class EmailController extends HttpServlet {
         session = request.getSession();
         employee = (Employee) session.getAttribute("employee");
 
-
-        if (action.equalsIgnoreCase("emails")) {
-            page = "/emails.jsp";
-
-        } else if (action.equalsIgnoreCase("sendEmail")) {
+        if (action.equalsIgnoreCase("sendEmail")) {
 
             String subject = request.getParameter("subject");
             String content = request.getParameter("content");
-            String receiver = request.getParameter("receiver");
+            String[] receivers = request.getParameterValues("receivers");
+
             List<Part> fileParts = request.getParts().stream().filter(part -> "file".equals(part.getName()) && part.getSize() > 0).collect(Collectors.toList());
 
-            if (employeeService.checkExistByEmail(receiver)) {
-                System.out.println("Exists");
-                System.out.println(subject);
-                System.out.println(content);
-                System.out.println(receiver);
-                System.out.println(fileParts.size());
-                emailService.sendEmail(employee, subject, receiver, content, fileParts);
-                page = "/emails.jsp";
-            } else {
-                request.setAttribute("msg", "One or Some receivers not exist in DB");
-                page = "/error.jsp";
-            }
+
+            emailService.sendEmail(employee, subject, receivers, content, fileParts);
 
 
         } else if (action.equalsIgnoreCase("viewEmail")) {
@@ -85,12 +72,9 @@ public class EmailController extends HttpServlet {
         } else if (action.equalsIgnoreCase("deleteEmail")) {
             int emailId = Integer.parseInt(request.getParameter("id"));
             emailService.deleteEmail(emailId);
-            page = "/emails.jsp";
         } else if (action.equalsIgnoreCase("downloadAttachment")) {
-
             int attachmentId = Integer.parseInt(request.getParameter("id"));
             Attachment attachment = emailService.getAttachmentById(attachmentId);
-
             try {
 
                 response.setHeader("Content-Disposition", "inline; filename=\"" + "attachment" + "\"");
@@ -103,9 +87,15 @@ public class EmailController extends HttpServlet {
 
             } catch (IOException | SQLException e) {
                 System.out.println(e.toString());
-
-
             }
+        } else if (action.equalsIgnoreCase("emailForm")) {
+            List<EmployeeVO> employeeList = employeeService.getEmployees();
+            List<String> receivers = new ArrayList<>();
+            for (EmployeeVO emp : employeeList) {
+                receivers.add(emp.getName() + " " + emp.getFamily());
+            }
+            request.setAttribute("receivers", receivers);
+            page = "/emailForm.jsp";
         }
 
         List<Email> inbox = emailService.getInboxEmails(employee);

@@ -33,11 +33,6 @@ public class Email extends entity {
     private List<Employee> receivers = new ArrayList<Employee>();
 
 
-    @OneToMany(targetEntity = Attachment.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "c_EmailId")
-    private Set<Attachment> attachments;
-
-
     @ManyToOne(targetEntity = CategoryElement.class)
     @JoinColumn(name = "c_status", referencedColumnName = "id")
     private CategoryElement status;
@@ -71,10 +66,6 @@ public class Email extends entity {
         return receivers;
     }
 
-    public void setReceivers(List<Employee> receivers) {
-        this.receivers = receivers;
-    }
-
     public CategoryElement getStatus() {
         return status;
     }
@@ -84,11 +75,4 @@ public class Email extends entity {
     }
 
 
-    public Set<Attachment> getAttachments() {
-        return attachments;
-    }
-
-    public void setAttachments(Set<Attachment> attachments) {
-        this.attachments = attachments;
-    }
 }

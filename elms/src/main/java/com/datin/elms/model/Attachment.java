@@ -25,10 +25,6 @@ public class Attachment extends entity {
     private Email email;
 
 
-    public String getFileName() {
-        return fileName;
-    }
-
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }

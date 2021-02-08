@@ -1,4 +1,6 @@
 <%@ page import="com.datin.elms.model.Employee" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,9 +27,15 @@
                     <td>Subject: </td>
                     <td><input type="text" name="subject" size="70" required="required" pattern="[A-Za-z0-9]{1,20}{ }" /></td>
                 </tr>
+
                 <tr>
                     <td>Receiver: </td>
-                    <td><input type="text" name="receiver" size="70" required="required"  /></td>
+                    <td>  <% List<String> receivers = (List<String>) request.getAttribute("receivers"); %>
+                    <select name="receivers" id="receivers" multiple="multiple">
+                        <% for(String receiver:receivers) { %>
+                <option value=<%=receiver%> ><%=receiver%></option>
+    <% } %>
+                    </select></td>
                 </tr>
                 <tr>
                     <td>text: </td>

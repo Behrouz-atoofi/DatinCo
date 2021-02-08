@@ -17,7 +17,7 @@ public class RequestDao {
     public List<LeaveRequest> getRequestsByEmployee(Employee employee) {
 
 
-        List<LeaveRequest> requestList = null;
+        List<LeaveRequest> requestList ;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
 
@@ -27,8 +27,6 @@ public class RequestDao {
 
             requestList = query.list();
 
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -47,9 +45,6 @@ public class RequestDao {
             session.flush();
             session.save(leaveRequest);
             transaction.commit();
-
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -57,7 +52,7 @@ public class RequestDao {
 
     }
 
-    public boolean deleteRequestById(int id) {
+    public void deleteRequestById(int id) {
 
 
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -75,13 +70,8 @@ public class RequestDao {
             query.setParameter("lastModified", now);
             query.setParameter("disabled", true);
             query.setParameter("id", id);
-            session.flush();
             query.executeUpdate();
-
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+            transaction.commit();
         } finally {
             session.close();
         }
@@ -89,17 +79,14 @@ public class RequestDao {
 
     public List<LeaveRequest> getRequestsByManager(Employee manager) {
 
-        List<LeaveRequest> leaveRequests = null;
+        List<LeaveRequest> leaveRequests;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             String hql = "FROM LeaveRequest lvr join fetch lvr.employee lvre WHERE lvre.manager=:manager and lvre.disabled=:disabled";
             Query query = session.createQuery(hql);
             query.setParameter("manager", manager);
             query.setParameter("disabled", false);
-
             leaveRequests = query.list();
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -108,7 +95,7 @@ public class RequestDao {
 
     }
 
-    public boolean updateStatusToAccepted(int requestID) {
+    public void updateStatusToAccepted(int requestID) {
 
 
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -123,17 +110,13 @@ public class RequestDao {
             query.setParameter("id", requestID);
             query.executeUpdate();
             transaction.commit();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
         } finally {
             session.close();
         }
 
     }
 
-    public boolean updateStatusToRejected(int requestID) {
+    public void updateStatusToRejected(int requestID) {
 
 
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -144,19 +127,13 @@ public class RequestDao {
             String now = PersianDate.now().format(dtf);
 
             Transaction transaction = session.beginTransaction();
-
             String hql = "UPDATE LeaveRequest lvr set lvr.status =:status , lvr.lastModified=:lastModified WHERE lvr.id= :id";
             Query query = session.createQuery(hql);
             query.setParameter("status", CategoryDao.getElementByName("rejected"));
             query.setParameter("lastModified", now);
             query.setParameter("id", requestID);
-
             query.executeUpdate();
             transaction.commit();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
         } finally {
             session.close();
         }

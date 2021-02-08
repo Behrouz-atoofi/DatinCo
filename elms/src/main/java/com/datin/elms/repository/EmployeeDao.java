@@ -1,8 +1,6 @@
 package com.datin.elms.repository;
 
-import com.datin.elms.model.Category;
-import com.datin.elms.model.CategoryElement;
-import com.datin.elms.model.Employee;
+import com.datin.elms.model.*;
 import com.datin.elms.util.HibernateUtil;
 import com.github.mfathi91.time.PersianDate;
 import org.hibernate.Session;
@@ -10,6 +8,8 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -19,13 +19,11 @@ public class EmployeeDao {
     public List<Employee> getEmployees() {
 
 
-        List<Employee> employeeList = null;
+        List<Employee> employeeList ;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             employeeList = session.createQuery("FROM Employee empl where empl.disabled=:disabled", Employee.class).setParameter("disabled", false).list();
 
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -35,7 +33,7 @@ public class EmployeeDao {
 
     public List<CategoryElement> getRole() {
 
-        List<CategoryElement> roles = null;
+        List<CategoryElement> roles ;
         Category role = CategoryDao.getCategoryByName("role");
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -44,11 +42,8 @@ public class EmployeeDao {
             String hql = "FROM CategoryElement element WHERE element.category IN (:item)";
             Query query = session.createQuery(hql);
             query.setParameter("item", role);
-
             roles = query.list();
 
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -66,15 +61,13 @@ public class EmployeeDao {
             session.save(employee);
             transaction.commit();
 
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             session.close();
         }
 
     }
 
-    public boolean deleteEmployee(int id) {
+    public void deleteEmployee(int id) {
 
 
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -92,17 +85,13 @@ public class EmployeeDao {
             query.setParameter("id", id);
             query.executeUpdate();
             transaction.commit();
-            return true;
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
         } finally {
             session.close();
         }
     }
 
-    public boolean updateEmployee(Employee employee) {
+    public void updateEmployee(Employee employee) {
 
 
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -117,7 +106,8 @@ public class EmployeeDao {
                     "email=:email ," +
                     "role=:role  ," +
                     "active=:active ," +
-                    "lastModified=:now " +
+                    "lastModified=:now ," +
+                    "manager=:manager " +
                     "WHERE id = :id";
             Query query = session.createQuery(hql);
             query.setParameter("name", employee.getName());
@@ -129,13 +119,10 @@ public class EmployeeDao {
             query.setParameter("role", employee.getRole());
             query.setParameter("active", employee.isActive());
             query.setParameter("now", employee.getLastModified());
+            query.setParameter("manager",employee.getManager()) ;
             query.setParameter("id", employee.getId());
             query.executeUpdate();
             transaction.commit();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
         } finally {
             session.close();
         }
@@ -145,80 +132,38 @@ public class EmployeeDao {
 
 
         Session session = HibernateUtil.getSessionFactory().openSession();
+        Employee employee ;
         try {
-            return (Employee) session.createQuery("FROM Employee WHERE id=:id").setParameter("id", id).uniqueResult();
-        } catch (Exception e) {
-            e.printStackTrace();
+            String hql = "from Employee WHERE id=:id" ;
+            Query query = session.createQuery(hql) ;
+            query.setParameter("id",id) ;
+            employee = (Employee)query.uniqueResult() ;
         } finally {
             session.close();
         }
-        return null;
-    }
-
-    public List<Employee> getManager() {
-
-
-        List<Employee> managerList = null;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        try {
-
-            managerList = (List<Employee>) session.createQuery("FROM Employee emp Where emp.role=:role")
-                    .setParameter("role", new Integer[]{4, 5, 6});
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return managerList;
-    }
-
-    public boolean checkExistByEmail(String email) {
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        try {
-
-            String hql = "From Employee emp WHERE emp.email = :email";
-            Query query = session.createQuery(hql);
-            query.setParameter("email", email);
-
-            if (query.uniqueResult() != null) {
-                return true;
-            } else
-                return false;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        } finally {
-            session.close();
-        }
-
+        return employee;
     }
 
     public Employee getEmployeeByEmail(String email) {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
-
+        Employee receiver ;
         try {
 
             String hql = "From Employee emp Where emp.email=:email";
             Query query = session.createQuery(hql);
             query.setParameter("email", email);
-            Employee receiver = (Employee) query.uniqueResult();
-            return receiver;
-        } catch (Exception e) {
-            return null;
+             receiver = (Employee) query.uniqueResult();
         } finally {
             session.close();
         }
+        return receiver;
     }
 
     public boolean isExist(String email, String username) {
 
 
-        Employee employee = null;
+        Employee employee ;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             String hql = "FROM Employee emp WHERE emp.username=:username or emp.email=:email";
@@ -226,24 +171,22 @@ public class EmployeeDao {
             query.setParameter("username", username);
             query.setParameter("email", email);
             employee = (Employee) query.uniqueResult();
-
-            if (employee == null) {
-                return false;
-            } else {
-                return true;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
         } finally {
             session.close();
+        }
+
+        if (employee == null) {
+            return false;
+        } else {
+            return true;
         }
     }
 
     public boolean checkExistForUpdate(int id, String username, String email) {
 
-        Employee employee = null;
+
+        // In the first step this method checks existence employee in db and then checks it for update .
+        Employee employee;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
 
@@ -252,18 +195,89 @@ public class EmployeeDao {
             query.setParameter("username", username);
             query.setParameter("email", email);
             employee = (Employee) query.uniqueResult();
+
+        } finally {
+            session.close();
+        }
 
             if (employee.getId() == id) {
                 return true;
             } else {
                 return false;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+
+    }
+
+    public void deActiveEmployee(int employeeId) {
+
+        Session session = HibernateUtil.getSessionFactory().openSession() ;
+
+        try {
+          Transaction transaction = session.beginTransaction() ;
+
+          String hql = "Update Employee emp set active=:active where emp.id=:id" ;
+
+          Query query = session.createQuery(hql) ;
+            query.setParameter("active" ,false );
+            query.setParameter("id",employeeId) ;
+            query.executeUpdate() ;
+            transaction.commit();
         } finally {
             session.close();
         }
+
+    }
+
+    public void ActiveEmployee (int employeeId) {
+
+        Session session = HibernateUtil.getSessionFactory().openSession() ;
+
+        try {
+
+            Transaction transaction = session.beginTransaction() ;
+            String hql = "Update Employee emp set active=:active where emp.id=:id" ;
+
+            Query query = session.createQuery(hql) ;
+            query.setParameter("active" ,true );
+            query.setParameter("id",employeeId) ;
+            query.executeUpdate() ;
+            transaction.commit();
+        } finally {
+            session.close();
+        }
+    }
+
+    public List<EmployeeVO> getManagers () {
+
+        Session session= HibernateUtil.getSessionFactory().openSession() ;
+        List<Employee> managerList ;
+
+        List<CategoryElement> managerRole = new ArrayList<>() ;
+        managerRole.add(CategoryDao.getElementByName("manager")) ;
+        managerRole.add(CategoryDao.getElementByName("departmentManager")) ;
+        managerRole.add(CategoryDao.getElementByName("founder")) ;
+
+        try {
+            Transaction transaction =session.beginTransaction() ;
+
+            String hql = "From Employee emp where emp.role in (:managerRole) and emp.disabled=:disabled" ;
+            Query query = session.createQuery(hql) ;
+            query.setParameterList("managerRole", managerRole) ;
+            query.setParameter("disabled",false) ;
+            managerList = query.list() ;
+        } finally {
+         session.close();
+        }
+        List<EmployeeVO> managers = new ArrayList<>() ;
+        for (Employee manager:managerList) {
+            EmployeeVO employee = new EmployeeVO() ;
+            employee.setId(manager.getId());
+            employee.setName(manager.getName());
+            employee.setFamily(manager.getFamily());
+            employee.setRole(manager.getRole());
+            managers.add(employee) ;
+        }
+        return managers ;
     }
 
 }

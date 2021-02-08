@@ -1,5 +1,4 @@
 <%@ page import="com.datin.elms.model.Email" %>
-<%@ page import="com.datin.elms.model.Employee" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -21,7 +20,7 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Email ID</th>
+            <th>Row</th>
             <th>subject</th>
             <th>sender</th>
             <th>view</th>
@@ -31,18 +30,24 @@
         </thead>
 
         <%
+            int i = 1 ;
             List<Email> inbox = (List<Email>) request.getAttribute("inbox");
 
             for (Email email : inbox) {
 
         %>
         <tr>
-            <td><%=email.getId()%></td>
-            <td><%=email.getSubject()%></td>
-            <td><%=email.getSender().getEmail()%></td>
-            <td><a href="email?action=viewEmail&id=<%=email.getId()%>"><img src="static/Panel/images/view.png" style="width:30px;height:30px;"></a></td>
+            <td><%=i%>
+            </td>
+            <td><%=email.getSubject()%>
+            </td>
+            <td><%=email.getSender().getEmail()%>
+            </td>
+            <td><a href="email?action=viewEmail&id=<%=email.getId()%>"><img src="static/Panel/images/view.png"
+                                                                            style="width:30px;height:30px;"></a></td>
         </tr>
         <%
+                i++ ;
             }
         %>
     </table>
@@ -60,7 +65,7 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Email ID</th>
+            <th>Row</th>
             <th>Subject</th>
             <th>Status</th>
             <th>Delete</th>
@@ -69,22 +74,28 @@
         </thead>
 
         <%
+            int j = 1;
             List<Email> sent = (List<Email>) request.getAttribute("sent");
 
             for (Email email : sent) {
 
         %>
         <tr>
-            <td><%=email.getId()%></td>
-            <td><%=email.getSubject()%></td>
-            <td><%=email.getStatus().getName()%></td>
-            <td><a href="email?action=deleteEmail&id=<%=email.getId()%>"><img src="static/Panel/images/untick.png" style="width:30px;height:30px;"></a></td>
+            <td><%=i%>
+            </td>
+            <td><%=email.getSubject()%>
+            </td>
+            <td><%=email.getStatus().getName()%>
+            </td>
+            <td><a href="email?action=deleteEmail&id=<%=email.getId()%>"><img src="static/Panel/images/untick.png"
+                                                                              style="width:30px;height:30px;"></a></td>
         </tr>
         <%
+                j++;
             }
         %>
     </table>
-    <a class="btn btn-primary" href="emailForm.jsp" role="button">send Email</a>
+    <a class="btn btn-primary" href="email?action=emailForm" role="button">send Email</a>
 </div>
 
 
@@ -108,7 +119,7 @@
             <li class="list_item"><a href="manageEmployee?action=employees">employees</a></li>
             <li class="list_item"><a href="manageRequests?action=viewRequests">manage requests</a></li>
             <li class="list_item"><a href="request?action=myRequests">my Requests</a></li>
-            <li class="list_item"><a href="email?action=emails" >Email</a></li>
+            <li class="list_item"><a href="email?action=emails">Email</a></li>
             <li class="list_item"><a href="login?action=signOut">Logout</a></li>
 
         </ul>

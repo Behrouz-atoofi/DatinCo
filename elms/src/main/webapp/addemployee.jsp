@@ -1,11 +1,12 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.datin.elms.model.CategoryElement" %>
 <%@ page import="com.datin.elms.model.Employee" %>
+<%@ page import="com.datin.elms.model.EmployeeVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Administator Panel : Add Employee</title>
+    <title>Administrator Panel : Add Employee</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="static/Panel/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -50,10 +51,15 @@
                     <% } %>
                 </select>
 
-                <label for="active">Activation</label>
-                <select class="form-control" name="active" id="active">
-                    <option value="1">Active</option>
-                    <option value="0">DeActive</option>
+                <label for="manager">manager</label>
+                <select class="form-control" name="manager" id="manager">
+                    <%
+                        List<EmployeeVO> managerList = (List<EmployeeVO>) request.getAttribute("managerList");
+                        for (EmployeeVO manager : managerList) {
+                    %>
+                    <option value="<%=manager.getId()%>"><%=manager.getName()+" " +manager.getFamily() +" | " +manager.getRole().getCode()%></option>
+
+                    <% } %>
                 </select>
 
 

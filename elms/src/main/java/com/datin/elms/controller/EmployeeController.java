@@ -2,8 +2,10 @@ package com.datin.elms.controller;
 
 import com.datin.elms.model.CategoryElement;
 import com.datin.elms.model.Employee;
+import com.datin.elms.model.EmployeeVO;
 import com.datin.elms.service.EmployeeService;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,6 +45,8 @@ public class EmployeeController extends HttpServlet {
         if (action.equalsIgnoreCase("addEmployee")) {
 
             List<CategoryElement> roleList = employeeService.getRoles();
+            List<EmployeeVO> managerList = employeeService.getManagers() ;
+            request.setAttribute("managerList",managerList);
             request.setAttribute("roleList", roleList);
             page = "/addemployee.jsp";
 
@@ -55,11 +59,11 @@ public class EmployeeController extends HttpServlet {
             String email = request.getParameter("email");
             String phoneNumber = request.getParameter("phonenumber");
             int roleId = Integer.parseInt(request.getParameter("roleName"));
-            int isActive = Integer.parseInt(request.getParameter("active"));
-            Employee manager = (Employee) request.getSession().getAttribute("employee");
+            int managerId = Integer.parseInt(request.getParameter("manager")) ;
+
 
             if (!employeeService.isExist(email, username)) {
-                employeeService.saveEmployee(name, family, username, password, email, phoneNumber, roleId, manager, isActive);
+                employeeService.saveEmployee(name, family, username, password, email, phoneNumber, roleId, managerId);
             } else {
                 request.setAttribute("msg", "Email or Username Exist in Database");
                 page = "/error.jsp";
@@ -73,7 +77,9 @@ public class EmployeeController extends HttpServlet {
             Employee employee;
             int employeeId = Integer.parseInt(request.getParameter("id"));
             employee = employeeService.getEmployee(employeeId);
+            List<EmployeeVO> managerList = employeeService.getManagers() ;
             List<CategoryElement> roleList = employeeService.getRoles();
+            request.setAttribute("managerList",managerList);
             request.setAttribute("roleList", roleList);
             request.setAttribute("employee", employee);
             page = "/editemployee.jsp";
@@ -87,19 +93,27 @@ public class EmployeeController extends HttpServlet {
             String email = request.getParameter("email");
             String phoneNumber = request.getParameter("phonenumber");
             int roleId = Integer.parseInt(request.getParameter("roleName"));
-            String manager = request.getParameter("manager");
-            int isActive = Integer.parseInt(request.getParameter("active"));
+            int managerId = Integer.parseInt(request.getParameter("manager"));
 
             if (employeeService.checkExistForUpdate(id, username, email)) {
-                employeeService.updateEmployee(id, name, family, username, password, email, phoneNumber, roleId, isActive);
+                employeeService.updateEmployee(id, name, family, username, password, email, phoneNumber, roleId,managerId);
             } else {
                 request.setAttribute("msg", "Email or Username Exist in Database");
                 page = "/error.jsp";
             }
 
+        } else if (action.equalsIgnoreCase("deActiveEmployee")) {
+            int employeeId = Integer.parseInt(request.getParameter("id"));
+            employeeService.deActiveEmployee(employeeId);
+            page = "/employees.jsp";
+
+        } else if (action.equalsIgnoreCase("ActiveEmployee")) {
+            int employeeId = Integer.parseInt(request.getParameter("id"));
+            employeeService.activeEmployee(employeeId);
+            page = "/employees.jsp";
         }
-        List<Employee> employeeList = employeeService.getEmployees();
-        request.setAttribute("employees", employeeList);
+        List<EmployeeVO> list = employeeService.getEmployees();
+        request.setAttribute("employees", list);
         RequestDispatcher rd = request.getRequestDispatcher(page);
         rd.forward(request, response);
     }

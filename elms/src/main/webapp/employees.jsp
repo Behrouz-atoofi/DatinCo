@@ -1,5 +1,6 @@
 <%@ page import="com.datin.elms.model.Employee" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.datin.elms.model.EmployeeVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,12 +19,15 @@
 <h1></h1>
 <div class="container">
     <table class="table">
+        <style type="text/css">
+            table tr#deActive       {background-color:red; color:white;}
+        </style>
+
         <thead>
         <tr>
-            <th>Id</th>
+            <th>Row</th>
             <th>Name</th>
             <th>Family</th>
-            <th>Email</th>
             <th>Phone</th>
             <th>Role</th>
             <th>Manager</th>
@@ -35,27 +39,38 @@
         </thead>
 
         <%
-            List<Employee> employees = (List<Employee>) request.getAttribute("employees");
-            for (Employee employee : employees) {
+            List<EmployeeVO> employees = (List<EmployeeVO>) request.getAttribute("employees");
+            int i = 1 ;
+            for (EmployeeVO employee : employees) {
 
         %>
+        <%if (employee.isActive()) {%>
         <tr>
-            <td><%=employee.getId()%></td>
+            <td><%=i%></td>
             <td><%=employee.getName()%></td>
             <td><%=employee.getFamily()%></td>
-            <td><%=employee.getEmail()%></td>
             <td><%=employee.getPhoneNumber()%></td>
             <td><%=employee.getRole().getCode()%></td>
-            <td><%=employee.getManager().getId()%></td>
-            <%if (employee.isActive()) {%>
-            <td><img src="static/Panel/images/tick.png" style="width:30px;height:30px;" /> </td>
-            <%} else {%>
-            <td><img src="static/Panel/images/untick.png"  style="width:30px;height:30px;" /> </td>
-            <%}%>
+            <td><%=employee.getManager().getFamily()%></td>
+            <td ><a href="manageEmployee?action=deActiveEmployee&id=<%=employee.getId()%>"><img src="static/Panel/images/tick.png" style="width:30px;height:30px;"></a></td>
             <td><a href="manageEmployee?action=editEmployeeForm&id=<%=employee.getId()%>"><img src="static/Panel/images/update.png" style="width:30px;height:30px;"></a></td>
             <td><a href="manageEmployee?action=deleteEmployee&id=<%=employee.getId()%>"><img src="static/Panel/images/untick.png" style="width:30px;height:30px;"></a></td>
         </tr>
+            <%} else {%>
+        <tr id="deActive">
+            <td><%=i%></td>
+            <td><%=employee.getName()%></td>
+            <td><%=employee.getFamily()%></td>
+            <td><%=employee.getPhoneNumber()%></td>
+            <td><%=employee.getRole().getCode()%></td>
+            <td><%=employee.getManager().getFamily()%></td>
+            <td ><a href="manageEmployee?action=activeEmployee&id=<%=employee.getId()%>"><img src="static/Panel/images/untick.png" style="width:30px;height:30px;"></a></td>
+            <td><a href="manageEmployee?action=editEmployeeForm&id=<%=employee.getId()%>"><img src="static/Panel/images/update.png" style="width:30px;height:30px;"></a></td>
+            <td><a href="manageEmployee?action=deleteEmployee&id=<%=employee.getId()%>"><img src="static/Panel/images/untick.png" style="width:30px;height:30px;"></a></td>
+            <%}%>
+        </tr>
         <%
+                i++ ;
             }
         %>
     </table>
