@@ -27,7 +27,7 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
-            <form class="login100-form validate-form" action="login" method="post">
+            <form class="login100-form validate-form" action="login?action=signIn" method="post">
 					<span class="login100-form-title p-b-55">
 						ELMS V1 <br>
 					</span>
@@ -40,7 +40,7 @@
 						</span>
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+                <div class="wrap-input100 validate-input m-b-16" data-validate = "پسورد را وارد کنید ">
                     <input class="input100" type="password" name="password" placeholder="Password">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">

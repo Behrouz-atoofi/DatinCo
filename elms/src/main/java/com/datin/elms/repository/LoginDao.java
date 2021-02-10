@@ -16,12 +16,11 @@ public class LoginDao {
 
             employee = (Employee) session.createQuery("FROM Employee WHERE username = :c_username").setParameter("c_username", username)
                     .uniqueResult();
-
         }  finally {
             session.close();
         }
 
-            if (employee != null && employee.getPassword().equals(password)) {
+            if (employee != null && employee.getPassword().equals(password) && employee.isActive()) {
                 return employee;
             }
         return null;

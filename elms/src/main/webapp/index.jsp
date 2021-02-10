@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Administator Panel </title>
+    <title>Administrator Panel </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="static/Panel/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -33,15 +33,8 @@
     <div class="px-5">
         <h2 class="menu_title">Menu</h2>
 
-<%--        should be changed--%>
-        <% LoginDao loginDao = new LoginDao() ;
-        Employee employee = loginDao.validate("admin","admin") ;
-        request.getSession().setAttribute("employee",employee);
-        %>
-
-        <h1></h1>
         <ul class="list_load">
-            <h1>  </h1>
+            <h1></h1>
             <li class="list_item"><a href="profile">My Profile</a></li>
             <li class="list_item"><a href="manageEmployee?action=employees">employees</a></li>
             <li class="list_item"><a href="manageRequests?action=viewRequests">manage requests</a></li>

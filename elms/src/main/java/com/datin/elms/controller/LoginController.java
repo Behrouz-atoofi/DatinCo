@@ -6,6 +6,7 @@ import com.datin.elms.service.LoginService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import java.io.IOException;
 
 
 @WebServlet(urlPatterns = "/login")
+
 public class LoginController extends HttpServlet {
 
     private HttpSession session;
@@ -37,22 +39,14 @@ public class LoginController extends HttpServlet {
 
         String action = request.getParameter("action");
         String nextPage = "/index.jsp";
+
         if (action.equalsIgnoreCase("signIn")) {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             Employee employee = loginDao.validate(username, password);
-
+            System.out.println(employee.getEmail());
             if (employee != null) {
-
-
-                if (loginService.isManager(employee)) {
-                    request.getSession().setAttribute("employee", employee);
-                    nextPage = "/administrator/index.jsp";
-                } else {
-                    request.getSession().setAttribute("employee", employee);
-                    nextPage = "/index.jsp";
-                }
-
+                request.getSession().setAttribute("employee", employee);
             } else {
                 request.setAttribute("msg", "Invalid username or password");
                 nextPage = "/error.jsp";
