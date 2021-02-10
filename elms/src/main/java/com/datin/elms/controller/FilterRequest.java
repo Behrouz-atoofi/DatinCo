@@ -23,10 +23,8 @@ public class FilterRequest implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
         String loginURI = request.getContextPath() + "/login";
-        System.out.println(loginURI);
         boolean loggedIn = session != null && session.getAttribute("employee") != null;
         boolean loginRequest = request.getRequestURI().equals(loginURI);
-        System.out.println(request.getRequestURI());
         if (loggedIn || loginRequest) {
             chain.doFilter(request, response);
         } else {
