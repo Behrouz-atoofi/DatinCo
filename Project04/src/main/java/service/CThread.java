@@ -84,7 +84,7 @@ public class CThread {
                         report.setAmount(payment.getAmount());
                         reportList.add(report);
 
-                        // UPDATE FILES IN A SINGLE THREAD . IF the app crashed or server Downed, the last changes stores ...
+                        // UPDATE FILES IN A SINGLE THREAD . IF the app crashed or server  is Down, the last changes stores ...
                         buildReportFile(reportList);
                         updateDepositFile(newDepositList);
 
@@ -98,7 +98,6 @@ public class CThread {
         }
 
     }
-
 
     public int getDebtorIndex(List<Deposit> deposits, List<Payment> payments) {
 

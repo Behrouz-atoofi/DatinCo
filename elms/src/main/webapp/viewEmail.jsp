@@ -1,6 +1,5 @@
 <%@ page import="com.datin.elms.model.Attachment" %>
 <%@ page import="com.datin.elms.model.Email" %>
-<%@ page import="com.datin.elms.model.Employee" %>
 <%@ page import="com.datin.elms.service.EmailService" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -31,7 +30,8 @@
            readonly>
 
     <label for="sender">Sender</label>
-    <input type="text" class="form-control" id="sender" name="content" value="<%=email.getSender().getEmail()%>" readonly>
+    <input type="text" class="form-control" id="sender" name="content" value="<%=email.getSender().getEmail()%>"
+           readonly>
 
     <label for="sender">content</label>
     <input type="text" class="form-control" id="sender" name="content" value="<%=email.getContent()%>" readonly>
@@ -41,12 +41,15 @@
         EmailService emailService = new EmailService();
         List<Attachment> attachments = emailService.getEmailAttachments(email.getId());
         if (attachments != null) {
-            int i = 1 ;
+            int i = 1;
             for (Attachment attachment : attachments) {
 
     %>
-    <a class="btn btn-primary" href="email?action=downloadAttachment&id=<%=attachment.getId()%>" role="button">Download Attachment <%=i%></a>
-    <% i++ ; }
+    <a class="btn btn-primary" href="email?action=downloadAttachment&id=<%=attachment.getId()%>" role="button">Download
+        Attachment <%=i%>
+    </a>
+    <% i++;
+    }
     }%>
 
 
@@ -74,7 +77,7 @@
             <li class="list_item"><a href="manageEmployee?action=employees">employees</a></li>
             <li class="list_item"><a href="manageRequests?action=viewRequests">manage requests</a></li>
             <li class="list_item"><a href="request?action=myRequests">my Requests</a></li>
-            <li class="list_item"><a href="email?action=emails" >Email</a></li>
+            <li class="list_item"><a href="email?action=emails">Email</a></li>
             <li class="list_item"><a href="login?action=signOut">Logout</a></li>
 
         </ul>

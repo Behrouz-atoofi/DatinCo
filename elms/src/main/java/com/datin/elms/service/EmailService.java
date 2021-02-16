@@ -32,6 +32,7 @@ public class EmailService {
         BasicConfigurator.configure();
         emailDao.deleteEmailById(emailId);
     }
+
     public List<Attachment> getEmailAttachments(int emailId) {
         BasicConfigurator.configure();
 
@@ -47,6 +48,7 @@ public class EmailService {
         }
 
     }
+
     public Attachment getAttachmentById(int attachmentId) {
 
 
@@ -63,6 +65,7 @@ public class EmailService {
         }
 
     }
+
     public List<Email> getInboxEmails(Employee receiver) {
         BasicConfigurator.configure();
         List<Email> inbox = emailDao.getEmailByReceiver(receiver);
@@ -70,6 +73,7 @@ public class EmailService {
         log.info("number of emails By receiver EmailAddress is : " + inbox.size());
         return inbox;
     }
+
     public List<Email> getSentEmails(Employee employee) {
         BasicConfigurator.configure();
         List<Email> sent = emailDao.getEmailBySender(employee);
@@ -78,6 +82,7 @@ public class EmailService {
         return sent;
 
     }
+
     public void sendEmail(Employee employee, String subject, String[] receiversEmail, String content, List<Part> fileParts) throws IOException {
         BasicConfigurator.configure();
 
@@ -144,6 +149,7 @@ public class EmailService {
 
 
     }
+
     public Email viewEmail(int emailId) {
         Email email = emailDao.getEmailById(emailId);
         emailDao.updateStatus(email);

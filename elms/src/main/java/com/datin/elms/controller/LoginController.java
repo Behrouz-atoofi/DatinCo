@@ -6,7 +6,6 @@ import com.datin.elms.service.LoginService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,13 +23,13 @@ public class LoginController extends HttpServlet {
     private LoginService loginService;
 
     @Override
-    public void init() throws ServletException {
+    public void init()  {
         loginDao = new LoginDao();
         loginService = new LoginService();
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 
@@ -44,7 +43,7 @@ public class LoginController extends HttpServlet {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             Employee employee = loginDao.validate(username, password);
-            System.out.println(employee.getEmail());
+
             if (employee != null) {
                 request.getSession().setAttribute("employee", employee);
             } else {

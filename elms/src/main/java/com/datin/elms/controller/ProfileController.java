@@ -19,13 +19,13 @@ public class ProfileController extends HttpServlet {
     private Employee employee;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
 
         employee = new Employee();
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 

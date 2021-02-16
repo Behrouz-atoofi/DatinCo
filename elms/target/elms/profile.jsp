@@ -1,6 +1,4 @@
 <%@ page import="com.datin.elms.model.Employee" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.datin.elms.model.CategoryElement" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,31 +33,35 @@
 
             <div class="form-group">
                 <label for="family">Family</label>
-                <input type="text" class="form-control" id="family" name="family"value="<%=employee.getFamily()%>">
+                <input type="text" class="form-control" id="family" name="family" value="<%=employee.getFamily()%>">
             </div>
 
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" value="<%=employee.getUsername()%>">
+                <input type="text" class="form-control" id="username" name="username"
+                       value="<%=employee.getUsername()%>">
             </div>
             <div class="form-group">
                 <label for="password">Passwrod</label>
-                <input type="text" class="form-control" id="password" name="password" value="<%=employee.getPassword()%>" >
+                <input type="text" class="form-control" id="password" name="password"
+                       value="<%=employee.getPassword()%>">
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" class="form-control" id="email" name="email" value="<%=employee.getEmail()%>" >
+                <input type="text" class="form-control" id="email" name="email" value="<%=employee.getEmail()%>">
             </div>
             <div class="form-group">
                 <label for="phonenumber">PhoneNumber</label>
-                <input type="text" class="form-control" id="phonenumber" name="phonenumber" value="<%=employee.getPhoneNumber()%>" >
+                <input type="text" class="form-control" id="phonenumber" name="phonenumber"
+                       value="<%=employee.getPhoneNumber()%>">
             </div>
             <div class="form-group">
                 <label for="Role">My Role </label>
-                <input type="text" class="form-control" id="Role" name="Role" value="<%=employee.getRole().getName()%>" readonly>
+                <input type="text" class="form-control" id="Role" name="Role" value="<%=employee.getRole().getName()%>"
+                       readonly>
             </div>
 
-<%--            <button type="submit" class="btn btn-primary">update</button>--%>
+            <%--            <button type="submit" class="btn btn-primary">update</button>--%>
         </div>
     </center>
 </form>
@@ -85,7 +87,7 @@
             <li class="list_item"><a href="manageEmployee?action=employees">employees</a></li>
             <li class="list_item"><a href="manageRequests?action=viewRequests">manage requests</a></li>
             <li class="list_item"><a href="request?action=myRequests">my Requests</a></li>
-            <li class="list_item"><a href="email?action=emails" >Email</a></li>
+            <li class="list_item"><a href="email?action=emails">Email</a></li>
             <li class="list_item"><a href="login?action=signOut">Logout</a></li>
 
         </ul>

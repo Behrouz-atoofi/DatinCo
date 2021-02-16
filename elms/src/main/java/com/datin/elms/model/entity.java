@@ -66,24 +66,12 @@ public class entity implements Serializable {
         this.active = active;
     }
 
-    public int getManualId() {
-        return manualId;
-    }
-
-    public void setManualId(int manualId) {
-        this.manualId = manualId;
-    }
-
     public int getVersion() {
         return version;
     }
 
     public void setVersion(int version) {
         this.version = version;
-    }
-
-    public String getDateCreated() {
-        return dateCreated;
     }
 
     public void setDateCreated(String dateCreated) {

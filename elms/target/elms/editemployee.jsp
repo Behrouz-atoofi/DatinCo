@@ -1,7 +1,7 @@
 <%@ page import="com.datin.elms.model.CategoryElement" %>
 <%@ page import="com.datin.elms.model.Employee" %>
-<%@ page import="java.util.List" %>
 <%@ page import="com.datin.elms.model.EmployeeVO" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +76,8 @@
                         List<EmployeeVO> managerList = (List<EmployeeVO>) request.getAttribute("managerList");
                         for (EmployeeVO manager : managerList) {
                     %>
-                    <option value="<%=manager.getId()%>"><%=manager.getName() +" "+ manager.getFamily()+" | " +manager.getRole().getCode()%></option>
+                    <option value="<%=manager.getId()%>"><%=manager.getName() + " " + manager.getFamily() + " | " + manager.getRole().getCode()%>
+                    </option>
 
                     <% } %>
                 </select>
@@ -108,7 +109,7 @@
             <li class="list_item"><a href="manageEmployee?action=employees">employees</a></li>
             <li class="list_item"><a href="manageRequests?action=viewRequests">manage requests</a></li>
             <li class="list_item"><a href="request?action=myRequests">my Requests</a></li>
-            <li class="list_item"><a href="email?action=emails" >Email</a></li>
+            <li class="list_item"><a href="email?action=emails">Email</a></li>
             <li class="list_item"><a href="login?action=signOut">Logout</a></li>
 
         </ul>

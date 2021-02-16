@@ -20,19 +20,19 @@ public class EmailDao {
     public List<Email> getEmailByReceiver(Employee receiver) {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
-        List<Integer> idList = new ArrayList<>() ;
-        List<Email> emailList = new ArrayList<>() ;
+        List<Integer> idList = new ArrayList<>();
+        List<Email> emailList = new ArrayList<>();
         try {
 
-            String sql = "select t_email.id from t_email JOIN mm_email_employee on t_email.id=mm_email_employee.c_emailId where c_EmployeeId=:receiver and t_email.c_disabled=false" ;
+            String sql = "select t_email.id from t_email JOIN mm_email_employee on t_email.id=mm_email_employee.c_emailId where c_EmployeeId=:receiver and t_email.c_disabled=false";
             SQLQuery query = session.createSQLQuery(sql);
-            query.setParameter("receiver",receiver.getId()) ;
-            idList.addAll(query.list()) ;
+            query.setParameter("receiver", receiver.getId());
+            idList.addAll(query.list());
             for (int id : idList) {
-                emailList.add((Email)session.createQuery("From Email where id=:id").setParameter("id",id).uniqueResult());
+                emailList.add((Email) session.createQuery("From Email where id=:id").setParameter("id", id).uniqueResult());
             }
             return emailList;
-        }  finally {
+        } finally {
             session.close();
         }
     }
@@ -49,7 +49,7 @@ public class EmailDao {
             query.setParameter("disabled", false);
             return query.list();
 
-        }  finally {
+        } finally {
             session.close();
         }
 
@@ -98,7 +98,7 @@ public class EmailDao {
 
 
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Email email ;
+        Email email;
         try {
             email = (Email) session.createQuery("FROM Email eml WHERE eml.id=:id").setParameter("id", id).uniqueResult();
         } finally {
@@ -122,7 +122,7 @@ public class EmailDao {
             query.executeUpdate();
             transaction.commit();
 
-            } finally {
+        } finally {
             session.close();
         }
 
@@ -144,7 +144,7 @@ public class EmailDao {
     public List<Attachment> downloadAttachments(Email email) {
 
 
-        List<Attachment> attachments ;
+        List<Attachment> attachments;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             String hql = "FROM Attachment emf WHERE emf.email=:email";
@@ -160,7 +160,7 @@ public class EmailDao {
     public Attachment downloadSingleAttachment(int attachmentId) {
 
 
-        Attachment attachment ;
+        Attachment attachment;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             attachment = (Attachment) session.createQuery("FROM Attachment emf WHERE emf.id=:id")

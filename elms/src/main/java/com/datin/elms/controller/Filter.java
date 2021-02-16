@@ -1,7 +1,5 @@
 package com.datin.elms.controller;
 
-import com.datin.elms.model.Employee;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +11,7 @@ import java.io.IOException;
 public class Filter implements javax.servlet.Filter {
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig)  {
 
     }
 
@@ -25,10 +23,11 @@ public class Filter implements javax.servlet.Filter {
         String loginURI = request.getContextPath() + "/login";
         boolean loggedIn = session != null && session.getAttribute("employee") != null;
         boolean loginRequest = request.getRequestURI().equals(loginURI);
-        if (loggedIn || loginRequest) {
+        boolean staticFile = request.getRequestURI().contains("/static/LoginPage/");
+        if (loggedIn || loginRequest || staticFile) {
             chain.doFilter(request, response);
         } else {
-            request.getRequestDispatcher("/login.jsp").forward(request,response);
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <head>
     <title>DatinCo : Leave Request Management </title>
@@ -32,7 +32,7 @@
 						ELMS V1 <br>
 					</span>
 
-                <div class="wrap-input100 validate-input m-b-16" >
+                <div class="wrap-input100 validate-input m-b-16">
                     <input class="input100" type="text" name="username" placeholder="Username">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
@@ -40,7 +40,7 @@
 						</span>
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-16" data-validate = "پسورد را وارد کنید ">
+                <div class="wrap-input100 validate-input m-b-16" data-validate="پسورد را وارد کنید ">
                     <input class="input100" type="password" name="password" placeholder="Password">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
@@ -65,8 +65,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 <!--===============================================================================================-->

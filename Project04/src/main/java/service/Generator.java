@@ -22,6 +22,7 @@ public class Generator {
     // This method generates values for Accounts and transactions
     // the value that will be generated for debtor account and  debtor transaction is between 500_000 and 10_000_000
     // and for creditor accounts is between 100 and 5000
+
     public static BigDecimal generateRandomValue(int n) {
         Random r = new Random();
         int low;
@@ -39,7 +40,7 @@ public class Generator {
         return randomValue;
     }
 
-    public static List<Deposit> generateDeposits(int n) throws IOException {
+    public static void generateDeposits(int n) throws IOException {
 
         BasicConfigurator.configure();
         List<Deposit> depositList = new ArrayList<>();
@@ -78,11 +79,9 @@ public class Generator {
 
         }
 
-
-        return depositList;
     }
 
-    public static List<Payment> generatePayments(int n) throws IOException {
+    public static void generatePayments(int n) throws IOException {
 
         List<Payment> paymentList = new ArrayList<>();
 
@@ -122,7 +121,6 @@ public class Generator {
                 log.warn("PaymentFile couldn't write");
             }
         }
-        return paymentList;
     }
 
     public static String buildDepositAccNumber(int i) {

@@ -17,7 +17,7 @@ public class RequestDao {
     public List<LeaveRequest> getRequestsByEmployee(Employee employee) {
 
 
-        List<LeaveRequest> requestList ;
+        List<LeaveRequest> requestList;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
 

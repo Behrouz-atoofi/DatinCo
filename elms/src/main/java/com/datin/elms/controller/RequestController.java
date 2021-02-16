@@ -1,7 +1,9 @@
 package com.datin.elms.controller;
+
 import com.datin.elms.model.Employee;
 import com.datin.elms.model.LeaveRequest;
 import com.datin.elms.service.RequestService;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +32,7 @@ public class RequestController extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 

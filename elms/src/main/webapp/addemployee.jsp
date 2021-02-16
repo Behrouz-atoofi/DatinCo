@@ -1,7 +1,6 @@
-<%@ page import="java.util.List" %>
 <%@ page import="com.datin.elms.model.CategoryElement" %>
-<%@ page import="com.datin.elms.model.Employee" %>
 <%@ page import="com.datin.elms.model.EmployeeVO" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,36 +16,43 @@
 <body>
 
 <h1 class="page_title"> Add Employee </h1>
-<form action="manageEmployee?action=saveEmployee" method="post" >
+<form action="manageEmployee?action=saveEmployee" method="post">
     <center>
         <div class="col-lg-4 col-lg-offset-4">
 
-            <div class="form-group" >
+            <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" required="required" pattern="[A-Za-z0-9]{1,20}" >
+                <input type="text" class="form-control" id="name" name="name" required="required"
+                       pattern="[A-Za-z0-9]{1,20}">
 
                 <label for="family">Family</label>
-                <input type="text" class="form-control" id="family" name="family" required="required" pattern="[A-Za-z0-9]{1,20}">
+                <input type="text" class="form-control" id="family" name="family" required="required"
+                       pattern="[A-Za-z0-9]{1,20}">
 
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" required="required" pattern="[A-Za-z0-9]{1,20}" >
+                <input type="text" class="form-control" id="username" name="username" required="required"
+                       pattern="[A-Za-z0-9]{1,20}">
 
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required="required" pattern="[A-Za-z0-9]{1,20}" >
+                <input type="password" class="form-control" id="password" name="password" required="required"
+                       pattern="[A-Za-z0-9]{1,20}">
 
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" >
+                <input type="email" class="form-control" id="email" name="email" required="required"
+                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
 
                 <label for="phonenumber">PhoneNumber</label>
-                <input type="text" size="11" class="form-control" id="phonenumber" name="phonenumber" required="required" pattern="{1,20}" >
+                <input type="text" size="11" class="form-control" id="phonenumber" name="phonenumber"
+                       required="required" pattern="{1,20}">
 
                 <label for="roleName">Role</label>
                 <select class="form-control" name="roleName" id="roleName">
-                <%
-                    List<CategoryElement> roles = (List<CategoryElement>) request.getAttribute("roleList");
-                    for (CategoryElement role : roles) {
-                %>
-                        <option value="<%=role.getId()%>"><%=role.getName()%></option>
+                    <%
+                        List<CategoryElement> roles = (List<CategoryElement>) request.getAttribute("roleList");
+                        for (CategoryElement role : roles) {
+                    %>
+                    <option value="<%=role.getId()%>"><%=role.getName()%>
+                    </option>
 
                     <% } %>
                 </select>
@@ -57,15 +63,17 @@
                         List<EmployeeVO> managerList = (List<EmployeeVO>) request.getAttribute("managerList");
                         for (EmployeeVO manager : managerList) {
                     %>
-                    <option value="<%=manager.getId()%>"><%=manager.getName()+" " +manager.getFamily() +" | " +manager.getRole().getCode()%></option>
+                    <option value="<%=manager.getId()%>"><%=manager.getName() + " " + manager.getFamily() + " | " + manager.getRole().getCode()%>
+                    </option>
 
                     <% } %>
                 </select>
 
 
-            </div></div>
+            </div>
+        </div>
 
-            <button type="submit" class="btn btn-primary">Add</button>
+        <button type="submit" class="btn btn-primary">Add</button>
         </div>
     </center>
 </form>
@@ -89,7 +97,7 @@
             <li class="list_item"><a href="manageEmployee?action=employees">employees</a></li>
             <li class="list_item"><a href="manageRequests?action=viewRequests">manage requests</a></li>
             <li class="list_item"><a href="request?action=myRequests">my Requests</a></li>
-            <li class="list_item"><a href="email?action=emails" >Email</a></li>
+            <li class="list_item"><a href="email?action=emails">Email</a></li>
             <li class="list_item"><a href="login?action=signOut">Logout</a></li>
 
         </ul>

@@ -30,6 +30,7 @@ public class EmployeeService {
 
         return roleList;
     }
+
     public void saveEmployee(String name, String family, String username, String password, String email, String phoneNumber, int roleId, int managerId) {
         BasicConfigurator.configure();
         Employee employee = new Employee();
@@ -55,11 +56,13 @@ public class EmployeeService {
 
 
     }
+
     public void deleteEmployee(int employeeId) {
         EmployeeDao employeeDao = new EmployeeDao();
         employeeDao.deleteEmployee(employeeId);
 
     }
+
     public Employee getEmployee(int employeeId) {
         Employee employee = employeeDao.getEmployeeById(employeeId);
         BasicConfigurator.configure();
@@ -70,7 +73,8 @@ public class EmployeeService {
         }
         return employee;
     }
-    public void updateEmployee(int id, String name, String family, String username, String password, String email, String phoneNumber, int roleId,int managerId) {
+
+    public void updateEmployee(int id, String name, String family, String username, String password, String email, String phoneNumber, int roleId, int managerId) {
         BasicConfigurator.configure();
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -88,11 +92,11 @@ public class EmployeeService {
         employee.setManager(employeeDao.getEmployeeById(managerId));
         employee.setLastModified(now);
         EmployeeDao employeeDao = new EmployeeDao();
-        employeeDao.updateEmployee(employee) ;
-
+        employeeDao.updateEmployee(employee);
 
 
     }
+
     public List<EmployeeVO> getEmployees() {
         BasicConfigurator.configure();
 
@@ -118,6 +122,7 @@ public class EmployeeService {
         return list;
 
     }
+
     public boolean isExist(String email, String username) {
 
         EmployeeDao employeeDao = new EmployeeDao();
@@ -125,6 +130,7 @@ public class EmployeeService {
         return employeeDao.isExist(email, username);
 
     }
+
     public boolean checkExistForUpdate(int id, String username, String email) {
 
         EmployeeDao employeeDao = new EmployeeDao();
@@ -132,15 +138,18 @@ public class EmployeeService {
         return employeeDao.checkExistForUpdate(id, username, email);
 
     }
+
     public void deActiveEmployee(int employeeId) {
         employeeDao.deActiveEmployee(employeeId);
     }
+
     public void activeEmployee(int employeeId) {
         employeeDao.ActiveEmployee(employeeId);
     }
-    public List<EmployeeVO>  getManagers( ) {
-        List<EmployeeVO> managers = employeeDao.getManagers() ;
-        return managers ;
+
+    public List<EmployeeVO> getManagers() {
+        List<EmployeeVO> managers = employeeDao.getManagers();
+        return managers;
     }
 
 

@@ -10,19 +10,19 @@ public class LoginDao {
     public Employee validate(String username, String password) {
 
 
-        Employee employee ;
+        Employee employee;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
 
             employee = (Employee) session.createQuery("FROM Employee WHERE username = :c_username").setParameter("c_username", username)
                     .uniqueResult();
-        }  finally {
+        } finally {
             session.close();
         }
 
-            if (employee != null && employee.getPassword().equals(password) && employee.isActive()) {
-                return employee;
-            }
+        if (employee != null && employee.getPassword().equals(password) && employee.isActive()) {
+            return employee;
+        }
         return null;
     }
 

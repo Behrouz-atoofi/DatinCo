@@ -1,7 +1,3 @@
-<%@ page import="com.datin.elms.model.Employee" %>
-<%@ page import="java.io.PrintWriter" %>
-<%@ page import="com.datin.elms.repository.EmployeeDao" %>
-<%@ page import="com.datin.elms.repository.LoginDao" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +35,7 @@
             <li class="list_item"><a href="manageEmployee?action=employees">employees</a></li>
             <li class="list_item"><a href="manageRequests?action=viewRequests">manage requests</a></li>
             <li class="list_item"><a href="request?action=myRequests">my Requests</a></li>
-            <li class="list_item"><a href="email?action=emails" >Email</a></li>
+            <li class="list_item"><a href="email?action=emails">Email</a></li>
             <li class="list_item"><a href="login?action=signOut">Logout</a></li>
 
         </ul>

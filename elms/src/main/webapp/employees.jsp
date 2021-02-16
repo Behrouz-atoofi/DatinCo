@@ -1,6 +1,5 @@
-<%@ page import="com.datin.elms.model.Employee" %>
-<%@ page import="java.util.List" %>
 <%@ page import="com.datin.elms.model.EmployeeVO" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +19,10 @@
 <div class="container">
     <table class="table">
         <style type="text/css">
-            table tr#deActive       {background-color:red; color:white;}
+            table tr#deActive {
+                background-color: red;
+                color: white;
+            }
         </style>
 
         <thead>
@@ -40,37 +42,55 @@
 
         <%
             List<EmployeeVO> employees = (List<EmployeeVO>) request.getAttribute("employees");
-            int i = 1 ;
+            int i = 1;
             for (EmployeeVO employee : employees) {
 
         %>
         <%if (employee.isActive()) {%>
         <tr>
-            <td><%=i%></td>
-            <td><%=employee.getName()%></td>
-            <td><%=employee.getFamily()%></td>
-            <td><%=employee.getPhoneNumber()%></td>
-            <td><%=employee.getRole().getCode()%></td>
-            <td><%=employee.getManager().getFamily()%></td>
-            <td ><a href="manageEmployee?action=deActiveEmployee&id=<%=employee.getId()%>"><img src="static/Panel/images/tick.png" style="width:30px;height:30px;"></a></td>
-            <td><a href="manageEmployee?action=editEmployeeForm&id=<%=employee.getId()%>"><img src="static/Panel/images/update.png" style="width:30px;height:30px;"></a></td>
-            <td><a href="manageEmployee?action=deleteEmployee&id=<%=employee.getId()%>"><img src="static/Panel/images/untick.png" style="width:30px;height:30px;"></a></td>
+            <td><%=i%>
+            </td>
+            <td><%=employee.getName()%>
+            </td>
+            <td><%=employee.getFamily()%>
+            </td>
+            <td><%=employee.getPhoneNumber()%>
+            </td>
+            <td><%=employee.getRole().getCode()%>
+            </td>
+            <td><%=employee.getManager().getFamily()%>
+            </td>
+            <td><a href="manageEmployee?action=deActiveEmployee&id=<%=employee.getId()%>"><img
+                    src="static/Panel/images/tick.png" style="width:30px;height:30px;"></a></td>
+            <td><a href="manageEmployee?action=editEmployeeForm&id=<%=employee.getId()%>"><img
+                    src="static/Panel/images/update.png" style="width:30px;height:30px;"></a></td>
+            <td><a href="manageEmployee?action=deleteEmployee&id=<%=employee.getId()%>"><img
+                    src="static/Panel/images/untick.png" style="width:30px;height:30px;"></a></td>
         </tr>
-            <%} else {%>
+        <%} else {%>
         <tr id="deActive">
-            <td><%=i%></td>
-            <td><%=employee.getName()%></td>
-            <td><%=employee.getFamily()%></td>
-            <td><%=employee.getPhoneNumber()%></td>
-            <td><%=employee.getRole().getCode()%></td>
-            <td><%=employee.getManager().getFamily()%></td>
-            <td ><a href="manageEmployee?action=activeEmployee&id=<%=employee.getId()%>"><img src="static/Panel/images/untick.png" style="width:30px;height:30px;"></a></td>
-            <td><a href="manageEmployee?action=editEmployeeForm&id=<%=employee.getId()%>"><img src="static/Panel/images/update.png" style="width:30px;height:30px;"></a></td>
-            <td><a href="manageEmployee?action=deleteEmployee&id=<%=employee.getId()%>"><img src="static/Panel/images/untick.png" style="width:30px;height:30px;"></a></td>
+            <td><%=i%>
+            </td>
+            <td><%=employee.getName()%>
+            </td>
+            <td><%=employee.getFamily()%>
+            </td>
+            <td><%=employee.getPhoneNumber()%>
+            </td>
+            <td><%=employee.getRole().getCode()%>
+            </td>
+            <td><%=employee.getManager().getFamily()%>
+            </td>
+            <td><a href="manageEmployee?action=activeEmployee&id=<%=employee.getId()%>"><img
+                    src="static/Panel/images/untick.png" style="width:30px;height:30px;"></a></td>
+            <td><a href="manageEmployee?action=editEmployeeForm&id=<%=employee.getId()%>"><img
+                    src="static/Panel/images/update.png" style="width:30px;height:30px;"></a></td>
+            <td><a href="manageEmployee?action=deleteEmployee&id=<%=employee.getId()%>"><img
+                    src="static/Panel/images/untick.png" style="width:30px;height:30px;"></a></td>
             <%}%>
         </tr>
         <%
-                i++ ;
+                i++;
             }
         %>
     </table>
@@ -99,7 +119,7 @@
             <li class="list_item"><a href="manageEmployee?action=employees">employees</a></li>
             <li class="list_item"><a href="manageRequests?action=viewRequests">manage requests</a></li>
             <li class="list_item"><a href="request?action=myRequests">my Requests</a></li>
-            <li class="list_item"><a href="email?action=emails" >Email</a></li>
+            <li class="list_item"><a href="email?action=emails">Email</a></li>
             <li class="list_item"><a href="login?action=signOut">Logout</a></li>
 
         </ul>

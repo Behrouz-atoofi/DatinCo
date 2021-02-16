@@ -31,7 +31,7 @@ public class EmailController extends HttpServlet {
     private HttpSession session;
 
     @Override
-    public void init()  {
+    public void init() {
 
         emailService = new EmailService();
         employee = new Employee();
@@ -40,7 +40,7 @@ public class EmailController extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 

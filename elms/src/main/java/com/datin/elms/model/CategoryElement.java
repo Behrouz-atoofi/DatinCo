@@ -49,13 +49,5 @@ public class CategoryElement extends entity {
         this.name = name;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
 
 }

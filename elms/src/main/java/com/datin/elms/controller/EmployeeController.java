@@ -4,8 +4,8 @@ import com.datin.elms.model.CategoryElement;
 import com.datin.elms.model.Employee;
 import com.datin.elms.model.EmployeeVO;
 import com.datin.elms.service.EmployeeService;
+import com.datin.elms.service.LoginService;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,16 +22,18 @@ public class EmployeeController extends HttpServlet {
 
     private HttpSession session;
     private EmployeeService employeeService;
-
+    private LoginService loginService;
+    private Employee employee;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         employeeService = new EmployeeService();
-
+        loginService = new LoginService();
+        employee = new Employee();
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 
@@ -41,79 +43,88 @@ public class EmployeeController extends HttpServlet {
 
         String action = request.getParameter("action");
         String page = "/employees.jsp";
+        session = request.getSession();
+        employee = (Employee) session.getAttribute("employee");
 
-        if (action.equalsIgnoreCase("addEmployee")) {
+        if (loginService.isManager(employee)) {
 
-            List<CategoryElement> roleList = employeeService.getRoles();
-            List<EmployeeVO> managerList = employeeService.getManagers() ;
-            request.setAttribute("managerList",managerList);
-            request.setAttribute("roleList", roleList);
-            page = "/addemployee.jsp";
+            if (action.equalsIgnoreCase("addEmployee")) {
 
-        } else if (action.equalsIgnoreCase("saveEmployee")) {
+                List<CategoryElement> roleList = employeeService.getRoles();
+                List<EmployeeVO> managerList = employeeService.getManagers();
+                request.setAttribute("managerList", managerList);
+                request.setAttribute("roleList", roleList);
+                page = "/addemployee.jsp";
 
-            String name = request.getParameter("name");
-            String family = request.getParameter("family");
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            String email = request.getParameter("email");
-            String phoneNumber = request.getParameter("phonenumber");
-            int roleId = Integer.parseInt(request.getParameter("roleName"));
-            int managerId = Integer.parseInt(request.getParameter("manager")) ;
+            } else if (action.equalsIgnoreCase("saveEmployee")) {
+
+                String name = request.getParameter("name");
+                String family = request.getParameter("family");
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
+                String email = request.getParameter("email");
+                String phoneNumber = request.getParameter("phonenumber");
+                int roleId = Integer.parseInt(request.getParameter("roleName"));
+                int managerId = Integer.parseInt(request.getParameter("manager"));
 
 
-            if (!employeeService.isExist(email, username)) {
-                employeeService.saveEmployee(name, family, username, password, email, phoneNumber, roleId, managerId);
-            } else {
-                request.setAttribute("msg", "Email or Username Exist in Database");
-                page = "/error.jsp";
+                if (!employeeService.isExist(email, username)) {
+                    employeeService.saveEmployee(name, family, username, password, email, phoneNumber, roleId, managerId);
+                } else {
+                    request.setAttribute("msg", "Email or Username Exist in Database");
+                    page = "/error.jsp";
+                }
+
+            } else if (action.equalsIgnoreCase("deleteEmployee")) {
+                int employeeId = Integer.parseInt(request.getParameter("id"));
+                employeeService.deleteEmployee(employeeId);
+
+            } else if (action.equalsIgnoreCase("editEmployeeForm")) {
+                Employee employee;
+                int employeeId = Integer.parseInt(request.getParameter("id"));
+                employee = employeeService.getEmployee(employeeId);
+                List<EmployeeVO> managerList = employeeService.getManagers();
+                List<CategoryElement> roleList = employeeService.getRoles();
+                request.setAttribute("managerList", managerList);
+                request.setAttribute("roleList", roleList);
+                request.setAttribute("employee", employee);
+                page = "/editemployee.jsp";
+            } else if (action.equalsIgnoreCase("editEmployee")) {
+
+                int id = Integer.parseInt(request.getParameter("id"));
+                String name = request.getParameter("name");
+                String family = request.getParameter("family");
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
+                String email = request.getParameter("email");
+                String phoneNumber = request.getParameter("phonenumber");
+                int roleId = Integer.parseInt(request.getParameter("roleName"));
+                int managerId = Integer.parseInt(request.getParameter("manager"));
+
+                if (employeeService.checkExistForUpdate(id, username, email)) {
+                    employeeService.updateEmployee(id, name, family, username, password, email, phoneNumber, roleId, managerId);
+                } else {
+                    request.setAttribute("msg", "Email or Username Exist in Database");
+                    page = "/error.jsp";
+                }
+
+            } else if (action.equalsIgnoreCase("deActiveEmployee")) {
+                int employeeId = Integer.parseInt(request.getParameter("id"));
+                employeeService.deActiveEmployee(employeeId);
+                page = "/employees.jsp";
+
+            } else if (action.equalsIgnoreCase("ActiveEmployee")) {
+                int employeeId = Integer.parseInt(request.getParameter("id"));
+                employeeService.activeEmployee(employeeId);
+                page = "/employees.jsp";
             }
-
-        } else if (action.equalsIgnoreCase("deleteEmployee")) {
-            int employeeId = Integer.parseInt(request.getParameter("id"));
-            employeeService.deleteEmployee(employeeId);
-
-        } else if (action.equalsIgnoreCase("editEmployeeForm")) {
-            Employee employee;
-            int employeeId = Integer.parseInt(request.getParameter("id"));
-            employee = employeeService.getEmployee(employeeId);
-            List<EmployeeVO> managerList = employeeService.getManagers() ;
-            List<CategoryElement> roleList = employeeService.getRoles();
-            request.setAttribute("managerList",managerList);
-            request.setAttribute("roleList", roleList);
-            request.setAttribute("employee", employee);
-            page = "/editemployee.jsp";
-        } else if (action.equalsIgnoreCase("editEmployee")) {
-
-            int id = Integer.parseInt(request.getParameter("id"));
-            String name = request.getParameter("name");
-            String family = request.getParameter("family");
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            String email = request.getParameter("email");
-            String phoneNumber = request.getParameter("phonenumber");
-            int roleId = Integer.parseInt(request.getParameter("roleName"));
-            int managerId = Integer.parseInt(request.getParameter("manager"));
-
-            if (employeeService.checkExistForUpdate(id, username, email)) {
-                employeeService.updateEmployee(id, name, family, username, password, email, phoneNumber, roleId,managerId);
-            } else {
-                request.setAttribute("msg", "Email or Username Exist in Database");
-                page = "/error.jsp";
-            }
-
-        } else if (action.equalsIgnoreCase("deActiveEmployee")) {
-            int employeeId = Integer.parseInt(request.getParameter("id"));
-            employeeService.deActiveEmployee(employeeId);
-            page = "/employees.jsp";
-
-        } else if (action.equalsIgnoreCase("ActiveEmployee")) {
-            int employeeId = Integer.parseInt(request.getParameter("id"));
-            employeeService.activeEmployee(employeeId);
-            page = "/employees.jsp";
+            List<EmployeeVO> list = employeeService.getEmployees();
+            request.setAttribute("employees", list);
+        } else {
+            request.setAttribute("msg", "You don't have enough permission to access this page .");
+            page = "/error.jsp";
         }
-        List<EmployeeVO> list = employeeService.getEmployees();
-        request.setAttribute("employees", list);
+
         RequestDispatcher rd = request.getRequestDispatcher(page);
         rd.forward(request, response);
     }

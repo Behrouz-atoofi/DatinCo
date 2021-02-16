@@ -28,7 +28,7 @@ public class CategoryDao {
     public static CategoryElement getElementByName(String name) {
 
 
-        CategoryElement categoryElement ;
+        CategoryElement categoryElement;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
 

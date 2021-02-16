@@ -1,6 +1,5 @@
-<%@ page import="com.datin.elms.model.Employee" %>
-<%@ page import="java.util.List" %>
 <%@ page import="com.datin.elms.model.LeaveRequest" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,8 +24,7 @@
             <th>From Date</th>
             <th>To date</th>
             <th>Reason</th>
-            <th>Employee Id</th>
-            <th>Employee Family </th>
+            <th>Employee</th>
             <th>Status</th>
             <th>Accept</th>
             <th>Reject</th>
@@ -35,29 +33,33 @@
         </thead>
 
         <%
-            int i =1 ;
+            int i = 1;
             List<LeaveRequest> leaveRequests = (List<LeaveRequest>) request.getAttribute("leaveRequests");
             for (LeaveRequest leaveRequest : leaveRequests) {
         %>
         <tr>
-            <td><%=i%></td>
-            <td><%=leaveRequest.getFrom_date()%></td>
-            <td><%=leaveRequest.getTo_date()%></td>
-            <td><%=leaveRequest.getReason()%></td>
-            <td><%=leaveRequest.getEmployee().getId()%></td>
-            <td><%=leaveRequest.getEmployee().getFamily()%></td>
+            <td><%=i%>
+            </td>
+            <td><%=leaveRequest.getFrom_date()%>
+            </td>
+            <td><%=leaveRequest.getTo_date()%>
+            </td>
+            <td><%=leaveRequest.getReason()%>
+            </td>
+            <td><%=leaveRequest.getEmployee().getName() + " " + leaveRequest.getEmployee().getFamily()%>
+            </td>
             <%if (leaveRequest.getStatus().getName().equals("accepted")) {%>
-            <td><img src="static/Panel/images/acc.png" style="width:50px;height:50px;" /> </td>
+            <td><img src="static/Panel/images/acc.png" style="width:50px;height:50px;"/></td>
             <%} else if (leaveRequest.getStatus().getName().equals("pending")) {%>
-            <td><img src="static/Panel/images/pending.png"  style="width:50px;height:50px;" /> </td>
+            <td><img src="static/Panel/images/pending.png" style="width:50px;height:50px;"/></td>
             <%} else if (leaveRequest.getStatus().getName().equals("rejected")) { %>
-            <td><img src="static/Panel/images/rejc.png"  style="width:50px;height:50px;" /> </td>
+            <td><img src="static/Panel/images/rejc.png" style="width:50px;height:50px;"/></td>
             <%}%>
             <td><a href="manageRequests?action=acceptRequest&id=<%=leaveRequest.getId()%>">Accept</a></td>
             <td><a href="manageRequests?action=rejectRequest&id=<%=leaveRequest.getId()%>">Reject</a></td>
         </tr>
         <%
-                i++ ;
+                i++;
             }
         %>
     </table>
@@ -83,7 +85,7 @@
             <li class="list_item"><a href="manageEmployee?action=employees">employees</a></li>
             <li class="list_item"><a href="manageRequests?action=viewRequests">manage requests</a></li>
             <li class="list_item"><a href="request?action=myRequests">my Requests</a></li>
-            <li class="list_item"><a href="email?action=emails" >Email</a></li>
+            <li class="list_item"><a href="email?action=emails">Email</a></li>
             <li class="list_item"><a href="login?action=signOut">Logout</a></li>
 
         </ul>

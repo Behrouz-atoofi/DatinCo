@@ -1,15 +1,16 @@
 package service;
-
 import dto.Deposit;
 import dto.Payment;
 import exception.AccNotFoundException;
 import exception.AmountException;
 import exception.DivisibleException;
-import exception.NotMatchAccException;
 import org.apache.log4j.Logger;
-
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,8 +21,31 @@ public class Operator {
 
     static Logger log = Logger.getLogger(Generator.class.getName());
 
-    public static void payment(List<Deposit> deposits, List<Payment> payments, int thread) throws InterruptedException, AccNotFoundException, DivisibleException, AmountException, NotMatchAccException, IOException {
+    public static void payment(int thread) throws InterruptedException, AccNotFoundException, DivisibleException, AmountException, IOException {
 
+
+        List<Deposit> deposits = new ArrayList<>();
+        Path depositFile = Paths.get("src/main/resources/", "deposits.txt");
+        List<String> depositLines = Files.readAllLines(depositFile);
+        for (String depositLine : depositLines) {
+            String[] split = depositLine.split("\t");
+            Deposit deposit = new Deposit();
+            deposit.setDepositNumber(split[0]);
+            deposit.setAmount(BigDecimal.valueOf(Long.parseLong(split[1])));
+            deposits.add(deposit);
+        }
+
+        List<Payment> payments = new ArrayList<>();
+        Path paymentFile = Paths.get("src/main/resources/", "payments.txt");
+        List<String> paymentLines = Files.readAllLines(paymentFile);
+        for (String paymentLine : paymentLines) {
+            String[] split = paymentLine.split("\t");
+            Payment payment = new Payment();
+            payment.setType(Payment.DepositType.valueOf(split[0]));
+            payment.setDepositNumber(split[1]);
+            payment.setAmount(BigDecimal.valueOf(Long.parseLong(split[2])));
+            payments.add(payment);
+        }
 
         int paymentSize = payments.size();
 

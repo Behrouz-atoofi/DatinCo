@@ -1,8 +1,7 @@
 package com.datin.elms.model;
 
 
-
-public class EmployeeVO  {
+public class EmployeeVO {
 
     private int id;
     private String name;
@@ -13,7 +12,7 @@ public class EmployeeVO  {
     private String phoneNumber;
     private Employee manager;
     private CategoryElement role;
-    private boolean active ;
+    private boolean active;
     private Boolean disabled;
 
     public int getId() {

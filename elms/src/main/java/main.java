@@ -6,12 +6,11 @@ import com.github.mfathi91.time.PersianDate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
 
 public class main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         //loadData();
 

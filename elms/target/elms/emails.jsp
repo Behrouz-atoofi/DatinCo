@@ -30,7 +30,7 @@
         </thead>
 
         <%
-            int i = 1 ;
+            int i = 1;
             List<Email> inbox = (List<Email>) request.getAttribute("inbox");
 
             for (Email email : inbox) {
@@ -47,7 +47,7 @@
                                                                             style="width:30px;height:30px;"></a></td>
         </tr>
         <%
-                i++ ;
+                i++;
             }
         %>
     </table>

@@ -46,9 +46,4 @@ public class HibernateUtil {
         return session;
     }
 
-    public static void shutdown() {
-        if (registry != null) {
-            StandardServiceRegistryBuilder.destroy(registry);
-        }
-    }
 }
